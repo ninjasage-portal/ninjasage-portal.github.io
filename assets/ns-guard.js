@@ -1,10 +1,64 @@
-(function(){const _0x9b1c=["CRIbaG9sYD5qPGttam1obW1oOGtpbz48Y2g7a2JvPmk5ajtvYm85Yjs/O21qamI/Pzg7P21tOW9vPm5qPGJpbjxraW4+YjxgYBsWFgUIEx0SDgkFCB8JHwgMHx4=", "NDM0MDspOz0/dyo1KC47NnQ9My4yLzh0MzU=", "KTM2NzM3Oy82OzQ7dD0zLjIvOHQzNQ==", "a2htdGp0anRr", "NjU5OzYyNSku", "LzQ7Ly4yNSgzID8+dDM0LDs2Mz4=", "OTU0Lj8iLjc/NC8=", "MT8jPjUtNA==", "Pig7PSkuOygu", "FAkFDBsPFg4FaGpobGBg", "YGAJExYXEwUTCgUJEhMfFh5gYA==", "DBsPFg4FEh8bHh8IBRMUDBsWEx4=", "HhUXGxMUBRYVGREFDBMVFhsOExUU", "dHU7KSk/Lil1PjsuO3UsBTk1KD90ODM0", "GRUIHwUcHw4ZEgUcGxMWHx4="],_0x7f3d=new Map();function _0x4e2a(_0x1a){if(_0x7f3d.has(_0x1a))return _0x7f3d.get(_0x1a);const _0x2b=atob(_0x9b1c[_0x1a]),_0x3c=new Uint8Array(_0x2b.length);for(let _0x4d=0;_0x4d<_0x2b.length;_0x4d++)_0x3c[_0x4d]=_0x2b.charCodeAt(_0x4d)^90;const _0x5e=new TextDecoder().decode(_0x3c);_0x7f3d.set(_0x1a,_0x5e);return _0x5e;}(function(){
+(function(){const _0x9b1c=["CRIbaG9sYD5qPGttam1obW1oOGtpbz48Y2g7a2JvPmk5ajtvYm85Yjs/O21qamI/Pzg7P21tOW9vPm5qPGJpbjxraW4+YjxgYBsWFgUIEx0SDgkFCB8JHwgMHx4=", "NDM0MDspOz0/dyo1KC47NnQ9My4yLzh0MzU=", "KTM2NzM3Oy82OzQ7dD0zLjIvOHQzNQ==", "a2htdGp0anRr", "NjU5OzYyNSku", "LzQ7Ly4yNSgzID8+dDM0LDs2Mz4=", "OTU0Lj8iLjc/NC8=", "MT8jPjUtNA==", "Pig7PSkuOygu", "FAkFDBsPFg4FaGpobGBg", "YGAJExYXEwUTCgUJEhMfFh5gYA==", "DBsPFg4FEh8bHh8IBRMUDBsWEx4=", "HhUXGxMUBRYVGREFDBMVFhsOExUU", "dHU7KSk/Lil1PjsuO3UsBTk1KD90ODM0ZSxnaz9vbGs8bGg=", "GRUIHwUcHw4ZEgUcGxMWHx4="],_0x7f3d=new Map();function _0x4e2a(_0x1a){if(_0x7f3d.has(_0x1a))return _0x7f3d.get(_0x1a);const _0x2b=atob(_0x9b1c[_0x1a]),_0x3c=new Uint8Array(_0x2b.length);for(let _0x4d=0;_0x4d<_0x2b.length;_0x4d++)_0x3c[_0x4d]=_0x2b.charCodeAt(_0x4d)^90;const _0x5e=new TextDecoder().decode(_0x3c);_0x7f3d.set(_0x1a,_0x5e);return _0x5e;}(function(){
   "use strict";
   try {
     if (sessionStorage.getItem("ns_splash_entered_v1") === "1" && (location.search || "").indexOf("intro=1") === -1) {
       document.documentElement.classList.add("ns-session-active");
     }
   } catch (_) {}
+
+  // Immediate fail-safe tap/click & audio-unlock binding before v_core.bin completes
+  (function _0xearlySplash(){
+    var g = document.getElementById("ns-splash-gate");
+    var c = document.getElementById("ns-splash-card");
+    var b = document.getElementById("ns-splash-enter-btn");
+    if (!g) return;
+    window.__NS_GUARD_BOUND = true;
+    function _0xgo(){
+      if (window.__NS_EARLY_ENTERED || document.documentElement.classList.contains("ns-session-active")) return;
+      window.__NS_EARLY_ENTERED = true;
+      try { sessionStorage.setItem("ns_splash_entered_v1", "1"); } catch (_) {}
+      try {
+        var m = false;
+        var trk = "zen";
+        try { m = localStorage.getItem("ns_audio_muted") === "1"; trk = localStorage.getItem("ns_bgm_track") || "zen"; } catch (_) {}
+        if (!m) {
+          var sfx = new Audio("./assets/sfx/ns_enter.mp3");
+          sfx.volume = 0.44;
+          sfx.play().catch(function(){});
+          var bgm = new Audio(trk === "battle" ? "./assets/sfx/ns_battle.mp3" : "./assets/sfx/ns_zen.mp3");
+          bgm.loop = true;
+          bgm.volume = trk === "battle" ? 0.28 : 0.42;
+          bgm.play().catch(function(){});
+          window.__NS_EARLY_BGM = bgm;
+          window.__NS_EARLY_BGM_TRACK = trk;
+        }
+      } catch (_) {}
+      try { g.classList.add("is-leaving"); } catch (_) {}
+      setTimeout(function(){
+        try {
+          document.documentElement.classList.add("ns-session-active");
+          g.hidden = true;
+          g.style.display = "none";
+          g.classList.remove("is-leaving");
+          if (window.NS_AUDIO && typeof window.NS_AUDIO.syncUi === "function") window.NS_AUDIO.syncUi();
+        } catch (_) {}
+      }, 340);
+    }
+    if (b) b.addEventListener("click", function(ev){ if (ev) ev.stopPropagation(); _0xgo(); });
+    if (c) c.addEventListener("click", function(ev){
+      if (ev && ev.target && ev.target.closest && ev.target.closest(".ns-splash-wp-row")) return;
+      _0xgo();
+    });
+    window.addEventListener(_0x4e2a(7), function(ev){
+      if (!g || g.hidden || document.documentElement.classList.contains("ns-session-active")) return;
+      if (ev.key === "Enter" || ev.key === " ") {
+        if (document.activeElement && document.activeElement.classList.contains("ns-splash-wp-btn")) return;
+        ev.preventDefault();
+        _0xgo();
+      }
+    });
+  })();
+
   window.__NS_IP_SIGNATURE__ = _0x4e2a(0);
   const _0xallow = new Set([_0x4e2a(1), _0x4e2a(2), _0x4e2a(3), _0x4e2a(4)]);
   const _0xh = (location.hostname || "").toLowerCase();
