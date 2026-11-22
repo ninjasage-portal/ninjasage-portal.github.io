@@ -2351,21 +2351,27 @@
     .ns-credit-author { color: var(--accent-gold-hi); font-weight: 600; }
     .ns-credit-sep { width: 1px; height: 12px; background: var(--border-steel); }
 
-    /* Topbar Audio Controller Pill */
+    /* Topbar Audio Controller Pill + Razor-Sharp Single-Row Desktop Fit */
+    .topbar { padding: 8px 18px; gap: 8px 10px; }
+    .topbar-left { gap: 6px 9px; }
+    .topbar-status-grp { gap: 5px; }
+    .topbar-status-grp .pill { min-height: 24px; padding: 1px 8px; font-size: 11px; }
+    .nav-right { gap: 7px; }
+    .theme-btn { min-height: 24px; padding: 1px 7px; font-size: 10.5px; }
     .ns-audio-pill {
-      display: inline-flex; align-items: center; gap: 3px; padding: 2px 4px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 2px; padding: 2px 3px; border-radius: 999px;
       background: rgba(17, 19, 26, 0.88); border: 1px solid var(--border-hairline);
     }
     .ns-aud-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-      min-height: 26px; padding: 2px 8px; border-radius: 999px; border: none; background: transparent;
-      color: var(--text-secondary); font-family: var(--font-sans); font-size: 11px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+      min-height: 24px; padding: 1px 7px; border-radius: 999px; border: none; background: transparent;
+      color: var(--text-secondary); font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; cursor: pointer;
       white-space: nowrap;
     }
     .ns-aud-btn.is-on { color: var(--accent-gold-hi); background: rgba(212, 168, 83, 0.14); }
     .ns-aud-trk {
-      min-height: 24px; padding: 2px 8px; border-radius: 999px; border: none; background: rgba(255, 255, 255, 0.04);
-      color: var(--text-secondary); font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; cursor: pointer;
+      min-height: 22px; padding: 1px 7px; border-radius: 999px; border: none; background: rgba(255, 255, 255, 0.045);
+      color: var(--text-secondary); font-family: var(--font-sans); font-size: 10px; font-weight: 600; cursor: pointer;
       white-space: nowrap;
     }
     @media (hover: hover) {
