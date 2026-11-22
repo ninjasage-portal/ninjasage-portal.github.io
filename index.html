@@ -287,37 +287,47 @@
 
     /* BAND 1: Hero Showcase + Operation Command Deck */
     .hero-deck {
-      display: grid; grid-template-columns: minmax(420px, 0.94fr) minmax(0, 1.06fr);
+      display: grid; grid-template-columns: minmax(456px, 0.96fr) minmax(0, 1.04fr);
       gap: 20px; align-items: stretch;
     }
     .hero-card { display: flex; flex-direction: column; }
     .hero-hdr {
       padding: 16px 20px; border-bottom: 1px solid var(--border-hairline);
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
       background-image:
-        linear-gradient(180deg, rgba(212, 168, 83, 0.06) 0%, rgba(17, 19, 26, 0.0) 100%),
+        linear-gradient(180deg, rgba(212, 168, 83, 0.065) 0%, rgba(17, 19, 26, 0.0) 100%),
         url("./assets/ns/ui_hex_pattern.png");
       background-size: auto, 227px 131px;
     }
-    .hero-ident { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .hero-name-main { font-family: var(--font-display); font-size: 16.5px; font-weight: 600; color: var(--text-primary); line-height: 1.2; margin: 0; }
-    .hero-sub-meta { font-size: 12px; color: var(--text-secondary); margin-top: 2px; font-variant-numeric: tabular-nums; }
-    .hero-lv-box { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .lv-num { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--accent-gold-hi); font-variant-numeric: tabular-nums; }
+    .hero-ident { display: flex; align-items: center; gap: 13px; min-width: 0; }
+    .hero-crest-seal {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; padding: 5px;
+      background: linear-gradient(145deg, rgba(212, 168, 83, 0.16), rgba(14, 17, 26, 0.94));
+      border: 1px solid rgba(212, 168, 83, 0.34);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 10px rgba(0, 0, 0, 0.35);
+      display: grid; place-items: center;
+    }
+    .hero-crest-seal img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .hero-name-main { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--text-primary); line-height: 1.22; letter-spacing: -0.015em; margin: 0; }
+    .hero-sub-meta { font-size: 12px; color: var(--text-secondary); margin-top: 3px; font-variant-numeric: tabular-nums; line-height: 1.35; }
+    .hero-lv-box { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+    .hero-lv-ico { width: 26px; height: 26px; object-fit: contain; display: block; flex-shrink: 0; }
+    .lv-num { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent-gold-hi); font-variant-numeric: tabular-nums; letter-spacing: -0.015em; }
     .xp-pct-badge {
-      padding: 2px 8px; border-radius: 6px;
-      background: rgba(212, 168, 83, 0.14); border: 1px solid rgba(212, 168, 83, 0.32);
-      color: var(--accent-gold-hi); font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;
+      padding: 3px 9px; border-radius: 7px;
+      background: rgba(212, 168, 83, 0.14); border: 1px solid rgba(212, 168, 83, 0.34);
+      color: var(--accent-gold-hi); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;
     }
 
     .hero-xp {
-      padding: 12px 20px; border-bottom: 1px solid var(--border-hairline);
-      display: flex; flex-direction: column; gap: 7px;
+      padding: 13px 20px; border-bottom: 1px solid var(--border-hairline);
+      display: flex; flex-direction: column; gap: 8px;
+      background: rgba(255, 255, 255, 0.008);
     }
     .xp-top-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .xp-lv-group { display: inline-flex; align-items: center; gap: 8px; }
-    .xp-nums { font-size: 12.5px; font-weight: 600; color: var(--text-primary); font-variant-numeric: tabular-nums; }
-    .xp-track { width: 100%; height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+    .xp-nums { font-size: 13px; font-weight: 600; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .xp-track { width: 100%; height: 7px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35); }
     .xp-fill {
       width: 100%; height: 100%; border-radius: 999px;
       background: linear-gradient(90deg, #16A34A 0%, #D4A853 100%);
@@ -325,72 +335,165 @@
     }
     .xp-foot {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      font-size: 11.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums;
+      font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums;
     }
     .xp-foot strong { color: var(--text-primary); font-weight: 600; }
 
-    /* Stage + Full-Width Un-truncated 6-Row Gear List */
+    /* Symmetrical Framed Ninja Sage Character Stage + 6-Card Loadout Hierarchy */
     .hero-stage-head {
-      padding: 10px 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .main-char-title {
-      font-size: 12px; font-weight: 600; color: var(--text-secondary);
-      display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+      font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
     }
+    .main-char-title-seal {
+      width: 24px; height: 24px; border-radius: 7px; padding: 3px; flex-shrink: 0;
+      background: rgba(212, 168, 83, 0.12); border: 1px solid rgba(212, 168, 83, 0.28);
+      display: grid; place-items: center;
+    }
+    .main-char-title-seal img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .hero-stage-split {
-      padding: 10px 20px 14px; display: grid; grid-template-columns: 196px minmax(0, 1fr);
-      gap: 16px; align-items: stretch; flex: 1;
+      padding: 2px 20px 16px; display: grid; grid-template-columns: minmax(212px, 0.46fr) minmax(0, 0.54fr);
+      gap: 14px; align-items: stretch; flex: 1;
     }
     .main-char-stage {
-      position: relative; width: 100%; height: 242px; border-radius: 11px; overflow: hidden;
-      background: linear-gradient(180deg, rgba(10, 11, 15, 0.14) 0%, rgba(10, 11, 15, 0.48) 100%), url("./assets/ns/stage_bg_arena.png") center/cover no-repeat;
-      border: 1px solid var(--border-hairline);
+      position: relative; width: 100%; height: 100%; min-height: 364px; border-radius: 14px; overflow: hidden;
+      background:
+        radial-gradient(ellipse 76% 56% at 52% 52%, rgba(212, 168, 83, 0.14) 0%, rgba(0, 0, 0, 0) 74%),
+        linear-gradient(180deg, rgba(10, 12, 18, 0.16) 0%, rgba(10, 12, 18, 0.38) 68%, rgba(7, 9, 14, 0.90) 100%),
+        url("./assets/ns/stage_bg_arena.png") center 78%/cover no-repeat;
+      border: 1px solid rgba(212, 168, 83, 0.38);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 236, 189, 0.16),
+        inset 0 -52px 48px rgba(6, 8, 13, 0.86),
+        0 12px 28px rgba(0, 0, 0, 0.48);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .char-frame-mat {
+      position: absolute; inset: 6px; border-radius: 8px;
+      border: 1px solid rgba(212, 168, 83, 0.22);
+      pointer-events: none; z-index: 2;
+    }
+    .char-kumiko {
+      position: absolute; width: 32px; height: 32px; opacity: 0.45; pointer-events: none; z-index: 3;
+    }
+    .char-kumiko.tl { top: 6px; left: 6px; }
+    .char-kumiko.tr { top: 6px; right: 6px; transform: scaleX(-1); }
+    .char-kumiko.bl { bottom: 36px; left: 6px; transform: scaleY(-1); }
+    .char-kumiko.br { bottom: 36px; right: 6px; transform: scale(-1, -1); }
+    .char-frame-top-tag {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 3;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 10px 3px 8px; border-radius: 999px;
+      background: rgba(9, 11, 17, 0.84); border: 1px solid rgba(212, 168, 83, 0.32);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.42);
+      color: var(--accent-gold-hi); font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      pointer-events: none; white-space: nowrap;
+    }
+    .char-frame-top-tag img { width: 14px; height: 14px; object-fit: contain; display: block; flex-shrink: 0; }
+    .main-char-avatar-mount {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%; flex: 1;
+      padding: 36px 4px 34px;
       display: flex; align-items: center; justify-content: center;
     }
-    .main-char-avatar-mount { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
     .main-char-svg {
-      width: 100%; height: 100%; max-width: 100%; max-height: 224px; display: block;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.72));
-      transform: translateX(0);
+      width: 100%; height: 100%; max-width: 100%; max-height: 368px; display: block;
+      filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.82));
     }
     .main-char-pet {
-      position: absolute; left: 4px; bottom: 4px; width: 82px; height: 78px;
-      display: flex; align-items: center; justify-content: center; overflow: visible;
+      position: absolute; left: 10px; bottom: 36px; width: 94px; height: 88px; z-index: 2;
+      display: flex; align-items: flex-end; justify-content: center; overflow: visible;
     }
     .main-char-pet img {
-      max-width: 100%; max-height: 74px; width: auto; height: auto; object-fit: contain;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.75));
+      max-width: 100%; max-height: 84px; width: auto; height: auto; object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.84));
       opacity: 0; transition: opacity 160ms cubic-bezier(0.2, 0, 0, 1);
     }
     .main-char-pet img.is-ready { opacity: 1; }
+    .char-frame-foot {
+      position: absolute; bottom: 0; inset-inline: 0; height: 32px; z-index: 3;
+      padding: 0 12px;
+      background: linear-gradient(180deg, rgba(11, 13, 20, 0.88) 0%, rgba(8, 10, 15, 0.96) 100%);
+      border-top: 1px solid rgba(212, 168, 83, 0.22);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      font-size: 11px; color: var(--text-secondary); pointer-events: none;
+    }
+    .char-frame-foot-name {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; color: var(--text-primary);
+    }
+    .char-frame-foot-name img { width: 14px; height: 14px; object-fit: contain; display: block; }
+    .char-frame-foot-rank {
+      color: var(--accent-gold-hi); font-weight: 600; font-variant-numeric: tabular-nums;
+    }
 
-    /* 6-Row Flat Hairline Gear Directory (NO 3-column ellipse chopping!) */
+    /* 6-Slot Equal-Height Framed Gear Stack (Zero Dead Voids, Crisp 42px Icon Wells, Full-Width Single-Line Names) */
     .main-char-gear-strip {
-      display: flex; flex-direction: column; justify-content: space-between; min-width: 0;
-      border-top: 1px solid var(--border-hairline);
+      display: grid; grid-template-rows: repeat(6, minmax(54px, 1fr));
+      gap: 7px; height: 100%; min-width: 0;
     }
     .main-char-chip {
-      width: 100%; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 5px 6px;
-      background: transparent; border: none; border-bottom: 1px solid var(--border-hairline);
-      color: var(--text-primary); font-family: var(--font-sans); font-size: 12.5px; font-weight: 500;
+      width: 100%; height: 100%; display: flex; align-items: center; gap: 11px;
+      min-height: 54px; padding: 6px 12px 6px 9px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.032) 0%, rgba(255, 255, 255, 0.014) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+      color: var(--text-primary); font-family: var(--font-sans);
       cursor: pointer; text-align: left; min-width: 0;
-      transition: background-color 130ms ease;
+      transition: background-color 140ms ease, border-color 140ms ease, transform 150ms cubic-bezier(0.2, 0, 0, 1);
     }
-    .main-char-chip img { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; border-radius: 6px; background: rgba(255, 255, 255, 0.03); padding: 2px; }
-    .main-char-chip-txt { flex: 1; min-width: 0; white-space: normal; overflow-wrap: anywhere; line-height: 1.28; color: var(--text-primary); }
-    .main-char-slot-tag { font-size: 10.5px; font-weight: 600; color: var(--text-tertiary); flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.03em; }
+    .main-char-ico-well {
+      width: 42px; height: 42px; border-radius: 9px; padding: 4px; flex-shrink: 0;
+      background: linear-gradient(145deg, rgba(15, 18, 27, 0.92), rgba(9, 11, 16, 0.96));
+      border: 1px solid rgba(212, 168, 83, 0.24);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 3px 8px rgba(0, 0, 0, 0.32);
+      display: grid; place-items: center;
+    }
+    .main-char-ico-well img, .main-char-chip > img {
+      width: 32px; height: 32px; object-fit: contain; display: block; flex-shrink: 0;
+    }
+    .main-char-chip-meta {
+      flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 3px;
+    }
+    .main-char-chip-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px; min-width: 0; flex-wrap: wrap;
+    }
+    .main-char-chip-txt {
+      font-size: 13.5px; font-weight: 600; color: var(--text-primary);
+      line-height: 1.24; letter-spacing: -0.01em;
+      white-space: normal; word-break: normal; overflow-wrap: break-word;
+    }
+    .main-char-chip-sub {
+      font-size: 11px; font-weight: 500; color: var(--text-tertiary);
+      line-height: 1.2; font-variant-numeric: tabular-nums;
+      white-space: normal; text-align: right;
+    }
+    .main-char-slot-tag {
+      padding: 1.5px 7px; border-radius: 5px;
+      background: rgba(212, 168, 83, 0.10); border: 1px solid rgba(212, 168, 83, 0.24);
+      font-size: 9.5px; font-weight: 600; color: var(--accent-gold-hi);
+      flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.05em;
+    }
 
-    /* Clean Inline Spec Foot */
+    /* Clean Balanced Spec Footer (22px Breathing Attribute & Talent Icons) */
     .hero-attrs {
-      padding: 11px 20px 13px; border-top: 1px solid var(--border-hairline);
-      background: rgba(255, 255, 255, 0.015);
-      display: flex; flex-direction: column; gap: 7px;
+      padding: 13px 20px 15px; border-top: 1px solid var(--border-hairline);
+      background: rgba(255, 255, 255, 0.016);
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .hero-attr-row { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 10px; font-size: 12px; }
-    .hero-attr-k { color: var(--text-tertiary); font-weight: 500; }
-    .hero-attr-v { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--text-periwinkle); font-weight: 500; min-width: 0; }
-    .hero-attr-itm { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
-    .hero-attr-itm img { width: 15px; height: 15px; object-fit: contain; display: block; flex-shrink: 0; }
+    .hero-attr-row { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 12px; font-size: 12px; }
+    .hero-attr-k { color: var(--text-tertiary); font-weight: 600; letter-spacing: -0.005em; }
+    .hero-attr-v { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--text-periwinkle); font-weight: 500; min-width: 0; }
+    .hero-attr-itm {
+      min-height: 32px; padding: 4px 11px 4px 7px; border-radius: 8px;
+      background: rgba(255, 255, 255, 0.032); border: 1px solid rgba(255, 255, 255, 0.08);
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 12.5px; font-weight: 500; color: var(--text-primary); white-space: nowrap;
+    }
+    .hero-attr-itm img { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; display: block; flex-shrink: 0; }
 
     /* Command Panel Controls */
     .portal-tabs {
@@ -478,7 +581,7 @@
 
     @media (hover: hover) {
       .viewbar-btn:hover, .portal-nav-btn:hover, .kb-skill-card:hover { background: var(--surface-hover); color: var(--text-primary); }
-      .main-char-chip:hover { background: rgba(255, 255, 255, 0.04); }
+      .main-char-chip:hover { background: rgba(212, 168, 83, 0.075); border-color: rgba(212, 168, 83, 0.30); }
       .portal-tab:hover, .kb-chip:hover { background: var(--surface-hover); color: var(--text-primary); }
       .btn-red-border:hover { background: rgba(220, 38, 38, 0.28); color: #ffffff; }
       .btn-primary:hover { background: var(--accent-crimson-hi); }
@@ -1869,59 +1972,217 @@
       *, *::before, *::after { transition-duration: 0.01ms !important; }
     }
   
-    /* ============ PUBLIC BUILD PLANNER ADDITIONS ============ */
-    .bp-edit-bar {
-      display: grid; grid-template-columns: minmax(0, 1.3fr) 88px 118px; gap: 8px;
-      align-items: end;
+    /* ============ PUBLIC BUILD PLANNER COMMAND DECK & STUDIO LIVE PICKER ============ */
+    .bp-cmd-deck {
+      display: flex; flex-direction: column; gap: 11px;
+      padding: 14px 18px; border-radius: 14px; background: var(--surface-panel);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 26px -6px rgba(0, 0, 0, 0.55);
+      min-width: 0;
     }
-    .bp-fld { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-    .bp-fld label { font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+    .bp-cmd-row1 {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; min-width: 0;
+    }
+    .bp-cmd-row2 {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      padding-top: 10px; border-top: 1px solid var(--border-hairline); min-width: 0;
+    }
+    .bp-cmd-left { display: flex; align-items: center; gap: 12px; flex: 1 1 420px; min-width: 0; flex-wrap: wrap; }
+    .bp-rank-crest {
+      width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+      display: grid; place-items: center; background: rgba(212, 168, 83, 0.10);
+      border: 1px solid rgba(212, 168, 83, 0.35);
+    }
+    .bp-id-grid {
+      display: grid; grid-template-columns: minmax(160px, 1.3fr) 76px 102px minmax(185px, 1.4fr);
+      gap: 10px; align-items: center; flex: 1; min-width: 0;
+    }
+    .bp-fld { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .bp-fld label { font-size: 10.5px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .bp-fld input, .bp-fld select {
-      width: 100%; min-height: 34px; padding: 5px 9px; border-radius: 8px;
-      background: rgba(10, 12, 18, 0.72); border: 1px solid var(--border-steel);
-      color: var(--text-primary); font-family: var(--font-sans); font-size: 12.5px; font-variant-numeric: tabular-nums;
+      width: 100%; min-height: 32px; padding: 4px 9px; border-radius: 8px;
+      background: rgba(10, 12, 18, 0.78); border: 1px solid var(--border-steel);
+      color: var(--text-primary); font-family: var(--font-sans); font-size: 12.5px; font-weight: 600;
+      font-variant-numeric: tabular-nums;
     }
-    .bp-elem-strip { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .bp-xp-mini {
+      display: flex; flex-direction: column; gap: 4px; min-width: 0;
+      padding: 5px 10px; border-radius: 9px; background: var(--surface-well); border: 1px solid var(--border-hairline);
+    }
+    .bp-xp-mini-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-cmd-acts { display: flex; align-items: center; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
+    .bp-slot-grp {
+      display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; min-width: 0;
+    }
+    .bp-slot-lbl { font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-right: 2px; }
+
+    .bp-main-bento {
+      display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 16px; align-items: stretch;
+    }
+    .bp-main-bento .sage-head-lockup { width: auto; flex: 1; min-width: 0; }
+    .bp-char-col, .bp-jutsu-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .bp-char-card, .bp-jutsu-col > .sage-card { display: flex; flex-direction: column; height: 100%; }
+    .bp-arena-stage {
+      position: relative; width: 100%; height: 268px; border-radius: 12px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(10, 11, 15, 0.14) 0%, rgba(10, 11, 15, 0.56) 100%), url("./assets/ns/stage_bg_arena.png") center/cover no-repeat;
+      border: 1px solid var(--border-gold);
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .bp-arena-stage.bg-emerald { background: linear-gradient(180deg, rgba(8, 22, 18, 0.22) 0%, rgba(8, 18, 15, 0.54) 100%), url("./assets/ns/stage_bg_rooftop.png") center/cover no-repeat; }
+    .bp-arena-stage.bg-amber { background: linear-gradient(180deg, rgba(28, 16, 10, 0.20) 0%, rgba(20, 12, 8, 0.52) 100%), url("./assets/ns/stage_bg_arena.png") center/cover no-repeat; }
+    .bp-arena-stage.bg-obsidian { background: linear-gradient(180deg, rgba(8, 10, 14, 0.48) 0%, rgba(8, 10, 14, 0.78) 100%), url("./assets/ns/stage_bg_rooftop.png") center/cover no-repeat; }
+    .bp-stage-top {
+      position: absolute; top: 9px; left: 10px; right: 10px; z-index: 4;
+      display: flex; align-items: center; justify-content: space-between; gap: 6px; pointer-events: none;
+    }
+    .bp-stage-top > * { pointer-events: auto; }
+    .bp-bg-pills {
+      display: inline-flex; gap: 3px; padding: 2px; border-radius: 8px;
+      background: rgba(10, 12, 18, 0.78); backdrop-filter: blur(8px); border: 1px solid var(--border-hairline);
+    }
+    .bp-bg-btn {
+      min-height: 22px; padding: 1px 7px; border-radius: 6px; border: none; background: transparent;
+      color: var(--text-secondary); font-size: 10.5px; font-weight: 600; cursor: pointer;
+    }
+    .bp-bg-btn[aria-pressed="true"] { background: rgba(212, 168, 83, 0.22); color: var(--accent-gold-hi); }
+    .bp-acc-pedestal {
+      position: absolute; right: 10px; bottom: 10px; z-index: 3;
+      width: 92px; padding: 7px 6px; border-radius: 10px;
+      background: rgba(11, 13, 20, 0.84); backdrop-filter: blur(8px);
+      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; align-items: center; gap: 3px;
+      text-align: center; cursor: pointer; transition: border-color 140ms ease;
+    }
+    @media (hover: hover) {
+      .bp-acc-pedestal:hover { border-color: var(--border-gold); }
+    }
+    .bp-acc-pedestal-k { font-size: 9px; font-weight: 700; color: var(--accent-gold-hi); letter-spacing: 0.04em; text-transform: uppercase; }
+    .bp-acc-pedestal-art { width: 46px; height: 46px; display: grid; place-items: center; }
+    .bp-acc-pedestal-art svg, .bp-acc-pedestal-art img { width: 42px; height: 42px; object-fit: contain; display: block; }
+    .bp-acc-pedestal-n { font-size: 10px; font-weight: 600; color: var(--text-primary); width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .stage-fallback-badges {
+      position: absolute; left: 10px; top: 42px; z-index: 4;
+      display: flex; flex-direction: column; gap: 5px; max-width: 145px; pointer-events: none;
+    }
+    .stage-fb-pill {
+      display: flex; align-items: center; gap: 6px; padding: 4px 7px; border-radius: 8px;
+      background: rgba(11, 13, 20, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(212, 168, 83, 0.36);
+      font-size: 10.5px; color: var(--text-primary);
+    }
+    .stage-fb-pill img, .stage-fb-pill svg { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+
+    .bp-eq-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px;
+    }
+    .bp-eq-card {
+      display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 10px;
+      background: var(--surface-elevated); border: 1px solid var(--border-hairline);
+      cursor: pointer; text-align: left; color: var(--text-primary); min-width: 0;
+      transition: border-color 140ms ease, background-color 140ms ease;
+    }
+    @media (hover: hover) {
+      .bp-eq-card:hover { background: var(--surface-hover); border-color: var(--border-gold); }
+    }
+    .bp-eq-ico {
+      width: 38px; height: 38px; border-radius: 8px; flex-shrink: 0;
+      background: #0A0B0F; border: 1px solid var(--border-hairline);
+      display: grid; place-items: center; overflow: hidden;
+    }
+    .bp-eq-ico img { width: 32px; height: 32px; object-fit: contain; display: block; }
+    .bp-eq-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+    .bp-eq-k { font-size: 9.5px; font-weight: 700; color: var(--accent-gold-hi); letter-spacing: 0.04em; text-transform: uppercase; }
+    .bp-eq-n { font-size: 12px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-eq-s { font-size: 10.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .bp-aff-box {
+      margin-top: 12px; padding: 10px 12px; border-radius: 10px;
+      background: var(--surface-well); border: 1px solid var(--border-hairline);
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .bp-aff-row { display: flex; flex-direction: column; gap: 5px; }
+    .bp-aff-hdr { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+    .bp-elem-strip { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
     .bp-elem-btn {
-      display: inline-flex; align-items: center; gap: 3px; min-height: 25px; padding: 2px 6px;
-      border-radius: 999px; border: 1px solid var(--border-hairline); background: var(--surface-well);
-      color: var(--text-secondary); font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; cursor: pointer; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 4px; min-height: 26px; padding: 2px 8px;
+      border-radius: 999px; border: 1px solid var(--border-hairline); background: var(--surface-elevated);
+      color: var(--text-secondary); font-family: var(--font-sans); font-size: 11px; font-weight: 600; cursor: pointer; white-space: nowrap;
     }
     .bp-elem-btn[aria-pressed="true"] {
-      background: rgba(212, 168, 83, 0.16); border-color: rgba(212, 168, 83, 0.52); color: var(--accent-gold-hi);
+      background: rgba(212, 168, 83, 0.18); border-color: rgba(212, 168, 83, 0.56); color: var(--accent-gold-hi);
     }
     .rail-share-btn { width: 100%; justify-content: center; }
+
     .bp-skill-grid {
       display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
-      margin-bottom: 14px;
     }
     .bp-skill-slot {
-      display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px;
+      display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 11px;
       background: var(--surface-elevated); border: 1px solid var(--border-hairline);
       min-width: 0; text-align: left; transition: border-color 140ms ease, background-color 140ms ease;
     }
     @media (hover: hover) {
       .bp-skill-slot:hover { background: var(--surface-hover); border-color: var(--border-gold); }
     }
-    .bp-skill-slot-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+    .bp-skill-slot-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .bp-skill-slot-top { display: flex; align-items: center; gap: 6px; min-width: 0; }
     .bp-skill-slot-k {
-      font-size: 10px; font-weight: 600; color: var(--accent-gold-hi); letter-spacing: 0.02em;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-size: 10px; font-weight: 700; color: var(--accent-gold-hi); letter-spacing: 0.03em;
+      padding: 1px 6px; border-radius: 5px; background: rgba(212, 168, 83, 0.12); flex-shrink: 0;
     }
-    .bp-skill-slot-n { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .bp-skill-slot-s { font-size: 11px; color: var(--text-tertiary); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-skill-slot-tp { font-size: 10.5px; font-weight: 600; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-skill-slot-n { font-size: 13px; font-weight: 600; color: var(--text-primary); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-skill-slot-s { font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-skill-slot-ef { font-size: 10.5px; color: var(--accent-cyan); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .bp-skill-slot-acts { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
-    .bp-skill-slot-acts > button { min-height: 22px; padding: 2px 8px; font-size: 10.5px; justify-content: center; }
-    .bp-preset-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-    .bp-summary-box {
-      padding: 12px 14px; border-radius: 10px; background: var(--surface-well);
-      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 9px;
+    .bp-skill-slot-acts > button { min-height: 23px; padding: 2px 9px; font-size: 10.5px; justify-content: center; }
+
+    .bp-telemetry-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px;
     }
+    .bp-sec-hdr { margin-top: 14px; margin-bottom: 8px; }
+    .bp-stat-card {
+      padding: 11px 12px; border-radius: 10px; background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 7px; min-width: 0;
+    }
+    .bp-stat-card-t {
+      font-size: 11px; font-weight: 700; color: var(--accent-gold-hi); letter-spacing: 0.03em;
+      text-transform: uppercase; padding-bottom: 5px; border-bottom: 1px solid var(--border-hairline);
+    }
+    .bp-stat-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      font-size: 11.5px; font-variant-numeric: tabular-nums;
+    }
+    .bp-stat-k { color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-stat-v { font-weight: 600; color: var(--text-primary); flex-shrink: 0; }
+    .bp-stat-v.is-hi { color: #86EFAC; }
+    .bp-stat-v.is-warn { color: #FBBF24; }
+
+    /* Live Preview Split Stage Inside Studio Picker & Skill Picker Modals */
+    .st-pick-pv-bar {
+      display: grid; grid-template-columns: 176px minmax(0, 1fr); gap: 14px;
+      padding: 11px 13px; border-radius: 11px; margin-bottom: 10px;
+      background: rgba(10, 12, 18, 0.82); border: 1px solid var(--border-gold);
+      align-items: center;
+    }
+    .st-pick-pv-stage {
+      position: relative; width: 176px; height: 152px; border-radius: 9px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(10, 11, 15, 0.16) 0%, rgba(10, 11, 15, 0.52) 100%), url("./assets/ns/stage_bg_arena.png") center/cover no-repeat;
+      border: 1px solid var(--border-hairline); display: flex; align-items: center; justify-content: center;
+    }
+    .st-pick-pv-stage svg { width: 100%; height: 100%; max-height: 146px; display: block; }
+    .st-pick-pv-stage img { max-width: 92%; max-height: 92%; object-fit: contain; display: block; }
+    .st-pick-pv-info { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+    .st-pick-pv-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .st-pick-pv-title { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 0; }
+    .st-pick-pv-sub { font-size: 11.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+    .st-pick-pv-effs { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+    .studio-slot-card.is-pv-active { border-color: var(--accent-gold-hi); background: rgba(212, 168, 83, 0.10); }
+
     .bp-quick-strip {
       display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
     }
     .bp-quick-tile {
-      display: flex; align-items: center; gap: 11px; padding: 13px 14px; border-radius: 12px;
+      display: flex; align-items: center; gap: 11px; padding: 12px 14px; border-radius: 12px;
       background: var(--surface-panel); border: 1px solid var(--border-hairline);
       cursor: pointer; text-align: left; color: var(--text-primary); font-family: var(--font-sans); min-width: 0;
     }
@@ -1943,12 +2204,15 @@
       background: rgba(10, 12, 18, 0.85); border: 1px solid var(--border-steel);
       color: var(--text-primary); font-size: 12px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums;
     }
-    @media (max-width: 1180px) {
-      .bp-quick-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .craft-sandbox-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 1220px) {
+      .bp-main-bento { grid-template-columns: minmax(0, 1fr); }
+      .bp-telemetry-grid, .bp-quick-strip, .craft-sandbox-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bp-id-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 820px) {
-      .bp-edit-bar, .bp-skill-grid, .bp-quick-strip, .craft-sandbox-inputs { grid-template-columns: minmax(0, 1fr); }
+      .bp-cmd-left { flex: 1 1 100%; }
+      .bp-id-grid, .bp-eq-grid, .bp-skill-grid, .bp-telemetry-grid, .bp-quick-strip, .craft-sandbox-inputs, .st-pick-pv-bar { grid-template-columns: minmax(0, 1fr); }
+      .st-pick-pv-stage { width: 100%; }
     }
 
   </style>
@@ -2076,129 +2340,200 @@
       </header>
 
       <main class="shell">
-        <!-- VIEW 1: PUBLIC BUILD PLANNER & SANDBOX SHOWCASE -->
+        <!-- VIEW 1: PUBLIC BUILD PLANNER & SHINOBI COMMAND DECK -->
         <section class="portal-stack view-pane" id="view-portal">
-          <div class="hero-deck">
-            <!-- Left: Interactive Sandbox Character Card -->
-            <article class="sage-card hero-card" aria-label="Profil Shinobi Sandbox dan Loadout">
-              <div class="hero-hdr">
-                <div class="hero-ident">
-                  <div>
-                    <h2 class="hero-name-main" id="bp-hero-title">Shinobi Tamu</h2>
-                    <div class="hero-sub-meta" id="bp-hero-sub">Sennin / Senjutsu · Build Sandbox Komunitas</div>
-                  </div>
+          <!-- TOP SHINOBI IDENTITY & PRESET COMMAND DECK -->
+          <div class="bp-cmd-deck" aria-label="Identitas Shinobi dan Preset Build">
+            <div class="bp-cmd-row1">
+              <div class="bp-cmd-left">
+                <div class="bp-rank-crest">
+                  <picture><img id="bp-lv-rank-ico" src="./assets/ns/ns_rank_8.png" width="30" height="30" alt="Rank" /></picture>
                 </div>
-                <div class="hero-lv-box">
-                  <picture><img id="bp-lv-rank-ico" class="ico-18" src="./assets/ns/ns_rank_8.png" width="22" height="22" alt="Rank" /></picture>
-                  <span class="lv-num" id="kpi-lv">Lv 80</span>
-                  <span class="xp-pct-badge" id="xp-pct-pill">Wind</span>
-                </div>
-              </div>
-
-              <div class="hero-xp">
-                <div class="bp-edit-bar">
+                <div class="bp-id-grid">
                   <div class="bp-fld">
-                    <label for="bp-name-inp">Nama Shinobi</label>
-                    <input type="text" id="bp-name-inp" maxlength="24" value="Shinobi Tamu" placeholder="Masukkan nama ninja…" />
+                    <label for="bp-name-inp">Nama Shinobi &middot; <span id="bp-hero-sub">Sennin / Senjutsu</span></label>
+                    <input type="text" id="bp-name-inp" maxlength="24" value="Wind Burst Shinobi" placeholder="Nama karakter…" />
                   </div>
                   <div class="bp-fld">
                     <label for="bp-lv-inp">Level</label>
                     <input type="number" id="bp-lv-inp" min="1" max="100" value="80" />
                   </div>
                   <div class="bp-fld">
-                    <label for="bp-gender-sel">Avatar</label>
+                    <label for="bp-gender-sel">Gender</label>
                     <select id="bp-gender-sel">
                       <option value="0">Cowok</option>
                       <option value="1">Cewek</option>
                     </select>
                   </div>
-                </div>
-                <div class="xp-top-row" style="margin-top:4px;">
-                  <span class="xp-nums" id="kpi-xp">Syarat Naik Lv.81: — XP</span>
-                  <span class="xp-foot"><span id="xp-eta">Kumulatif Lv.1–80: <strong>—</strong></span></span>
-                </div>
-                <div class="xp-track" role="progressbar" aria-label="Skala Progres Level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
-                  <div class="xp-fill" id="xp-bar-fill" style="transform:scaleX(0.8);"></div>
-                </div>
-              </div>
-
-              <div class="hero-stage-head">
-                <span class="main-char-title">
-                  <img src="./assets/ns/ui_sage_emblem.png" width="14" height="14" alt="" />
-                  Loadout Karakter (Klik Gear untuk Edit)
-                </span>
-                <button type="button" class="pv-btn-mini pv-btn-xs" id="btn-open-build-studio" onclick="openBuildInStudio()">Edit di Build Studio</button>
-              </div>
-
-              <div class="hero-stage-split" id="main-char-box">
-                <div class="main-char-stage" id="main-char-stage">
-                  <div id="main-char-avatar-mount" class="main-char-avatar-mount"></div>
-                  <div class="main-char-pet" id="main-char-pet-box" data-hover-pv="pet_jyubi" title="Pet Companion Build">
-                    <img id="main-char-pet-img" class="is-ready" src="./assets/ns/ns_forge_cat_pet.png" width="76" height="72" alt="Companion Pet" />
+                  <div class="bp-xp-mini">
+                    <div class="bp-xp-mini-top">
+                      <strong id="bp-hero-title">Wind Burst Shinobi</strong>
+                      <span id="xp-eta">Total XP: <strong>222.09M</strong></span>
+                    </div>
+                    <div class="xp-track" role="progressbar" aria-label="Skala Progres Level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
+                      <div class="xp-fill" id="xp-bar-fill"></div>
+                    </div>
+                    <div class="bp-xp-mini-top">
+                      <span id="kpi-xp">Next Lv.81: 49,796,096 XP</span>
+                    </div>
                   </div>
                 </div>
-
-                <div class="main-char-gear-strip" id="main-char-gear-strip"></div>
               </div>
-
-              <div class="hero-attrs">
-                <div class="hero-attr-row">
-                  <span class="hero-attr-k">Elemen (Maks 3)</span>
-                  <div class="bp-elem-strip" id="bp-elem-strip">
-                    <button type="button" class="bp-elem-btn" data-el="Wind" aria-pressed="true"><img data-ns="elem_wind" src="" width="14" height="14" alt="" />Wind</button>
-                    <button type="button" class="bp-elem-btn" data-el="Lightning" aria-pressed="true"><img data-ns="elem_lightning" src="" width="14" height="14" alt="" />Lightning</button>
-                    <button type="button" class="bp-elem-btn" data-el="Water" aria-pressed="true"><img data-ns="elem_water" src="" width="14" height="14" alt="" />Water</button>
-                    <button type="button" class="bp-elem-btn" data-el="Fire" aria-pressed="false"><img data-ns="elem_fire" src="" width="14" height="14" alt="" />Fire</button>
-                    <button type="button" class="bp-elem-btn" data-el="Earth" aria-pressed="false"><img data-ns="elem_earth" src="" width="14" height="14" alt="" />Earth</button>
-                  </div>
-                </div>
-                <div class="hero-attr-row">
-                  <span class="hero-attr-k">Talent / Fokus</span>
-                  <span class="hero-attr-v" id="bp-talent-chips">
-                    <span class="hero-attr-itm"><picture><img data-ns="talent_de" src="" width="15" height="15" alt="" /></picture> Demon Eye</span>
-                    <span class="hero-attr-itm"><picture><img data-ns="talent_sl" src="" width="15" height="15" alt="" /></picture> Silhouette</span>
-                    <span class="hero-attr-itm"><picture><img data-ns="talent_dp" src="" width="15" height="15" alt="" /></picture> Deadly Perf.</span>
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Right: 8-Slot Jutsu Planner, Presets & Share Link -->
-            <section class="sage-card" aria-label="Peracik 8 Slot Jutsu dan Bagikan Build">
-              <div class="sage-card-head">
-                <div class="sage-head-lockup">
-                  <div class="sage-head-seal" aria-hidden="true">
-                    <img src="./assets/ns/ui_crest_shuriken.png" width="26" height="26" alt="" />
-                  </div>
-                  <div class="sage-head-txt">
-                    <h2 class="card-title">Racikan 8 Slot Jutsu &amp; Sinergi Build</h2>
-                    <div class="card-desc">Klik slot untuk ganti jutsu dari 1,302 skill resmi · bagikan build lewat link URL</div>
-                  </div>
-                </div>
+              <div class="bp-cmd-acts">
+                <button type="button" class="btn-ghost pv-btn-xs" id="btn-open-build-studio" onclick="openBuildInStudio()">Buka Studio HD</button>
                 <button type="button" class="btn-primary pv-btn-xs" id="btn-share-build" onclick="copyShareBuildUrl()">Salin Link Build</button>
               </div>
+            </div>
 
-              <div class="sage-card-body">
-                <div class="bp-preset-bar" role="group" aria-label="Preset Build Populer">
-                  <button type="button" class="kb-chip" data-bp-preset="wind_burst" aria-pressed="false">Wind Burst Boss</button>
-                  <button type="button" class="kb-chip" data-bp-preset="boss_control" aria-pressed="false">Boss Control &amp; Sustain</button>
-                  <button type="button" class="kb-chip" data-bp-preset="fire_dot" aria-pressed="false">Fire DoT &amp; Burn</button>
-                  <button type="button" class="kb-chip" data-bp-preset="starter" aria-pressed="false">Starter Genin</button>
-                  <button type="button" class="btn-ghost pv-btn-xs" id="bp-save-1">Simpan Slot #1</button>
-                  <button type="button" class="btn-ghost pv-btn-xs" id="bp-load-1">Muat Slot #1</button>
-                </div>
-
-                <div class="bp-skill-grid" id="bp-skill-grid"></div>
-
-                <div class="bp-summary-box">
-                  <div class="bp-sum-head">
-                    <span class="kb-skill-name">Total Statistik Gear &amp; Rotasi Skill</span>
-                    <span class="kb-skill-sub" id="bp-rot-metrics">Rata-rata CP: — · Avg CD: —</span>
-                  </div>
-                  <div class="gear-sim-totals" id="bp-combined-pills"></div>
-                </div>
+            <div class="bp-cmd-row2">
+              <div class="bp-slot-grp" role="group" aria-label="Preset Meta Komunitas">
+                <span class="bp-slot-lbl">Preset Meta:</span>
+                <button type="button" class="kb-chip" data-bp-preset="wind_burst" aria-pressed="true">Wind Burst</button>
+                <button type="button" class="kb-chip" data-bp-preset="boss_control" aria-pressed="false">Sennin Control</button>
+                <button type="button" class="kb-chip" data-bp-preset="fire_dot" aria-pressed="false">Inferno Kage</button>
+                <button type="button" class="kb-chip" data-bp-preset="starter" aria-pressed="false">Genin Starter</button>
               </div>
-            </section>
+              <div class="bp-slot-grp" role="group" aria-label="Slot Penyimpanan Browser">
+                <span class="bp-slot-lbl">Slot Browser:</span>
+                <button type="button" class="btn-ghost pv-btn-xs" data-bp-slot="1" id="bp-load-1">Slot #1</button>
+                <button type="button" class="btn-ghost pv-btn-xs" data-bp-slot="2" id="bp-load-2">Slot #2</button>
+                <button type="button" class="btn-ghost pv-btn-xs" data-bp-slot="3" id="bp-load-3">Slot #3</button>
+                <button type="button" class="pv-btn-mini" id="bp-save-1" title="Simpan ke Slot Aktif">Simpan</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAIN 2-COLUMN SHINOBI BUILD COMMAND DECK -->
+          <div class="bp-main-bento">
+            <!-- LEFT COLUMN: FULL STAGE, 6-SLOT EQUIPMENT MATRIX, CHAKRA & TALENT -->
+            <div class="bp-char-col">
+              <article class="sage-card bp-char-card" aria-label="Stage Visual Avatar dan 6 Slot Equipment">
+                <div class="sage-card-head">
+                  <div class="sage-head-lockup">
+                    <div class="sage-head-seal" aria-hidden="true">
+                      <img src="./assets/ns/ui_sage_emblem.png" width="24" height="24" alt="" />
+                    </div>
+                    <div class="sage-head-txt">
+                      <h2 class="card-title">Visual Shinobi &amp; 6 Slot Equipment</h2>
+                      <div class="card-desc">Klik slot gear mana saja untuk ganti &amp; preview langsung</div>
+                    </div>
+                  </div>
+                  <button type="button" class="pv-btn-mini" onclick="openBuildInStudio()">Full Studio</button>
+                </div>
+
+                <div class="sage-card-body">
+                  <div class="bp-arena-stage" id="main-char-stage">
+                    <div class="bp-stage-top">
+                      <div class="bp-bg-pills" role="group" aria-label="Latar Stage">
+                        <button type="button" class="bp-bg-btn" data-bpbg="indigo" aria-pressed="true">Dojo</button>
+                        <button type="button" class="bp-bg-btn" data-bpbg="emerald" aria-pressed="false">Hutan</button>
+                        <button type="button" class="bp-bg-btn" data-bpbg="amber" aria-pressed="false">Senja</button>
+                        <button type="button" class="bp-bg-btn" data-bpbg="obsidian" aria-pressed="false">Gelap</button>
+                      </div>
+                      <div class="hero-lv-box">
+                        <span class="lv-num" id="kpi-lv">Lv 80</span>
+                        <span class="xp-pct-badge" id="xp-pct-pill">Wind</span>
+                      </div>
+                    </div>
+
+                    <div class="stage-fallback-badges" id="bp-stage-fb-badges"></div>
+                    <div id="main-char-avatar-mount" class="main-char-avatar-mount"></div>
+
+                    <div class="main-char-pet" id="main-char-pet-box" data-hover-pv="pet_raita" title="Pet Companion Build">
+                      <img id="main-char-pet-img" class="is-ready" src="./assets/ns/ns_forge_cat_pet.png" width="84" height="80" alt="Companion Pet" />
+                    </div>
+
+                    <button type="button" class="bp-acc-pedestal" id="bp-acc-pedestal" onclick="openPlannerGearPicker('acc')" title="Klik untuk ganti Aksesoris Build">
+                      <span class="bp-acc-pedestal-k">Aksesoris</span>
+                      <span class="bp-acc-pedestal-art" id="bp-acc-art"></span>
+                      <span class="bp-acc-pedestal-n" id="bp-acc-name">Aksesoris</span>
+                    </button>
+                  </div>
+
+                  <div class="bp-eq-grid" id="main-char-gear-strip"></div>
+
+                  <div class="bp-aff-box">
+                    <div class="bp-aff-row">
+                      <div class="bp-aff-hdr">
+                        <span>Elemen Chakra Aktif (Pilih Maks 3)</span>
+                        <span id="bp-elem-count">3 / 3 Elemen</span>
+                      </div>
+                      <div class="bp-elem-strip" id="bp-elem-strip">
+                        <button type="button" class="bp-elem-btn" data-el="Wind" aria-pressed="true"><img data-ns="elem_wind" src="" width="14" height="14" alt="" />Wind</button>
+                        <button type="button" class="bp-elem-btn" data-el="Fire" aria-pressed="false"><img data-ns="elem_fire" src="" width="14" height="14" alt="" />Fire</button>
+                        <button type="button" class="bp-elem-btn" data-el="Lightning" aria-pressed="true"><img data-ns="elem_lightning" src="" width="14" height="14" alt="" />Lightning</button>
+                        <button type="button" class="bp-elem-btn" data-el="Earth" aria-pressed="false"><img data-ns="elem_earth" src="" width="14" height="14" alt="" />Earth</button>
+                        <button type="button" class="bp-elem-btn" data-el="Water" aria-pressed="true"><img data-ns="elem_water" src="" width="14" height="14" alt="" />Water</button>
+                      </div>
+                    </div>
+
+                    <div class="bp-aff-row">
+                      <div class="bp-aff-hdr">
+                        <span>Talent &amp; Senjutsu (Pilih Maks 3)</span>
+                        <span id="bp-talent-count">3 / 3 Talent</span>
+                      </div>
+                      <div class="bp-elem-strip" id="bp-talent-strip">
+                        <button type="button" class="bp-elem-btn" data-tal="Demon Eye" aria-pressed="true"><img data-ns="talent_de" src="" width="14" height="14" alt="" />Demon Eye</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Eight Extremities" aria-pressed="false"><img data-ns="talent_ee" src="" width="14" height="14" alt="" />Eight Extremities</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Deadly Perf." aria-pressed="true"><img data-ns="talent_dp" src="" width="14" height="14" alt="" />Deadly Perf.</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Silhouette" aria-pressed="true"><img data-ns="talent_sl" src="" width="14" height="14" alt="" />Silhouette</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Dark Eye" aria-pressed="false"><img data-ns="talent_de" src="" width="14" height="14" alt="" />Dark Eye</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Saint Physique" aria-pressed="false"><img data-ns="talent_sp" src="" width="14" height="14" alt="" />Saint Physique</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Lava" aria-pressed="false"><img data-ns="elem_fire" src="" width="14" height="14" alt="" />Lava</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Ice" aria-pressed="false"><img data-ns="elem_water" src="" width="14" height="14" alt="" />Ice</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Wood" aria-pressed="false"><img data-ns="elem_earth" src="" width="14" height="14" alt="" />Wood</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Toad Senjutsu" aria-pressed="false"><img src="./assets/ns/ns_ico_senjutsu.png" width="14" height="14" alt="" />Toad Sage</button>
+                        <button type="button" class="bp-elem-btn" data-tal="Snake Senjutsu" aria-pressed="false"><img src="./assets/ns/ns_ico_senjutsu.png" width="14" height="14" alt="" />Snake Sage</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- RIGHT COLUMN: 8-SLOT JUTSU MATRIX + 4-CARD COMBAT TELEMETRY & BOSS READINESS -->
+            <div class="bp-jutsu-col">
+              <section class="sage-card" aria-label="Racikan 8 Slot Jutsu dan Analisis Kekuatan Build">
+                <div class="sage-card-head">
+                  <div class="sage-head-lockup">
+                    <div class="sage-head-seal" aria-hidden="true">
+                      <img src="./assets/ns/ui_crest_shuriken.png" width="26" height="26" alt="" />
+                    </div>
+                    <div class="sage-head-txt">
+                      <h2 class="card-title">Racikan 8 Slot Jutsu &amp; Analisis Sinergi Tempur</h2>
+                      <div class="card-desc">Klik Ganti pada slot untuk memilih &amp; melihat animasi WebP dari 1,302 jutsu resmi</div>
+                    </div>
+                  </div>
+                  <div class="studio-preset-btns">
+                    <span class="pill azure" id="bp-rot-metrics">8/8 Slot &middot; Avg 362 CP</span>
+                    <button type="button" class="btn-ghost pv-btn-xs" id="bp-clear-skills">Kosongkan Slot</button>
+                  </div>
+                </div>
+
+                <div class="sage-card-body">
+                  <div class="bp-skill-grid" id="bp-skill-grid"></div>
+
+                  <div class="build-section-hdr bp-sec-hdr">
+                    <h3 class="build-section-title">Telemetry Kekuatan Build &amp; Kesiapan Mekanik Boss</h3>
+                  </div>
+
+                  <div class="bp-telemetry-grid">
+                    <div class="bp-stat-card" id="bp-tel-off"></div>
+                    <div class="bp-stat-card" id="bp-tel-def"></div>
+                    <div class="bp-stat-card" id="bp-tel-sus"></div>
+                    <div class="bp-stat-card" id="bp-tel-tac"></div>
+                  </div>
+
+                  <div class="bp-summary-box">
+                    <div class="bp-sum-head">
+                      <span class="kb-skill-name">Ringkasan Tag Buff &amp; Efek Aktif</span>
+                      <span class="kb-skill-sub" id="bp-synergy-note">Tersinkron ke Kamus Jutsu &amp; Efek</span>
+                    </div>
+                    <div class="gear-sim-totals" id="bp-combined-pills"></div>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
 
           <div class="bp-quick-strip" aria-label="Akses Cepat Ensiklopedia">
@@ -2874,13 +3209,27 @@
     <div class="sage-card-head">
       <div>
         <h3 class="card-title" id="st-pick-title">Pilih Item untuk Build Karakter</h3>
-        <div class="card-desc" id="st-pick-sub">Cari &amp; pasang langsung ke karakter</div>
+        <div class="card-desc" id="st-pick-sub">Klik kartu item untuk preview langsung di karakter sebelum dipasang</div>
       </div>
       <button type="button" class="btn-ghost pv-btn-xs" id="st-pick-close">Tutup</button>
     </div>
     <div class="studio-picker-body">
+      <div class="st-pick-pv-bar" id="st-pick-pv-bar">
+        <div class="st-pick-pv-stage" id="st-pick-pv-stage" aria-label="Preview Live Item pada Karakter"></div>
+        <div class="st-pick-pv-info">
+          <div class="st-pick-pv-top">
+            <div>
+              <h4 class="st-pick-pv-title" id="st-pick-pv-name">Preview Live Build</h4>
+              <div class="st-pick-pv-sub" id="st-pick-pv-meta">Klik salah satu item di bawah untuk mencoba langsung di karakter</div>
+            </div>
+            <button type="button" class="btn-primary pv-btn-xs" id="st-pick-pv-equip" hidden>Pasang ke Build</button>
+          </div>
+          <div class="st-pick-pv-effs" id="st-pick-pv-pills"></div>
+          <div class="kb-skill-sub" id="st-pick-pv-desc">Seluruh senjata, kostum, back item, hairstyle, aksesoris &amp; pet siap dicoba.</div>
+        </div>
+      </div>
       <div class="kb-search-row">
-        <input type="search" id="st-pick-search" placeholder="Cari nama item, buff, atau ID…" aria-label="Cari item build" />
+        <input type="search" id="st-pick-search" placeholder="Cari nama item, efek buff, atau ID (wpn_8127, set_831, jyubi)…" aria-label="Cari item build" />
         <select id="st-pick-sort" aria-label="Urutan Picker">
           <option value="eff">Efek Buff Terkuat</option>
           <option value="dmg">Damage Tertinggi</option>
@@ -2889,7 +3238,8 @@
         </select>
       </div>
       <div class="kb-chip-bar" id="st-pick-chips">
-        <button type="button" class="kb-chip" data-pef="all" aria-pressed="true">Semua</button>
+        <button type="button" class="kb-chip" data-pef="all" aria-pressed="true">Semua (Prioritas Visual HD)</button>
+        <button type="button" class="kb-chip" data-pef="hd_only" aria-pressed="false">Hanya Visual Rig HD</button>
         <button type="button" class="kb-chip" data-pef="dmg" aria-pressed="false">+Damage / Crit</button>
         <button type="button" class="kb-chip" data-pef="def" aria-pressed="false">Reduce / Guard / Stun</button>
         <button type="button" class="kb-chip" data-pef="eva" aria-pressed="false">Dodge / Akurasi</button>
@@ -2929,13 +3279,30 @@
     <div class="sage-card-head">
       <div>
         <h3 class="card-title" id="bsm-title">Pilih Jutsu untuk Slot Build</h3>
-        <div class="card-desc" id="bsm-sub">Cari dari 1,302 skill resmi Ninja Sage</div>
+        <div class="card-desc" id="bsm-sub">Klik kartu jutsu untuk preview animasi WebP langsung sebelum dipasang</div>
       </div>
       <button type="button" class="btn-ghost pv-btn-xs" id="bsm-close">Tutup</button>
     </div>
     <div class="studio-picker-body">
+      <div class="st-pick-pv-bar" id="bsm-pv-bar">
+        <div class="st-pick-pv-stage" id="bsm-pv-stage">
+          <img id="bsm-pv-img" class="pv-gif" width="168" height="140" alt="Preview Animasi Jutsu" />
+          <div id="bsm-pv-status" class="pv-status">Pilih jutsu untuk melihat animasi…</div>
+        </div>
+        <div class="st-pick-pv-info">
+          <div class="st-pick-pv-top">
+            <div>
+              <h4 class="st-pick-pv-title" id="bsm-pv-name">Pilih Jutsu di Bawah</h4>
+              <div class="st-pick-pv-sub" id="bsm-pv-meta">Klik salah satu kartu jutsu untuk memuat preview animasi SWF &amp; efek</div>
+            </div>
+            <button type="button" class="btn-primary pv-btn-xs" id="bsm-pv-equip-btn" hidden>Pasang ke Slot</button>
+          </div>
+          <div class="st-pick-pv-effs" id="bsm-pv-pills"></div>
+          <div class="kb-skill-sub" id="bsm-pv-desc">1,302 skill resmi Ninja Sage siap dipilih.</div>
+        </div>
+      </div>
       <div class="kb-search-row">
-        <input type="search" id="bsm-search" placeholder="Cari nama jutsu, elemen, efek (stun, disperse, heal)…" aria-label="Cari jutsu untuk slot build" />
+        <input type="search" id="bsm-search" placeholder="Cari nama jutsu, elemen, efek (stun, disperse, internal injury, heal)…" aria-label="Cari jutsu untuk slot build" />
         <select id="bsm-type">
           <option value="all">Semua Elemen / Tipe</option>
           <option value="1">Wind</option>
@@ -3548,7 +3915,9 @@
       const mySeq = _pvSiblingSeq;
       for (const k of (keys || [])) {
         if (_pvSiblingSeq !== mySeq || (isAliveFn && !isAliveFn())) return;
+        await ensurePreviewsManifest();
         if (!k || _pvBlobCache.has(k) || _pvStatusCache.has(k)) continue;
+        if (window._MAN_ANIMS_SET && !window._MAN_ANIMS_SET.has(k)) continue;
         while (_pvLiveCtrl) {
           if (_pvSiblingSeq !== mySeq || (isAliveFn && !isAliveFn())) return;
           await new Promise((r) => setTimeout(r, 120));
@@ -3582,6 +3951,7 @@
     };
     window.preloadPreview = function(sid) {
       if (!sid || _pvBlobCache.has(sid) || _pvStatusCache.has(sid) || _pvLiveCtrl) return;
+      if (window._MAN_ANIMS_SET && !window._MAN_ANIMS_SET.has(sid)) return;
       cancelPreloadPreview();
       _pvHoverTimer = setTimeout(async () => {
         _pvHoverTimer = null;
@@ -5436,15 +5806,26 @@
       if (ITEM_RIG_CACHE.has(iid)) return ITEM_RIG_CACHE.get(iid);
       if (ITEM_RIG_INFLIGHT.has(iid)) return ITEM_RIG_INFLIGHT.get(iid);
       await ensurePreviewsManifest();
+      let targetId = iid;
       if (window._MAN_RIGS_SET && !window._MAN_RIGS_SET.has(iid)) {
-        ITEM_RIG_FAIL_TS.set(iid, Date.now());
-        return null;
+        const m = String(iid).match(/^(.+)_([01])$/);
+        const altId = m ? `${m[1]}_${m[2] === "0" ? "1" : "0"}` : "";
+        if (altId && window._MAN_RIGS_SET.has(altId)) {
+          targetId = altId;
+        } else {
+          ITEM_RIG_FAIL_TS.set(iid, Date.now());
+          return null;
+        }
       }
-      const p = fetch(getItemRigUrl(iid))
+      const p = fetch(getItemRigUrl(targetId))
         .then((res) => (res.ok ? res.json() : null))
         .then((d) => {
-          if (d) _storeItemRigCache(iid, d);
-          else ITEM_RIG_FAIL_TS.set(iid, Date.now());
+          if (d) {
+            _storeItemRigCache(iid, d);
+            if (targetId !== iid) _storeItemRigCache(targetId, d);
+          } else {
+            ITEM_RIG_FAIL_TS.set(iid, Date.now());
+          }
           return d;
         })
         .catch(() => null)
@@ -5525,6 +5906,14 @@
             const pxScale = Math.min(1.04, 412 / Math.max(268, vh));
             svg.style.width = `${Math.round(vw * pxScale)}px`;
             svg.style.height = `${Math.round(vh * pxScale)}px`;
+          } else if (svg.classList.contains("main-char-svg")) {
+            const halfX = Math.max(82, Math.min(98, Math.max(Math.abs(x1), Math.abs(x2)) * 0.76));
+            const topY = Math.min(-234, y1 + 8);
+            const botY = Math.min(20, Math.max(10, y2));
+            const vw = halfX * 2;
+            const vh = Math.max(242, botY - topY);
+            svg.setAttribute("viewBox", `${(-halfX - 6).toFixed(1)} ${topY.toFixed(1)} ${vw.toFixed(1)} ${vh.toFixed(1)}`);
+            svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
           } else {
             const halfX = Math.max(115, Math.abs(x1), Math.abs(x2));
             const vw = Math.max(230, halfX * 2);
@@ -5575,8 +5964,16 @@
 
     function getItemIconUrl(iid) {
       const s = String(iid || "");
+      if (!s) return "./assets/ns/emblem.png";
       if (s.startsWith("gold_")) return "./assets/ns/ns_bag.png";
-      if (window._MAN_ICONS_SET && !window._MAN_ICONS_SET.has(s)) return "./assets/ns/emblem.png";
+      if (window._MAN_ICONS_SET && !window._MAN_ICONS_SET.has(s)) {
+        const m = s.match(/^(.+)_([01])$/);
+        const alt = m ? `${m[1]}_${m[2] === "0" ? "1" : "0"}` : "";
+        if (alt && window._MAN_ICONS_SET.has(alt)) {
+          return `./assets/item_icons/${encodeURIComponent(alt)}.png`;
+        }
+        return "./assets/ns/emblem.png";
+      }
       return `./assets/item_icons/${encodeURIComponent(s)}.png`;
     }
 
@@ -5836,7 +6233,8 @@
       document.getElementById("gear-det-pill").textContent = cm.label;
 
       const simBtn = (cat === "acc" || cat === "back" || cat === "wpn" || cat === "set" || cat === "hair" || cat === "pet")
-        ? `<button type="button" class="pv-btn-mini" onclick="equipGearSim('${cat}','${escapeHtml(obj.i)}')">Pasang ke Simulasi</button>`
+        ? `<button type="button" class="pv-btn-mini" onclick="equipGearSim('${cat}','${escapeHtml(obj.i)}')">Pasang ke Simulasi</button>
+           <button type="button" class="btn-primary pv-btn-xs" onclick="equipToPublicBuildPlanner('${cat}','${escapeHtml(obj.i)}')">Pasang ke Build Planner</button>`
         : "";
       const setPill = obj.sn ? `<span class="pill ok">Set: ${escapeHtml(obj.sn)}</span>` : "";
       const premPill = (obj.pm || obj.em) ? `<span class="pill gold">Premium / Emblem</span>` : "";
@@ -6060,9 +6458,17 @@
               stageEl.innerHTML = `<div class="gear-acc-split">${renderDressedAvatarSvg(null, "avatar-rig-svg", "insp_", "0")}<div class="gear-acc-badge">${artSvg}</div></div>`;
               fitAvatarSvgViewBox(stageEl);
             } else if (isAvatarCat) {
-              const slots = (rig && rig.slots) ? rig.slots : {};
-              stageEl.innerHTML = renderDressedAvatarSvg(slots, "avatar-rig-svg", "insp_", "0");
-              fitAvatarSvgViewBox(stageEl);
+              const g = obj.i.endsWith("_1") ? "1" : "0";
+              if (rig && rig.slots && Object.keys(rig.slots).length) {
+                stageEl.innerHTML = renderDressedAvatarSvg(rig.slots, "avatar-rig-svg", "insp_", g);
+                fitAvatarSvgViewBox(stageEl);
+              } else {
+                const artHtml = (rig && rig.art)
+                  ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${rig.vb || "0 0 120 120"}">${rewriteSvgIds(rig.art, "insp_art_")}</svg>`
+                  : renderGearIconTag(obj.i, cat, true);
+                stageEl.innerHTML = `<div class="gear-acc-split">${renderDressedAvatarSvg(null, "avatar-rig-svg", "insp_", g)}<div class="gear-acc-badge">${artHtml}</div></div>`;
+                fitAvatarSvgViewBox(stageEl);
+              }
             } else if (rig && rig.art) {
               stageEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${rig.vb || "0 0 120 120"}" class="gear-art-svg">${rewriteSvgIds(rig.art, "insp_")}</svg>`;
             } else {
@@ -6310,14 +6716,26 @@
         if (needRedraw && DEFAULT_AVATAR_RIG) {
           const miss = _drawStudioAvatarFromCache(svgHost);
           if (gen === _stRenderGen && stagePill) {
-            const setIt = STUDIO_BUILD.set;
-            if (setIt && miss.includes("set")) {
-              stagePill.textContent = `Kostum ${setIt.i} belum tersedia di server`;
-              stagePill.classList.add("is-busy");
-              setTimeout(() => { if (gen === _stRenderGen && stagePill) stagePill.classList.remove("is-busy"); }, 2200);
-            } else {
-              stagePill.classList.remove("is-busy");
-            }
+            stagePill.classList.remove("is-busy");
+          }
+          // Render fallback floating visual cards if any selected non-slot item only has art/icon
+          let fbHost = document.getElementById("studio-fb-badges");
+          if (!fbHost && stageBox) {
+            fbHost = document.createElement("div");
+            fbHost.id = "studio-fb-badges";
+            fbHost.className = "stage-fallback-badges";
+            stageBox.appendChild(fbHost);
+          }
+          if (fbHost) {
+            fbHost.innerHTML = miss.map((sk) => {
+              const it = STUDIO_BUILD[sk];
+              if (!it) return "";
+              const r = ITEM_RIG_CACHE.get(it.i);
+              const art = (r && r.art)
+                ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${r.vb || "0 0 120 120"}">${rewriteSvgIds(r.art, "stfb_" + sk + "_")}</svg>`
+                : `<img src="${getItemIconUrl(it.i)}" width="24" height="24" alt="" />`;
+              return `<div class="stage-fb-pill">${art}<span>${escapeHtml(it.n)}</span></div>`;
+            }).join("");
           }
         }
       })();
@@ -6369,6 +6787,20 @@
         };
 
         await ensurePreviewsManifest();
+        fetchSwfLabels(petObj.i).then((labels) => {
+          const modesEl = document.getElementById("studio-pet-modes");
+          if (!modesEl || STUDIO_BUILD.pet?.i !== petObj.i || !Array.isArray(labels) || !labels.length) return;
+          const clean = cleanSwfLabels(labels);
+          if (!clean.length) return;
+          modesEl.innerHTML = clean.slice(0, 6).map((l) => {
+            const nice = l.id === "standby" ? "Idle" : formatSwfLabel(l.id).replace("Attack 0", "Skill ");
+            const act = (STUDIO_BUILD.petAnim || "standby") === l.id ? "true" : "false";
+            return `<button type="button" class="pet-anim-chip" data-st-pet="${escapeHtml(l.id)}" aria-pressed="${act}">${escapeHtml(nice)}</button>`;
+          }).join("");
+          modesEl.querySelectorAll("[data-st-pet]").forEach((b) => {
+            b.addEventListener("click", () => { STUDIO_BUILD.petAnim = b.dataset.stPet; renderBuildStudio(); });
+          });
+        }).catch(() => {});
         for (let i = 0; i < animOrder.length; i++) {
           if (_stPetCtrl !== pCtrl) return;
           const curAnim = animOrder[i];
@@ -6484,6 +6916,100 @@
       const dlg = document.getElementById("studio-picker-modal");
       if (dlg && dlg.open) dlg.close();
       renderBuildStudio();
+      if (_pickerOpenedFromPlanner) {
+        PUBLIC_BUILD.eq = {
+          weapon: STUDIO_BUILD.wpn ? STUDIO_BUILD.wpn.i : "",
+          back_item: STUDIO_BUILD.back ? STUDIO_BUILD.back.i : "",
+          set: STUDIO_BUILD.set ? STUDIO_BUILD.set.i : "",
+          hair: STUDIO_BUILD.hair ? STUDIO_BUILD.hair.i : "",
+          accessory: STUDIO_BUILD.acc ? STUDIO_BUILD.acc.i : "",
+          pet: STUDIO_BUILD.pet ? STUDIO_BUILD.pet.i : "",
+        };
+        _persistPublicBuild();
+        renderPublicBuildPlanner();
+        const o = STUDIO_BUILD[slotKey];
+        showToast(`Dipasang ke Build: ${o ? o.n : itemId}`, "ok");
+      }
+    };
+
+    window.previewStudioCandidate = async function(itemId) {
+      if (!GEAR_DATA || !itemId) return;
+      _stPreviewCandId = itemId;
+      const slotKey = _stPickerSlot;
+      const obj = _lookupCatalogObj(slotKey, itemId);
+      if (!obj) return;
+      const cm = GEAR_CAT_META[slotKey] || GEAR_CAT_META.acc;
+      const hasHd = slotKey === "pet"
+        ? (!window._MAN_ANIMS_SET || window._MAN_ANIMS_SET.has(obj.i))
+        : _hasItemRigOrPair(obj.i);
+
+      const nEl = document.getElementById("st-pick-pv-name"); if (nEl) nEl.textContent = obj.n;
+      const mEl = document.getElementById("st-pick-pv-meta");
+      if (mEl) {
+        const statPart = slotKey === "wpn" ? `${fmtNum(obj.d || 0)} Dmg` : (slotKey === "pet" ? `Dodge ${obj.dg}% · Crit ${obj.cr}% · Agi ${obj.ag}` : `${(obj.ef || []).length} Efek Buff`);
+        mEl.textContent = `${obj.i} · ${cm.label} · Lv.${obj.l || 1} · ${statPart}`;
+      }
+      const dEl = document.getElementById("st-pick-pv-desc");
+      if (dEl) dEl.textContent = formatInlineDescByLang(obj.ds, "Aset resmi Ninja Sage.");
+      const pEl = document.getElementById("st-pick-pv-pills");
+      if (pEl) {
+        const hdBadge = hasHd ? `<span class="pill ok">Rig Vektor HD ✓</span>` : `<span class="pill azure">Ikon Resmi ✓</span>`;
+        const efBadges = (obj.ef || []).slice(0, 4).map((e) => `<span class="pill gold">${escapeHtml(e[2] || e[1])}${e[3] ? " " + e[3] + (e[4] === "percent" ? "%" : "") : ""}</span>`).join("");
+        pEl.innerHTML = hdBadge + efBadges;
+      }
+      const eqBtn = document.getElementById("st-pick-pv-equip");
+      if (eqBtn) {
+        eqBtn.hidden = false;
+        eqBtn.textContent = `Pasang ${cm.label}`;
+        eqBtn.onclick = () => setStudioItem(slotKey, obj.i);
+      }
+      document.querySelectorAll("#st-pick-grid .studio-slot-card").forEach((c) => {
+        c.classList.toggle("is-pv-active", c.dataset.stItemId === itemId);
+      });
+
+      const pvStage = document.getElementById("st-pick-pv-stage");
+      if (!pvStage) return;
+      if (slotKey === "pet") {
+        const wantUrl = (window._MAN_ANIMS_SET && window._MAN_ANIMS_SET.has(obj.i)) ? getPreviewUrl(obj.i) : getItemIconUrl(obj.i);
+        pvStage.innerHTML = `<img src="${wantUrl}" width="140" height="130" alt="${escapeHtml(obj.n)}" onerror="this.onerror=null;this.src='${getItemIconUrl(obj.i)}';" />`;
+        return;
+      }
+      await ensureDefaultAvatarRig();
+      if (_stPreviewCandId !== itemId) return;
+      if (slotKey === "acc") {
+        const rig = await fetchItemRig(obj.i);
+        if (_stPreviewCandId !== itemId) return;
+        if (rig && rig.art) {
+          pvStage.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${rig.vb || "0 0 120 120"}">${rewriteSvgIds(rig.art, "stpv_acc_")}</svg>`;
+        } else {
+          pvStage.innerHTML = `<img src="${getItemIconUrl(obj.i)}" width="96" height="96" alt="${escapeHtml(obj.n)}" />`;
+        }
+        return;
+      }
+      // Preview candidate weapon/back/set/hair directly on the character's current STUDIO_BUILD!
+      const tempIds = {
+        set: slotKey === "set" ? obj.i : STUDIO_BUILD.set?.i,
+        hair: slotKey === "hair" ? obj.i : STUDIO_BUILD.hair?.i,
+        back: slotKey === "back" ? obj.i : STUDIO_BUILD.back?.i,
+        wpn: slotKey === "wpn" ? obj.i : STUDIO_BUILD.wpn?.i,
+      };
+      const rigs = await fetchItemRigsBatch(Object.values(tempIds).filter(Boolean));
+      if (_stPreviewCandId !== itemId) return;
+      const candRig = rigs[obj.i];
+      const overrides = {};
+      for (const sk of ["set", "hair", "back", "wpn"]) {
+        const id = tempIds[sk];
+        const r = id && rigs[id];
+        if (r && r.slots) Object.assign(overrides, r.slots);
+      }
+      if (candRig && candRig.slots && Object.keys(candRig.slots).length) {
+        pvStage.innerHTML = renderDressedAvatarSvg(overrides, "avatar-rig-svg", "stpv_av_", STUDIO_BUILD.gender || "0");
+        fitAvatarSvgViewBox(pvStage);
+      } else if (candRig && candRig.art) {
+        pvStage.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${candRig.vb || "0 0 120 120"}">${rewriteSvgIds(candRig.art, "stpv_art_")}</svg>`;
+      } else {
+        pvStage.innerHTML = `<img src="${getItemIconUrl(obj.i)}" width="96" height="96" alt="${escapeHtml(obj.n)}" />`;
+      }
     };
 
     function renderStudioPickerGrid() {
@@ -6494,15 +7020,19 @@
         ? GEAR_DATA.pets.map((p) => Object.assign({ c: "pet", d: 0, pg: 0, pt: 0, b: 0, pm: p.em, ef: [] }, p))
         : GEAR_DATA.items.filter((x) => x.c === _stPickerSlot);
 
-      // Clean gender filter on Set / Hair while allowing unisex IDs
       if ((_stPickerSlot === "set" || _stPickerSlot === "hair") && !q) {
         const suf = "_" + STUDIO_BUILD.gender;
         const gRows = rows.filter((r) => r.i.endsWith(suf));
         if (gRows.length > 20) rows = gRows;
       }
 
+      const isHdItem = (r) => _stPickerSlot === "pet"
+        ? (!window._MAN_ANIMS_SET || window._MAN_ANIMS_SET.has(r.i))
+        : (_hasItemRigOrPair(r.i) && _hasItemIconOrPair(r.i));
+
       rows = rows.filter((r) => {
-        if (!matchGearEff(r, _stPickerEff)) return false;
+        if (_stPickerEff === "hd_only" && !isHdItem(r)) return false;
+        if (_stPickerEff !== "all" && _stPickerEff !== "hd_only" && !matchGearEff(r, _stPickerEff)) return false;
         if (!q) return true;
         const efStr = (r.ef || []).map((e) => `${e[1]} ${e[2]}`).join(" ");
         const idDs = translateNsDescToId(r.ds || "");
@@ -6510,6 +7040,9 @@
       });
 
       rows.sort((a, b) => {
+        const hdA = isHdItem(a) ? 1 : 0;
+        const hdB = isHdItem(b) ? 1 : 0;
+        if (hdB !== hdA && !q) return hdB - hdA;
         if (sortMode === "dmg") return (b.d || 0) - (a.d || 0) || (b.ef || []).length - (a.ef || []).length;
         if (sortMode === "lv_desc") return (b.l || 0) - (a.l || 0) || (b.ef || []).length - (a.ef || []).length;
         if (sortMode === "name") return (a.n || "").localeCompare(b.n || "");
@@ -6519,17 +7052,26 @@
       const shown = rows.slice(0, _stPickerLimit);
       const cardsHtml = shown.map((r) => {
         const cm = GEAR_CAT_META[_stPickerSlot] || GEAR_CAT_META.acc;
+        const hasHd = isHdItem(r);
         const efTxt = (r.ef && r.ef.length)
           ? r.ef.slice(0, 2).map((e) => `${e[2]}${e[3] ? " " + e[3] + (e[4] === "percent" ? "%" : "") : ""}`).join(" · ")
           : (_stPickerSlot === "pet" ? `Dodge ${r.dg}% · Crit ${r.cr}% · Agi ${r.ag}` : `Lv.${r.l} · Visual Gear`);
-        return `<div class="studio-slot-card">
+        const activeCls = r.i === _stPreviewCandId ? " is-pv-active" : "";
+        return `<div class="studio-slot-card${activeCls}" data-st-item-id="${escapeHtml(r.i)}">
           <span class="gear-ico-wrap">${renderGearIconTag(r.i, _stPickerSlot, false)}</span>
           <span class="gear-sim-slot-meta">
             <div class="gear-sim-slot-v">${escapeHtml(r.n)}</div>
-            <div class="kb-skill-badges"><span class="pill ${cm.pill}">${cm.label}</span><span>Lv.${r.l}${r.d ? " · " + r.d + " Dmg" : ""}</span></div>
+            <div class="kb-skill-badges">
+              <span class="pill ${cm.pill}">${cm.label}</span>
+              ${hasHd ? `<span class="pill ok">HD ✓</span>` : ""}
+              <span>Lv.${r.l}${r.d ? " · " + fmtNum(r.d) + " Dmg" : ""}</span>
+            </div>
             <div class="kb-skill-sub">${escapeHtml(efTxt)}</div>
           </span>
-          <button type="button" class="pv-btn-mini" onclick="setStudioItem('${_stPickerSlot}','${escapeHtml(r.i)}')">Pasang</button>
+          <div class="studio-slot-acts">
+            <button type="button" class="btn-ghost pv-btn-xs" onclick="previewStudioCandidate('${escapeHtml(r.i)}')">Coba</button>
+            <button type="button" class="pv-btn-mini" onclick="setStudioItem('${_stPickerSlot}','${escapeHtml(r.i)}')">Pasang</button>
+          </div>
         </div>`;
       }).join("");
       const moreBtn = rows.length > _stPickerLimit
@@ -6537,21 +7079,35 @@
         : "";
       const pickGridEl = document.getElementById("st-pick-grid");
       pickGridEl.innerHTML = (cardsHtml + moreBtn) || `<div class="kb-desc-box">Tidak ditemukan item sesuai filter.</div>`;
+      pickGridEl.querySelectorAll(".studio-slot-card[data-st-item-id]").forEach((card) => {
+        card.addEventListener("click", (ev) => {
+          if (ev.target.closest("button")) return;
+          previewStudioCandidate(card.dataset.stItemId);
+        });
+      });
       document.getElementById("st-pick-more")?.addEventListener("click", () => {
         _stPickerLimit += 36;
         renderStudioPickerGrid();
       });
+      if (shown.length && (!_stPreviewCandId || !shown.some((x) => x.i === _stPreviewCandId))) {
+        previewStudioCandidate(shown[0].i);
+      }
     }
 
-    window.openStudioPicker = async function(slotKey) {
+    window.openStudioPicker = async function(slotKey, fromPlanner = false) {
+      _pickerOpenedFromPlanner = Boolean(fromPlanner);
+      await ensurePreviewsManifest();
       await initBuildStudio();
       _stPickerSlot = slotKey;
       _stPickerLimit = 36;
+      const curObj = STUDIO_BUILD[slotKey];
+      _stPreviewCandId = curObj ? curObj.i : "";
       const meta = GEAR_CAT_META[slotKey] || GEAR_CAT_META.acc;
       document.getElementById("st-pick-title").textContent = `Pilih ${meta.label} untuk Build`;
-      document.getElementById("st-pick-sub").textContent = `Klik Pasang untuk melihat preview langsung di Build Studio`;
+      document.getElementById("st-pick-sub").textContent = `Klik Coba untuk preview live di karakter · klik Pasang untuk memakai`;
       document.getElementById("st-pick-search").value = "";
       renderStudioPickerGrid();
+      if (_stPreviewCandId) previewStudioCandidate(_stPreviewCandId);
       const dlg = document.getElementById("studio-picker-modal");
       if (dlg && !dlg.open) dlg.showModal();
     };
@@ -6604,17 +7160,18 @@
       if (!GEAR_DATA) return;
       const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
       const suf = "_" + STUDIO_BUILD.gender;
-      const sets = GEAR_DATA.items.filter((x) => x.c === "set" && x.i.endsWith(suf));
-      const hairs = GEAR_DATA.items.filter((x) => x.c === "hair" && x.i.endsWith(suf));
-      const wpns = GEAR_DATA.items.filter((x) => x.c === "wpn" && (x.ef || []).length > 0);
-      const backs = GEAR_DATA.items.filter((x) => x.c === "back" && (x.ef || []).length > 0);
-      const accs = GEAR_DATA.items.filter((x) => x.c === "acc" && (x.ef || []).length > 0);
+      const okRig = (x) => _hasItemRigOrPair(x.i) && _hasItemIconOrPair(x.i);
+      const sets = GEAR_DATA.items.filter((x) => x.c === "set" && x.i.endsWith(suf) && okRig(x));
+      const hairs = GEAR_DATA.items.filter((x) => x.c === "hair" && x.i.endsWith(suf) && okRig(x));
+      const wpns = GEAR_DATA.items.filter((x) => x.c === "wpn" && (x.ef || []).length > 0 && okRig(x));
+      const backs = GEAR_DATA.items.filter((x) => x.c === "back" && (x.ef || []).length > 0 && okRig(x));
+      const accs = GEAR_DATA.items.filter((x) => x.c === "acc" && (x.ef || []).length > 0 && okRig(x));
       if (sets.length) STUDIO_BUILD.set = pick(sets);
       if (hairs.length) STUDIO_BUILD.hair = pick(hairs);
       if (wpns.length) STUDIO_BUILD.wpn = pick(wpns);
       if (backs.length) STUDIO_BUILD.back = pick(backs);
       if (accs.length) STUDIO_BUILD.acc = pick(accs);
-      if (GEAR_DATA.pets.length) STUDIO_BUILD.pet = pick(GEAR_DATA.pets.slice(0, 60));
+      if (GEAR_DATA.pets.length) STUDIO_BUILD.pet = pick(GEAR_DATA.pets.slice(0, 80));
       renderBuildStudio();
     });
     document.getElementById("studio-btn-save").addEventListener("click", () => {
@@ -6823,15 +7380,17 @@
         name: "Inferno Kage",
         level: 85,
         gender: "1",
+        bg: "amber",
         elements: ["Fire", "Wind", "Lightning"],
         talents: ["Demon Eye", "Deadly Perf.", "Lava"],
-        eq: { weapon: "wpn_8127", back_item: "back_8050", set: "set_831_1", hair: "hair_2454_1", accessory: "accessory_7007", pet: "pet_hachibi" },
+        eq: { weapon: "wpn_8127", back_item: "back_8050", set: "set_831_0", hair: "hair_2454_0", accessory: "accessory_7007", pet: "pet_hachibi" },
         skills: ["skill_321", "skill_314", "skill_345", "skill_2416", "skill_2367", "skill_369", "skill_87", "skill_176"],
       },
       starter: {
         name: "Shinobi Baru",
         level: 40,
         gender: "0",
+        bg: "emerald",
         elements: ["Wind", "Fire"],
         talents: ["Eight Extremities"],
         eq: { weapon: "wpn_01", back_item: "", set: "", hair: "", accessory: "", pet: "pet_jyubi" },
@@ -6842,6 +7401,26 @@
     const PUBLIC_BUILD_KEY = "ns_public_portal_build_v1";
     let PUBLIC_BUILD = JSON.parse(JSON.stringify(BUILD_PRESETS.wind_burst));
     let _bsmTargetSlot = 0;
+    let _bsmPreviewSid = "";
+    let _bpActiveSaveSlot = "1";
+    let _pickerOpenedFromPlanner = false;
+    let _stPreviewCandId = "";
+
+    function _hasItemRigOrPair(iid) {
+      if (!iid || !window._MAN_RIGS_SET) return true;
+      if (window._MAN_RIGS_SET.has(iid)) return true;
+      const m = String(iid).match(/^(.+)_([01])$/);
+      if (m) return window._MAN_RIGS_SET.has(`${m[1]}_${m[2] === "0" ? "1" : "0"}`);
+      return false;
+    }
+
+    function _hasItemIconOrPair(iid) {
+      if (!iid || !window._MAN_ICONS_SET) return true;
+      if (window._MAN_ICONS_SET.has(iid)) return true;
+      const m = String(iid).match(/^(.+)_([01])$/);
+      if (m) return window._MAN_ICONS_SET.has(`${m[1]}_${m[2] === "0" ? "1" : "0"}`);
+      return false;
+    }
 
     function _syncEquippedSlotsFromBuild() {
       for (const k of Object.keys(EQUIPPED_SLOTS)) delete EQUIPPED_SLOTS[k];
@@ -6910,12 +7489,29 @@
     }
     _initPublicBuildState();
 
+    window.openPlannerGearPicker = async function(slotKey) {
+      _pickerOpenedFromPlanner = true;
+      if (!GEAR_DATA) await initGearCatalog();
+      const eq = PUBLIC_BUILD.eq || {};
+      STUDIO_BUILD.gender = String(PUBLIC_BUILD.gender || "0");
+      STUDIO_BUILD.bg = PUBLIC_BUILD.bg || "indigo";
+      STUDIO_BUILD.wpn = _lookupCatalogObj("wpn", eq.weapon);
+      STUDIO_BUILD.back = _lookupCatalogObj("back", eq.back_item);
+      STUDIO_BUILD.set = _lookupCatalogObj("set", eq.set);
+      STUDIO_BUILD.hair = _lookupCatalogObj("hair", eq.hair);
+      STUDIO_BUILD.acc = _lookupCatalogObj("acc", eq.accessory);
+      STUDIO_BUILD.pet = _lookupCatalogObj("pet", eq.pet);
+      await openStudioPicker(slotKey, true);
+    };
+
     function renderPublicBuildPlanner() {
       _syncEquippedSlotsFromBuild();
       const lv = Math.max(1, Math.min(100, Number(PUBLIC_BUILD.level || 80)));
       const rm = getNinjaRankMeta(lv);
       const nm = String(PUBLIC_BUILD.name || "Shinobi Tamu").trim() || "Shinobi Tamu";
       const elems = Array.isArray(PUBLIC_BUILD.elements) && PUBLIC_BUILD.elements.length ? PUBLIC_BUILD.elements : ["Wind"];
+      const tals = Array.isArray(PUBLIC_BUILD.talents) && PUBLIC_BUILD.talents.length ? PUBLIC_BUILD.talents : ["Demon Eye"];
+      const bg = PUBLIC_BUILD.bg || "indigo";
 
       const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
       setTxt("rail-char-name", nm);
@@ -6923,26 +7519,41 @@
       const rImg = document.getElementById("rail-rank-img"); if (rImg) rImg.src = rm.ico;
 
       setTxt("bp-hero-title", nm);
-      setTxt("bp-hero-sub", `${rm.name} · ${elems.join(" / ")} · Build Sandbox`);
+      setTxt("bp-hero-sub", `${rm.name} · ${elems.join(" / ")}`);
       const bpRIco = document.getElementById("bp-lv-rank-ico"); if (bpRIco) bpRIco.src = rm.ico;
       setTxt("kpi-lv", `Lv ${lv}`);
       setTxt("xp-pct-pill", elems[0] || "Wind");
+      setTxt("bp-elem-count", `${elems.length} / 3 Elemen`);
+      setTxt("bp-talent-count", `${tals.length} / 3 Talent`);
 
       const nInp = document.getElementById("bp-name-inp"); if (nInp && nInp.value !== nm) nInp.value = nm;
       const lInp = document.getElementById("bp-lv-inp"); if (lInp && Number(lInp.value) !== lv) lInp.value = String(lv);
       const gSel = document.getElementById("bp-gender-sel"); if (gSel) gSel.value = String(PUBLIC_BUILD.gender || "0");
 
+      const stageEl = document.getElementById("main-char-stage");
+      if (stageEl) stageEl.className = "bp-arena-stage" + (bg !== "indigo" ? " bg-" + bg : "");
+      document.querySelectorAll("[data-bpbg]").forEach((b) => {
+        b.setAttribute("aria-pressed", b.dataset.bpbg === bg ? "true" : "false");
+      });
+
       const nextXp = lv >= 100 ? 0 : (XP_TABLE[lv] || 0);
       let cumXp = 0;
       for (let i = 1; i < lv; i++) cumXp += (XP_TABLE[i] || 0);
-      setTxt("kpi-xp", lv >= 100 ? "Level Maksimal Tercapai (Lv. 100)" : `Syarat Naik Lv.${lv + 1}: ${fmtNum(nextXp)} XP`);
+      setTxt("kpi-xp", lv >= 100 ? "Level Maksimal Tercapai (Lv. 100)" : `Next Lv.${lv + 1}: ${fmtNum(nextXp)} XP`);
       const etaEl = document.getElementById("xp-eta");
-      if (etaEl) etaEl.innerHTML = `Kumulatif Lv.1–${lv}: <strong>${fmtCompact(cumXp)} XP</strong>`;
+      if (etaEl) etaEl.innerHTML = `Total XP: <strong>${fmtCompact(cumXp)}</strong>`;
       const bar = document.getElementById("xp-bar-fill");
       if (bar) bar.style.transform = `scaleX(${Math.max(0.05, Math.min(1, lv / 100)).toFixed(2)})`;
 
       document.querySelectorAll("#bp-elem-strip .bp-elem-btn").forEach((b) => {
         b.setAttribute("aria-pressed", elems.includes(b.dataset.el) ? "true" : "false");
+      });
+      document.querySelectorAll("#bp-talent-strip .bp-elem-btn").forEach((b) => {
+        b.setAttribute("aria-pressed", tals.includes(b.dataset.tal) ? "true" : "false");
+      });
+      document.querySelectorAll("[data-bp-preset]").forEach((b) => {
+        const p = BUILD_PRESETS[b.dataset.bpPreset];
+        b.setAttribute("aria-pressed", (p && p.name === nm) ? "true" : "false");
       });
 
       const eq = PUBLIC_BUILD.eq || {};
@@ -6955,50 +7566,73 @@
       _publicEquipped.gender = String(PUBLIC_BUILD.gender || "0");
       renderMainCharacterLivePreview(_publicEquipped);
 
-      // Render 8-Slot Skill Bar
+      // Render 8-Slot Skill Matrix
       const skGrid = document.getElementById("bp-skill-grid");
       const skills = PUBLIC_BUILD.skills || [];
-      let sumCp = 0, sumCd = 0, skFound = 0;
+      let sumCp = 0, sumCd = 0, sumDmg = 0, skFound = 0;
       const effTags = new Set();
+      const mech = { disperse: false, antiHeal: false, cc: false, purify: false, hpCut: false };
+
       if (skGrid) {
         skGrid.innerHTML = Array.from({ length: 8 }, (_, idx) => {
           const sid = skills[idx] || "";
           const sk = sid ? KB_SKILLS.find((x) => x.i === sid) : null;
+          let effLine = "Slot kosong — klik Ganti untuk pasang jutsu";
           if (sk) {
             sumCp += Number(sk.c || 0);
             sumCd += Number(sk.cd || 0);
+            sumDmg += Number(sk.d || 0);
             skFound++;
-            (sk.ef || []).forEach((e) => { if (e && e[2]) effTags.add(e[2]); });
+            const efNames = [];
+            (sk.ef || []).forEach((e) => {
+              if (!e) return;
+              const code = String(e[1] || "").toLowerCase();
+              const lbl = String(e[2] || e[1] || "");
+              if (lbl) {
+                effTags.add(lbl);
+                const valTxt = e[3] ? ` ${e[3]}${e[4] === "percent" ? "%" : ""}` : "";
+                const durTxt = e[5] > 0 ? ` (${e[5]}T)` : "";
+                efNames.push(`${lbl}${valTxt}${durTxt}`);
+              }
+              if (/disperse|dispel|clear_buff/.test(code) || /disperse/i.test(lbl)) mech.disperse = true;
+              if (/internal_injury|no_heal|reduce_heal/.test(code) || /internal injury/i.test(lbl)) mech.antiHeal = true;
+              if (/stun|chaos|freeze|prison|sleep|restriction|blind|numb/.test(code) || /stun|chaos|freeze|prison|blind/i.test(lbl)) mech.cc = true;
+              if (/purify|serene|cleanse|resist_debuff/.test(code) || /purify|serene/i.test(lbl)) mech.purify = true;
+              if (/reduce_hp|instant_kill|cut_hp|bleed|burn/.test(code) || /reduce.*hp|instant kill/i.test(lbl)) mech.hpCut = true;
+            });
+            effLine = efNames.length ? efNames.slice(0, 2).join(" · ") : (sk.d > 0 ? `Serangan Burst ${fmtNum(sk.d)} Base Dmg` : "Jutsu Taktis / Buff");
           }
           const tm = sk ? (TYPE_META[sk.t] || TYPE_META["7"]) : TYPE_META["7"];
           const icoHtml = sk ? renderSkillIconHtml(sk, false) : `<img src="${NS_ICONS.emblem || ""}" width="26" height="26" alt="" />`;
-          const sName = sk ? sk.n : "Slot Kosong";
-          const sMeta = sk ? `Lv.${sk.l} · ${sk.d} Dmg · ${sk.c} CP · CD ${sk.cd}` : "Klik Pilih untuk isi Jutsu";
+          const sName = sk ? sk.n : "Slot Jutsu Kosong";
+          const sMeta = sk ? `Lv.${sk.l} · ${fmtNum(sk.d)} Dmg · ${fmtNum(sk.c)} CP · CD ${sk.cd}T` : "Belum ada jutsu terpasang";
           const tmShort = tm.label.split("/")[0].trim();
           return `<div class="bp-skill-slot" ${sk ? `data-hover-pv="${escapeHtml(sk.i)}"` : ""}>
             <span class="skill-icon-box ${tm.cls}">${icoHtml}</span>
             <div class="bp-skill-slot-meta">
-              <div class="bp-skill-slot-k">Slot #${idx + 1} · ${escapeHtml(tmShort)}</div>
+              <div class="bp-skill-slot-top">
+                <span class="bp-skill-slot-k">SLOT #${idx + 1}</span>
+                <span class="bp-skill-slot-tp">${escapeHtml(tmShort)}</span>
+              </div>
               <div class="bp-skill-slot-n" title="${escapeHtml(sName)}">${escapeHtml(sName)}</div>
               <div class="bp-skill-slot-s">${escapeHtml(sMeta)}</div>
+              <div class="bp-skill-slot-ef" title="${escapeHtml(effLine)}">${escapeHtml(effLine)}</div>
             </div>
             <div class="bp-skill-slot-acts">
               <button type="button" class="pv-btn-mini" onclick="openBuildSkillPicker(${idx})">Ganti</button>
-              ${sk ? `<button type="button" class="btn-ghost pv-btn-xs" onclick="openSkillInKamus('${escapeHtml(sk.i)}')" title="Buka Detail & Animasi di Kamus">Info</button>` : ""}
+              ${sk ? `<button type="button" class="btn-ghost pv-btn-xs" onclick="openSkillInKamus('${escapeHtml(sk.i)}')" title="Buka Detail & Animasi di Kamus">Detail</button>` : ""}
             </div>
           </div>`;
         }).join("");
       }
 
       setTxt("rail-skill-cnt", `${skFound} / 8 Slot`);
+      const avgCp = skFound ? Math.round(sumCp / skFound) : 0;
+      const avgCd = skFound ? (sumCd / skFound).toFixed(1) : "0.0";
       const rotEl = document.getElementById("bp-rot-metrics");
-      if (rotEl) {
-        const avgCp = skFound ? Math.round(sumCp / skFound) : 0;
-        const avgCd = skFound ? (sumCd / skFound).toFixed(1) : "0";
-        rotEl.textContent = `Rata-rata: ${avgCp} CP · Avg CD ${avgCd} Turn`;
-      }
+      if (rotEl) rotEl.textContent = `${skFound}/8 Slot · Avg ${avgCp} CP · CD ${avgCd}T`;
 
-      // Combined Gear + Skill Effect Summary
+      // Combined Gear + Skill Effect Summary & 4-Card Combat Telemetry
       const simObj = {
         wpn: _lookupCatalogObj("wpn", eq.weapon),
         back: _lookupCatalogObj("back", eq.back_item),
@@ -7007,14 +7641,115 @@
         hair: _lookupCatalogObj("hair", eq.hair),
         pet: _lookupCatalogObj("pet", eq.pet),
       };
+      const rawStats = {
+        wpn_dmg: (simObj.wpn && simObj.wpn.d) || 0,
+        dmg_p: 0, dmg_n: 0, red_p: 0, red_n: 0,
+        crit: (simObj.pet && simObj.pet.cr) || 0,
+        dodge: (simObj.pet && simObj.pet.dg) || 0,
+        acc: (simObj.pet && simObj.pet.ac) || 0,
+        pur: (simObj.pet && simObj.pet.pu) || 0,
+        hp_p: 0, hp_n: 0, cp_p: 0, cp_n: 0,
+      };
+      for (const k of ["wpn", "back", "acc", "set", "hair"]) {
+        const o = simObj[k];
+        if (!o) continue;
+        for (const e of (o.ef || [])) {
+          const code = String(e[1] || "").toLowerCase();
+          const amt = Number(e[3] || 0);
+          const isPct = String(e[4] || "").toLowerCase() === "percent";
+          if (/purify|resist/.test(code)) mech.purify = true;
+          if (/reduce_hp|instant_kill/.test(code)) mech.hpCut = true;
+          if (!amt) continue;
+          if (/damage_increase|all_damage|skill_damage|taijutsu_damage/.test(code)) { if (isPct) rawStats.dmg_p += amt; else rawStats.dmg_n += amt; }
+          else if (/damage_reduce/.test(code)) { if (isPct) rawStats.red_p += amt; else rawStats.red_n += amt; }
+          else if (/critical/.test(code)) rawStats.crit += amt;
+          else if (/dodge/.test(code)) rawStats.dodge += amt;
+          else if (/accuracy/.test(code)) rawStats.acc += amt;
+          else if (/purify/.test(code)) rawStats.pur += amt;
+          else if (/hp_recover|regen.*hp/.test(code)) { if (isPct) rawStats.hp_p += amt; else rawStats.hp_n += amt; }
+          else if (/cp_recover|regen.*cp/.test(code)) { if (isPct) rawStats.cp_p += amt; else rawStats.cp_n += amt; }
+        }
+      }
+      if (rawStats.pur > 0) mech.purify = true;
+
+      setTxt("rail-wpn-dmg", `${fmtNum(rawStats.wpn_dmg)} Dmg`);
+
+      const offEl = document.getElementById("bp-tel-off");
+      if (offEl) {
+        offEl.innerHTML = `
+          <div class="bp-stat-card-t">Daya Serang (Offense)</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Weapon Damage</span><span class="bp-stat-v is-hi">${fmtNum(rawStats.wpn_dmg)} Dmg</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Bonus Damage</span><span class="bp-stat-v">+${rawStats.dmg_p}% · +${fmtNum(rawStats.dmg_n)}</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Critical Rate</span><span class="bp-stat-v">+${rawStats.crit}%</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Total Burst 8 Jutsu</span><span class="bp-stat-v">${fmtNum(sumDmg)} Dmg</span></div>
+        `;
+      }
+      const defEl = document.getElementById("bp-tel-def");
+      if (defEl) {
+        defEl.innerHTML = `
+          <div class="bp-stat-card-t">Pertahanan &amp; Mobilitas</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Dodge / Evasion</span><span class="bp-stat-v is-hi">+${rawStats.dodge}%</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Reduksi Damage</span><span class="bp-stat-v">−${rawStats.red_p}% · −${fmtNum(rawStats.red_n)}</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Purify Chance</span><span class="bp-stat-v">+${rawStats.pur}%</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Bonus Akurasi</span><span class="bp-stat-v">+${rawStats.acc}%</span></div>
+        `;
+      }
+      const susEl = document.getElementById("bp-tel-sus");
+      if (susEl) {
+        susEl.innerHTML = `
+          <div class="bp-stat-card-t">Sustain &amp; Chakra</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Regen HP / Turn</span><span class="bp-stat-v is-hi">+${rawStats.hp_p}% · +${fmtNum(rawStats.hp_n)}</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Regen CP / Turn</span><span class="bp-stat-v">+${rawStats.cp_p}% · +${fmtNum(rawStats.cp_n)}</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Rata-rata CP Jutsu</span><span class="bp-stat-v">${fmtNum(avgCp)} CP</span></div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Rata-rata Cooldown</span><span class="bp-stat-v">${avgCd} Turn</span></div>
+        `;
+      }
+      const tacEl = document.getElementById("bp-tel-tac");
+      if (tacEl) {
+        const badge = (ok) => ok ? `<span class="bp-stat-v is-hi">Siap ✓</span>` : `<span class="bp-stat-v is-warn">Kosong</span>`;
+        tacEl.innerHTML = `
+          <div class="bp-stat-card-t">Kesiapan Taktis Boss</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Disperse (Hapus Buff)</span>${badge(mech.disperse)}</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Anti-Heal (Internal Inj.)</span>${badge(mech.antiHeal)}</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Crowd Control (Stun/CC)</span>${badge(mech.cc)}</div>
+          <div class="bp-stat-row"><span class="bp-stat-k">Purify &amp; Cut HP%</span>${badge(mech.purify && mech.hpCut)}</div>
+        `;
+      }
+
       const stats = computeBuildStats(simObj);
-      setTxt("rail-wpn-dmg", `${fmtNum((simObj.wpn && simObj.wpn.d) || 0)} Dmg`);
       const pillsEl = document.getElementById("bp-combined-pills");
       if (pillsEl) {
-        const effPills = Array.from(effTags).slice(0, 8).map((t) => `<span class="pill azure">${escapeHtml(t)}</span>`);
+        const effPills = Array.from(effTags).slice(0, 10).map((t) => `<span class="pill azure">${escapeHtml(t)}</span>`);
         pillsEl.innerHTML = [...stats.pills, ...effPills].join("") || `<span class="pill azure">Pasang Gear &amp; Jutsu untuk melihat sinergi total</span>`;
       }
     }
+
+    window.previewBuildSkillCandidate = function(sid) {
+      const sk = KB_SKILLS.find((x) => x.i === sid);
+      if (!sk) return;
+      _bsmPreviewSid = sid;
+      const tm = TYPE_META[sk.t] || TYPE_META["7"];
+      const nEl = document.getElementById("bsm-pv-name"); if (nEl) nEl.textContent = sk.n;
+      const mEl = document.getElementById("bsm-pv-meta"); if (mEl) mEl.textContent = `${sk.i} · ${tm.label} · Lv.${sk.l} · ${fmtNum(sk.d)} Dmg · ${fmtNum(sk.c)} CP · CD ${sk.cd} Turn`;
+      const dEl = document.getElementById("bsm-pv-desc"); if (dEl) dEl.textContent = formatInlineDescByLang(sk.ds, "Jurus resmi Ninja Sage.");
+      const pEl = document.getElementById("bsm-pv-pills");
+      if (pEl) {
+        const efPills = (sk.ef || []).map((e) => `<span class="pill gold">${escapeHtml(e[2] || e[1])}${e[3] ? " " + e[3] + (e[4] === "percent" ? "%" : "") : ""}</span>`).join("");
+        pEl.innerHTML = `<span class="pill azure">${escapeHtml(tm.label)}</span>` + efPills;
+      }
+      const eqBtn = document.getElementById("bsm-pv-equip-btn");
+      if (eqBtn) {
+        eqBtn.hidden = false;
+        eqBtn.textContent = `Pasang ke Slot #${_bsmTargetSlot + 1}`;
+        eqBtn.onclick = () => assignBuildSkillSlot(sk.i);
+      }
+      document.querySelectorAll("#bsm-grid .studio-slot-card").forEach((c) => {
+        c.classList.toggle("is-pv-active", c.dataset.bsmSid === sid);
+      });
+      const pvImg = document.getElementById("bsm-pv-img");
+      const pvSt = document.getElementById("bsm-pv-status");
+      if (pvImg && pvSt) loadPreviewInto(pvImg, pvSt, sk.i);
+    };
 
     function _renderBuildSkillPickerGrid() {
       const q = (document.getElementById("bsm-search")?.value || "").trim().toLowerCase();
@@ -7034,26 +7769,43 @@
       });
       const grid = document.getElementById("bsm-grid");
       if (!grid) return;
-      grid.innerHTML = list.slice(0, 60).map((sk) => {
+      const shown = list.slice(0, 60);
+      grid.innerHTML = shown.map((sk) => {
         const tm = TYPE_META[sk.t] || TYPE_META["7"];
-        const effTag = (sk.ef && sk.ef.length) ? sk.ef[0][2] : "Damage";
-        return `<div class="studio-slot-card">
+        const effTag = (sk.ef && sk.ef.length) ? sk.ef.map((e) => e[2]).filter(Boolean).join(" · ") : "Burst Damage";
+        const activeCls = sk.i === _bsmPreviewSid ? " is-pv-active" : "";
+        return `<div class="studio-slot-card${activeCls}" data-bsm-sid="${escapeHtml(sk.i)}">
           <span class="skill-icon-box ${tm.cls}">${renderSkillIconHtml(sk, false)}</span>
           <span class="gear-sim-slot-meta">
             <div class="gear-sim-slot-v">${escapeHtml(sk.n)}</div>
-            <div class="kb-skill-badges"><span class="pill azure">${tm.label}</span><span>Lv.${sk.l} · ${sk.d} Dmg · ${sk.c} CP</span></div>
-            <div class="kb-skill-sub">${escapeHtml(effTag)} · CD ${sk.cd}</div>
+            <div class="kb-skill-badges"><span class="pill azure">${tm.label}</span><span>Lv.${sk.l} · ${fmtNum(sk.d)} Dmg · ${fmtNum(sk.c)} CP</span></div>
+            <div class="kb-skill-sub">${escapeHtml(effTag)} · CD ${sk.cd}T</div>
           </span>
-          <button type="button" class="pv-btn-mini" onclick="assignBuildSkillSlot('${escapeHtml(sk.i)}')">Pasang</button>
+          <div class="studio-slot-acts">
+            <button type="button" class="btn-ghost pv-btn-xs" onclick="previewBuildSkillCandidate('${escapeHtml(sk.i)}')">Animasi</button>
+            <button type="button" class="pv-btn-mini" onclick="assignBuildSkillSlot('${escapeHtml(sk.i)}')">Pasang</button>
+          </div>
         </div>`;
       }).join("") || `<div class="kb-desc-box">Tidak ada jutsu yang cocok.</div>`;
+      grid.querySelectorAll(".studio-slot-card[data-bsm-sid]").forEach((card) => {
+        card.addEventListener("click", (ev) => {
+          if (ev.target.closest("button")) return;
+          previewBuildSkillCandidate(card.dataset.bsmSid);
+        });
+      });
+      if (shown.length && (!_bsmPreviewSid || !shown.some((x) => x.i === _bsmPreviewSid))) {
+        previewBuildSkillCandidate(shown[0].i);
+      }
     }
 
     window.openBuildSkillPicker = function(slotIdx) {
       _bsmTargetSlot = Math.max(0, Math.min(7, Number(slotIdx) || 0));
       const tEl = document.getElementById("bsm-title");
       if (tEl) tEl.textContent = `Pilih Jutsu untuk Slot #${_bsmTargetSlot + 1}`;
+      const curSid = (PUBLIC_BUILD.skills || [])[_bsmTargetSlot] || "";
+      _bsmPreviewSid = curSid;
       _renderBuildSkillPickerGrid();
+      if (curSid) previewBuildSkillCandidate(curSid);
       const dlg = document.getElementById("build-skill-modal");
       if (dlg && !dlg.open) dlg.showModal();
     };
@@ -7089,10 +7841,20 @@
         PUBLIC_BUILD.gender = g;
         for (const k of ["set", "hair"]) {
           const cur = PUBLIC_BUILD.eq[k];
-          if (cur) PUBLIC_BUILD.eq[k] = cur.replace(/_[01]$/, "_" + g);
+          if (cur) {
+            const candidate = cur.replace(/_[01]$/, "_" + g);
+            if (_lookupCatalogObj(k, candidate)) PUBLIC_BUILD.eq[k] = candidate;
+          }
         }
         _persistPublicBuild();
         renderPublicBuildPlanner();
+      });
+      document.querySelectorAll("[data-bpbg]").forEach((b) => {
+        b.addEventListener("click", () => {
+          PUBLIC_BUILD.bg = b.dataset.bpbg || "indigo";
+          _persistPublicBuild();
+          renderPublicBuildPlanner();
+        });
       });
       document.querySelectorAll("#bp-elem-strip .bp-elem-btn").forEach((b) => {
         b.addEventListener("click", () => {
@@ -7109,6 +7871,21 @@
           renderPublicBuildPlanner();
         });
       });
+      document.querySelectorAll("#bp-talent-strip .bp-elem-btn").forEach((b) => {
+        b.addEventListener("click", () => {
+          const tal = b.dataset.tal;
+          let arr = Array.isArray(PUBLIC_BUILD.talents) ? PUBLIC_BUILD.talents.slice() : [];
+          if (arr.includes(tal)) {
+            if (arr.length > 1) arr = arr.filter((x) => x !== tal);
+          } else {
+            if (arr.length >= 3) arr.shift();
+            arr.push(tal);
+          }
+          PUBLIC_BUILD.talents = arr;
+          _persistPublicBuild();
+          renderPublicBuildPlanner();
+        });
+      });
       document.querySelectorAll("[data-bp-preset]").forEach((btn) => {
         btn.addEventListener("click", () => {
           const p = BUILD_PRESETS[btn.dataset.bpPreset];
@@ -7119,22 +7896,34 @@
           showToast(`Preset "${p.name}" diterapkan!`, "ok");
         });
       });
-      document.getElementById("bp-save-1")?.addEventListener("click", () => {
-        try { localStorage.setItem("ns_public_saved_slot1", JSON.stringify(PUBLIC_BUILD)); } catch (_) {}
-        showToast("Build tersimpan ke Slot Lokal #1 browser!", "ok");
+      document.querySelectorAll("[data-bp-slot]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const slotNum = btn.dataset.bpSlot || "1";
+          _bpActiveSaveSlot = slotNum;
+          const key = `ns_public_saved_slot${slotNum}`;
+          try {
+            const d = JSON.parse(localStorage.getItem(key) || "null");
+            if (d) {
+              PUBLIC_BUILD = Object.assign(JSON.parse(JSON.stringify(BUILD_PRESETS.wind_burst)), d);
+              _persistPublicBuild();
+              renderPublicBuildPlanner();
+              showToast(`Slot Lokal #${slotNum} berhasil dimuat!`, "ok");
+            } else {
+              showToast(`Slot Lokal #${slotNum} masih kosong — klik Simpan untuk mengisi.`, "warn");
+            }
+          } catch (_) {}
+        });
       });
-      document.getElementById("bp-load-1")?.addEventListener("click", () => {
-        try {
-          const d = JSON.parse(localStorage.getItem("ns_public_saved_slot1") || "null");
-          if (d) {
-            PUBLIC_BUILD = Object.assign(JSON.parse(JSON.stringify(BUILD_PRESETS.wind_burst)), d);
-            _persistPublicBuild();
-            renderPublicBuildPlanner();
-            showToast("Slot Lokal #1 berhasil dimuat!", "ok");
-          } else {
-            showToast("Slot Lokal #1 masih kosong.", "warn");
-          }
-        } catch (_) {}
+      document.getElementById("bp-save-1")?.addEventListener("click", () => {
+        const key = `ns_public_saved_slot${_bpActiveSaveSlot || "1"}`;
+        try { localStorage.setItem(key, JSON.stringify(PUBLIC_BUILD)); } catch (_) {}
+        showToast(`Build tersimpan ke Slot Lokal #${_bpActiveSaveSlot || "1"} browser!`, "ok");
+      });
+      document.getElementById("bp-clear-skills")?.addEventListener("click", () => {
+        PUBLIC_BUILD.skills = ["", "", "", "", "", "", "", ""];
+        _persistPublicBuild();
+        renderPublicBuildPlanner();
+        showToast("8 Slot Jutsu dikosongkan.", "info");
       });
       const bsmDlg = document.getElementById("build-skill-modal");
       if (bsmDlg) {
@@ -8175,12 +8964,12 @@
         };
       }
       const fallbackNames = {
-        wpn_2451: ["Hidden Katana: Drashinja", "wpn", "Senjata / Weapon", "danger", ["Lv.70", "510 Dmg", "Instant Kill <8%"], "Mengurangi 5% Max HP target pada setiap serangan senjata dan langsung mengeliminasi musuh saat HP di bawah 8%."],
-        back_27: ["Curved Blade Spear", "back", "Back Item", "azure", ["Lv.1", "+5% Critical"], "Meningkatkan peluang serangan kritikal +5% dan damage kritikal."],
-        set_831_0: ["Anniversary 1st Set", "set", "Costume Set", "azure", ["Lv.1", "Kostum Eksklusif"], "Kostum edisi Anniversary resmi Ninja Sage."],
-        hair_2454_0: ["Shinobi Signature Hair", "hair", "Hairstyle", "purple", ["Lv.1", "Gaya Rambut"], "Gaya rambut eksklusif karakter Ninja Sage."],
-        accessory_10: ["Magatama Accessory", "acc", "Aksesoris", "gold", ["Lv.20", "Buff Pasif"], "Aksesoris pelindung Ninja Sage."],
-        pet_raita: ["Raita (Lightning Beast)", "pet", "Pet Companion", "ok", ["Pet Aktif", "6 Jurus Petir"], "Companion Pet elemen petir dengan serangan berantai & stun."],
+        wpn_2451: ["Drashinja Katana", "wpn", "Senjata / Weapon", "danger", ["Lv.70", "510 Dmg", "Instant Kill <8%"], "Mengurangi 5% Max HP target pada setiap serangan senjata dan langsung mengeliminasi musuh saat HP di bawah 8%."],
+        back_27: ["Curved Spear", "back", "Back Item", "azure", ["Lv.1", "+5% Critical"], "Meningkatkan peluang serangan kritikal +5% dan damage kritikal."],
+        set_831_0: ["Elite Fire Ninja Suit", "set", "Costume Set", "azure", ["Lv.1", "Armor Shinobi"], "Kostum eksklusif resmi Ninja Sage."],
+        hair_2454_0: ["Crimson Petal Hairstyle", "hair", "Hairstyle", "purple", ["Lv.1", "Gaya Rambut"], "Gaya rambut eksklusif karakter Ninja Sage."],
+        accessory_10: ["Holy Ring of Fervor", "acc", "Aksesoris", "gold", ["Lv.20", "Buff Pasif"], "Aksesoris pelindung Ninja Sage."],
+        pet_raita: ["Raita", "pet", "Pet Companion", "ok", ["Pet Aktif", "6 Jurus Petir"], "Companion Pet elemen petir dengan serangan berantai & stun."],
         ene_2145: ["Porcelain Marionette", "ene", "Boss Halloween #1", "danger", ["Boss Event", "Drop: Medal + Button"], "Boss pertama Halloween Dollhouse 2026."],
         ene_2146: ["Mister Stitches", "ene", "Boss Halloween #2", "danger", ["Boss Event", "Drop: Medal + Key"], "Boss kedua Halloween Dollhouse 2026."],
         ene_2147: ["The Dollmaker", "ene", "Boss Halloween #3", "danger", ["Boss Event", "Drop: Medal + Cloth"], "Boss utama Halloween Dollhouse 2026."],
@@ -8208,47 +8997,93 @@
       _lastPublicEqSig = sig;
 
       const slotMap = [
-        ["wpn", eq.weapon || "wpn_2451", "mc-lbl-wpn", "Drashinja"],
+        ["wpn", eq.weapon || "wpn_2451", "mc-lbl-wpn", "Drashinja Katana"],
         ["back", eq.back_item || "back_27", "mc-lbl-back", "Curved Spear"],
-        ["set", eq.set || "set_831_0", "mc-lbl-set", "Anniv Set"],
-        ["hair", eq.hair || "hair_2454_0", "mc-lbl-hair", "Hairstyle"],
-        ["acc", eq.accessory || "accessory_10", "mc-lbl-acc", "Accessory"],
+        ["set", eq.set || "set_831_0", "mc-lbl-set", "Elite Fire Ninja Suit"],
+        ["hair", eq.hair || "hair_2454_0", "mc-lbl-hair", "Crimson Petal Hairstyle"],
+        ["acc", eq.accessory || "accessory_10", "mc-lbl-acc", "Holy Ring of Fervor"],
         ["pet", eq.pet || "pet_raita", "mc-lbl-pet", "Raita"],
       ];
       const strip = document.getElementById("main-char-gear-strip");
       if (strip) {
-        const slotTagMap = { wpn: "Weapon", back: "Back", set: "Costume", hair: "Hair", acc: "Acc", pet: "Pet" };
+        const slotTagMap = { wpn: "Senjata / Weapon", back: "Back Item", set: "Costume Set", hair: "Hairstyle", acc: "Aksesoris", pet: "Pet Companion" };
         strip.innerHTML = slotMap.map(([cat, iid, lblId, shortDef]) => {
+          const obj = _lookupCatalogObj(cat, iid);
           const meta = _findAnyEntityMeta(iid);
-          const cleanNm = (meta && meta.name && meta.name !== iid) ? meta.name.replace(/^(Hidden Katana:\s*|Kinjutsu:\s*)/i, "") : shortDef;
-          return `<button type="button" class="main-char-chip" data-hover-pv="${escapeHtml(iid)}" onclick="openBuildInStudio('${cat}')">
-            <img src="${getItemIconUrl(iid)}" width="26" height="26" alt="" onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='./assets/ns/emblem.png';}" />
-            <span class="main-char-chip-txt" id="${lblId}">${escapeHtml(cleanNm)}</span>
-            <span class="main-char-slot-tag">${slotTagMap[cat] || cat}</span>
+          const cleanNm = obj ? obj.n : ((meta && meta.name && meta.name !== iid) ? meta.name.replace(/^(Hidden Katana:\s*|Kinjutsu:\s*)/i, "") : (iid ? shortDef : "Standar / Kosong"));
+          let statSub = "Klik untuk pilih & preview";
+          if (obj) {
+            if (cat === "wpn") {
+              const ef0 = (obj.ef && obj.ef[0]) ? ` · ${obj.ef[0][2]}` : "";
+              statSub = `Lv.${obj.l} · ${fmtNum(obj.d)} Dmg${ef0}`;
+            } else if (cat === "pet") {
+              statSub = `Dodge ${obj.dg}% · Crit ${obj.cr}% · ${(obj.sk || []).length} Jurus`;
+            } else if (obj.ef && obj.ef.length) {
+              statSub = obj.ef.slice(0, 2).map((e) => `${e[2]}${e[3] ? " " + e[3] + (e[4] === "percent" ? "%" : "") : ""}`).join(" · ");
+            } else {
+              statSub = `Lv.${obj.l || 1} · Visual Gear Resmi`;
+            }
+          } else if (meta && Array.isArray(meta.badges) && meta.badges.length) {
+            statSub = meta.badges.slice(0, 2).join(" · ");
+          }
+          return `<button type="button" class="bp-eq-card" ${iid ? `data-hover-pv="${escapeHtml(iid)}"` : ""} onclick="openPlannerGearPicker('${cat}')">
+            <span class="bp-eq-ico">
+              <img src="${iid ? getItemIconUrl(iid) : "./assets/ns/emblem.png"}" width="32" height="32" alt="" onerror="this.onerror=null;this.src='./assets/ns/emblem.png';" />
+            </span>
+            <span class="bp-eq-meta">
+              <span class="bp-eq-k">${slotTagMap[cat] || cat}</span>
+              <span class="bp-eq-n" id="${lblId}" title="${escapeHtml(cleanNm)}">${escapeHtml(cleanNm)}</span>
+              <span class="bp-eq-s" title="${escapeHtml(statSub)}">${escapeHtml(statSub)}</span>
+            </span>
           </button>`;
         }).join("");
       }
 
       const petBox = document.getElementById("main-char-pet-box");
       const petImg = document.getElementById("main-char-pet-img");
-      if (petBox && petImg && eq.pet) {
-        petBox.setAttribute("data-hover-pv", eq.pet);
-        await ensurePreviewsManifest();
-        const wantSrc = (window._MAN_ANIMS_SET && window._MAN_ANIMS_SET.has(eq.pet)) ? getPreviewUrl(eq.pet) : getItemIconUrl(eq.pet);
-        if (petImg.getAttribute("data-pet-id") !== eq.pet) {
-          petImg.setAttribute("data-pet-id", eq.pet);
-          petImg.classList.remove("is-ready");
-          petImg.onload = () => petImg.classList.add("is-ready");
-          petImg.onerror = () => {
-            if (!petImg.dataset.fb) {
-              petImg.dataset.fb = "1";
-              petImg.src = getItemIconUrl(eq.pet);
-            } else {
-              petImg.classList.add("is-ready");
-            }
-          };
-          petImg.src = wantSrc;
-          if (petImg.complete && petImg.naturalWidth > 0) petImg.classList.add("is-ready");
+      if (petBox && petImg) {
+        if (eq.pet) {
+          petBox.hidden = false;
+          petBox.setAttribute("data-hover-pv", eq.pet);
+          await ensurePreviewsManifest();
+          const wantSrc = (window._MAN_ANIMS_SET && window._MAN_ANIMS_SET.has(eq.pet)) ? getPreviewUrl(eq.pet) : getItemIconUrl(eq.pet);
+          if (petImg.getAttribute("data-pet-id") !== eq.pet) {
+            petImg.setAttribute("data-pet-id", eq.pet);
+            petImg.classList.remove("is-ready");
+            petImg.onload = () => petImg.classList.add("is-ready");
+            petImg.onerror = () => {
+              if (!petImg.dataset.fb) {
+                petImg.dataset.fb = "1";
+                petImg.src = getItemIconUrl(eq.pet);
+              } else {
+                petImg.classList.add("is-ready");
+              }
+            };
+            petImg.src = wantSrc;
+            if (petImg.complete && petImg.naturalWidth > 0) petImg.classList.add("is-ready");
+          }
+        } else {
+          petBox.hidden = true;
+        }
+      }
+
+      // Active Accessory Pedestal on Build Planner Stage
+      const accArtEl = document.getElementById("bp-acc-art");
+      const accNmEl = document.getElementById("bp-acc-name");
+      if (accArtEl && accNmEl) {
+        if (eq.accessory) {
+          const accObj = _lookupCatalogObj("acc", eq.accessory);
+          const accMeta = _findAnyEntityMeta(eq.accessory);
+          accNmEl.textContent = (accObj && accObj.n) || (accMeta && accMeta.name) || eq.accessory;
+          const arig = await fetchItemRig(eq.accessory);
+          if (arig && arig.art) {
+            accArtEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${arig.vb || "0 0 120 120"}">${rewriteSvgIds(arig.art, "bpacc_")}</svg>`;
+          } else {
+            accArtEl.innerHTML = `<img src="${getItemIconUrl(eq.accessory)}" width="42" height="42" alt="" />`;
+          }
+        } else {
+          accNmEl.textContent = "Kosong";
+          accArtEl.innerHTML = `<img src="./assets/ns/emblem.png" width="36" height="36" alt="" />`;
         }
       }
 
@@ -8258,12 +9093,27 @@
       const eqIds = [eq.set, eq.hair, eq.back_item, eq.weapon].filter(Boolean);
       const eqRigs = await fetchItemRigsBatch(eqIds);
       const overrides = {};
+      const fbItems = [];
       for (const iid of eqIds) {
         const rig = eqRigs[iid];
-        if (rig && rig.slots) Object.assign(overrides, rig.slots);
+        if (rig && rig.slots && Object.keys(rig.slots).length) {
+          Object.assign(overrides, rig.slots);
+        } else {
+          fbItems.push({ iid, rig });
+        }
       }
       mount.innerHTML = renderDressedAvatarSvg(overrides, "main-char-svg", "mc_av_", String(eq.gender || "0"));
       fitAvatarSvgViewBox(mount);
+      const fbBox = document.getElementById("bp-stage-fb-badges");
+      if (fbBox) {
+        fbBox.innerHTML = fbItems.map(({ iid, rig }) => {
+          const m = _findAnyEntityMeta(iid);
+          const art = (rig && rig.art)
+            ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${rig.vb || "0 0 120 120"}">${rewriteSvgIds(rig.art, "bpfb_" + iid + "_")}</svg>`
+            : `<img src="${getItemIconUrl(iid)}" width="24" height="24" alt="" />`;
+          return `<div class="stage-fb-pill">${art}<span>${escapeHtml((m && m.name) || iid)}</span></div>`;
+        }).join("");
+      }
     }
 
     window.openItemInGearView = async function(iid, cat) {
@@ -8278,11 +9128,22 @@
       showGearDetail(iid, cat);
     };
 
+    window.equipToPublicBuildPlanner = function(cat, iid) {
+      const mapKey = { wpn: "weapon", back: "back_item", set: "set", hair: "hair", acc: "accessory", pet: "pet" }[cat];
+      if (!mapKey) return;
+      if (!PUBLIC_BUILD.eq) PUBLIC_BUILD.eq = {};
+      PUBLIC_BUILD.eq[mapKey] = iid;
+      _persistPublicBuild();
+      renderPublicBuildPlanner();
+      const meta = _findAnyEntityMeta(iid);
+      showToast(`Dipasang ke Build Planner: ${meta ? meta.name : iid}`, "ok");
+    };
     window.openBuildInStudio = async function(focusSlot = null) {
       switchView("studio");
       if (!GEAR_DATA) await initGearCatalog();
       const eq = PUBLIC_BUILD.eq || {};
       STUDIO_BUILD.gender = String(PUBLIC_BUILD.gender || "0");
+      STUDIO_BUILD.bg = PUBLIC_BUILD.bg || "indigo";
       STUDIO_BUILD.wpn = _lookupCatalogObj("wpn", eq.weapon);
       STUDIO_BUILD.back = _lookupCatalogObj("back", eq.back_item);
       STUDIO_BUILD.set = _lookupCatalogObj("set", eq.set);
@@ -8290,10 +9151,11 @@
       STUDIO_BUILD.acc = _lookupCatalogObj("acc", eq.accessory);
       STUDIO_BUILD.pet = _lookupCatalogObj("pet", eq.pet);
       renderBuildStudio();
-      if (focusSlot) openStudioPicker(focusSlot);
+      if (focusSlot) openStudioPicker(focusSlot, false);
     };
     window.applyStudioToPlanner = function() {
       PUBLIC_BUILD.gender = STUDIO_BUILD.gender || "0";
+      PUBLIC_BUILD.bg = STUDIO_BUILD.bg || "indigo";
       PUBLIC_BUILD.eq = {
         weapon: STUDIO_BUILD.wpn ? STUDIO_BUILD.wpn.i : "",
         back_item: STUDIO_BUILD.back ? STUDIO_BUILD.back.i : "",
@@ -8363,7 +9225,7 @@
       const img = (el.tagName === "IMG" ? el : null) || (imgContainer ? imgContainer.querySelector("img") : null);
       if (img) {
         const src = String(img.getAttribute("src") || "");
-        const mIco = src.match(/\/item_icon\/([A-Za-z0-9_]+)\.png/);
+        const mIco = src.match(/\/item_icons?\/([A-Za-z0-9_]+)\.png/);
         if (mIco && mIco[1]) return { id: mIco[1], anchor: imgContainer || img };
         const mSk = src.match(/\/(skill_\d+)\.png/);
         if (mSk && mSk[1]) return { id: mSk[1], anchor: imgContainer || img };
@@ -8477,9 +9339,15 @@
               : `<img src="${getItemIconUrl(id)}" width="96" height="96" style="object-fit:contain;" alt="" />`;
             stageEl.innerHTML = `<div class="gear-acc-split">${renderDressedAvatarSvg(null, "ns-hover-av", "hpv_av_", "0")}<div class="gear-acc-badge" style="width:128px;height:128px;">${artHtml}</div></div>`;
             fitAvatarSvgViewBox(stageEl);
-          } else if (rig && rig.slots) {
+          } else if (rig && rig.slots && Object.keys(rig.slots).length) {
             const g = id.endsWith("_1") ? "1" : "0";
             stageEl.innerHTML = renderDressedAvatarSvg(rig.slots, "ns-hover-av", "hpv_av_", g);
+            fitAvatarSvgViewBox(stageEl);
+          } else {
+            const artHtml = (rig && rig.art)
+              ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${rig.vb || "0 0 120 120"}" style="width:110px;height:110px;">${rewriteSvgIds(rig.art, "hpv_fb_")}</svg>`
+              : `<img src="${getItemIconUrl(id)}" width="96" height="96" style="object-fit:contain;" alt="" />`;
+            stageEl.innerHTML = `<div class="gear-acc-split">${renderDressedAvatarSvg(null, "ns-hover-av", "hpv_av_", "0")}<div class="gear-acc-badge" style="width:128px;height:128px;">${artHtml}</div></div>`;
             fitAvatarSvgViewBox(stageEl);
           }
         } catch (_) {}

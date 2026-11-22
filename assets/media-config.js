@@ -44,8 +44,11 @@
     resolveStudioPetUrl: function (reqKey) {
       const cleanKey = String(reqKey || "").trim();
       if (!cleanKey) return "";
-      const man = window.NS_PREVIEWS_MANIFEST;
-      if (man && man.studio_pets && man.studio_pets[cleanKey]) {
+      if (typeof window !== "undefined" && window._MAN_SPETS_SET && window._MAN_SPETS_SET.has(cleanKey)) {
+        return `./assets/studio_pets/${encodeURIComponent(cleanKey)}.png`;
+      }
+      const man = typeof window !== "undefined" ? window.NS_PREVIEWS_MANIFEST : null;
+      if (man && Array.isArray(man.studio_pets) && man.studio_pets.includes(cleanKey)) {
         return `./assets/studio_pets/${encodeURIComponent(cleanKey)}.png`;
       }
       return this.resolvePreviewUrl(cleanKey);
