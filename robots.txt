@@ -58,7 +58,19 @@ Disallow: /
 User-agent: Wget
 Disallow: /
 
+User-agent: Discordbot
+Allow: /$
+Allow: /assets/og-banner.png
+Allow: /assets/ns/favicon.png
+Disallow: /assets/data/
+
+User-agent: Twitterbot
+Allow: /$
+Allow: /assets/og-banner.png
+Disallow: /assets/data/
+
 User-agent: *
+Allow: /assets/og-banner.png
 Disallow: /assets/data/
 Disallow: /assets/ns/
 Disallow: /assets/item_rigs/
