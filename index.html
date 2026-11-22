@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="./favicon.ico" />
   <link rel="apple-touch-icon" href="./assets/ns/favicon.png" />
   <title>Ninja Sage Portal · Build Planner, Kamus Jutsu &amp; Wiki</title>
-  <script src="./assets/media-config.js?v=1e561f62"></script>
+  <script src="./assets/media-config.js?v=6fa80bff"></script>
   <style>
 
     :root {
@@ -2219,7 +2219,7 @@
     }
 
     /* ============ ANIMATED TAP-TO-ENTER SPLASH GATE & SHINOBI AUDIO BAR ============ */
-    html.ns-session-active #ns-splash-gate { display: none !important; }
+    html.ns-session-active #ns-splash-gate, .ns-splash-gate[hidden] { display: none !important; }
     @keyframes nsKenBurns {
       0% { transform: scale(1.00) translate3d(0, 0, 0); }
       100% { transform: scale(1.06) translate3d(-1.2%, -0.8%, 0); }
@@ -2411,7 +2411,7 @@
     <img class="ns-kumiko br" src="./assets/ns/ui_corner_kumiko.svg" width="76" height="76" alt="" aria-hidden="true" />
 
     <div class="ns-splash-shell">
-      <div class="ns-splash-card">
+      <div class="ns-splash-card" id="ns-splash-card" style="cursor:pointer;">
         <div class="ns-brand-lockup">
           <div class="ns-seal-ring" aria-hidden="true">
             <picture><img src="./assets/ns/emblem.png" width="38" height="38" alt="" /></picture>
@@ -2613,7 +2613,7 @@
               </svg>
               <span id="ns-aud-lbl">Musik</span>
             </button>
-            <button type="button" class="ns-aud-trk" id="ns-aud-track" title="Ganti Lagu BGM">Zen Koto</button>
+            <button type="button" class="ns-aud-trk" id="ns-aud-track" title="Ganti Lagu: Zen Koto (Senbazuru - Kevin MacLeod CC-BY 4.0) / NS Battle">Zen Koto</button>
           </div>
           <div class="theme-switch" role="group" aria-label="Pilih Wallpaper Resmi Ninja Sage">
             <button type="button" class="theme-btn" data-wp="byakko" aria-pressed="true">Byakko</button>
@@ -3612,7 +3612,7 @@
     </div>
   </dialog>
 
-  <script src="./assets/ns-guard.js?v=1e561f62"></script>
+  <script src="./assets/ns-guard.js?v=6fa80bff"></script>
   <div class="ns-hover-preview" id="ns-hover-preview" role="tooltip" aria-hidden="true" hidden>
     <div class="ns-hover-hdr">
       <div class="ns-hover-ico" id="ns-hover-ico"></div>
