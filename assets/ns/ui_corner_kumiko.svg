@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="kumikoGold" x1="0" y1="0" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9ca71"/>
+      <stop offset="0.55" stop-color="#dfa24b"/>
+      <stop offset="1" stop-color="#b77728"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#kumikoGold)" stroke-width="3.6" stroke-linecap="square">
+    <path d="M2 66 V2 H66"/>
+    <path d="M17 2 V33 H2"/>
+    <path d="M2 17 H33 V2"/>
+    <path d="M17 33 V49 H49 V17 H33"/>
+    <rect x="4" y="4" width="11" height="11" stroke-width="2.8"/>
+    <rect x="35" y="35" width="11" height="11" stroke-width="2.8"/>
+  </g>
+</svg>
