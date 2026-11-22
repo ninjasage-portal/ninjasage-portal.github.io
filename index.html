@@ -26,7 +26,8 @@
   <meta name="twitter:title" content="Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki" />
   <meta name="twitter:description" content="Build Planner Shinobi, Studio Avatar HD, Kamus 1,302 Jutsu &amp; Taktik Boss · Credit by BocilBerjas." />
   <meta name="twitter:image" content="https://ninjasage-portal.github.io/assets/og-banner.png" />
-  <script src="./assets/media-config.js?v=1596196b"></script>
+  <script src="./assets/media-config.js?v=e520fcb0"></script>
+  <script data-goatcounter="https://ninjasage-portal.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <style>
 
     :root {
@@ -721,6 +722,73 @@
       .cycle-timer-cluster { align-items: flex-start; }
       .notify-bar-acts { justify-content: flex-start; width: 100%; }
       .notify-bar-acts > * { flex: 1 1 auto; }
+    }
+
+    /* Tab 4: Recruit Teman & Auto-Correct */
+    .rec-shell { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .rec-head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; min-width: 0;
+    }
+    .rec-head-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1 1 230px; }
+    .rec-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--accent-gold-hi); margin: 0; }
+    .rec-sub { font-size: 11.5px; color: var(--text-secondary); line-height: 1.4; font-variant-numeric: tabular-nums; }
+    .rec-acts { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .rec-acts .btn-primary { min-height: 32px; padding: 5px 12px; font-size: 12px; border-radius: 7px; }
+    .rec-acts .btn-ghost { min-height: 32px; padding: 5px 11px; font-size: 12px; border-radius: 7px; }
+    .rec-prefs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .rec-alert {
+      padding: 9px 12px; border-radius: 9px; font-size: 12px; line-height: 1.45;
+      background: rgba(245, 158, 11, 0.10); border: 1px solid rgba(245, 158, 11, 0.34); color: #FDE68A;
+    }
+    .rec-alert[hidden] { display: none; }
+    .rec-summary-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      padding: 8px 11px; border-radius: 9px; background: var(--surface-well); border: 1px solid var(--border-hairline);
+      font-size: 11.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums;
+    }
+    .rec-summary-bar strong { color: var(--text-primary); font-weight: 600; }
+    .rec-list {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+      max-height: 292px; overflow-y: auto; overscroll-behavior: contain; padding-inline-end: 2px;
+      scrollbar-width: thin;
+    }
+    .rec-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 7px; min-width: 0;
+      padding: 7px 9px; border-radius: 10px; background: var(--surface-well);
+      border: 1px solid var(--border-hairline); text-align: left; color: var(--text-primary);
+      transition: background-color 140ms ease, border-color 140ms ease, transform 150ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .rec-item.is-picked {
+      background: rgba(212, 168, 83, 0.12); border-color: rgba(212, 168, 83, 0.48);
+      box-shadow: inset 2px 0 0 var(--accent-gold);
+    }
+    .rec-item.is-cooldown { opacity: 0.72; border-color: rgba(239, 68, 68, 0.28); background: rgba(239, 68, 68, 0.05); }
+    .rec-item.is-toohigh { opacity: 0.72; }
+    .rec-item:disabled { cursor: not-allowed; }
+    @media (hover: hover) {
+      .rec-item:not(:disabled):hover { background: var(--surface-hover); border-color: var(--border-strong); }
+    }
+    .rec-item-left { display: flex; align-items: center; gap: 7px; min-width: 0; flex: 1; }
+    .rec-lv-box {
+      min-width: 38px; padding: 3px 5px; border-radius: 6px; text-align: center; flex-shrink: 0;
+      font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums;
+      background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-hairline); color: var(--text-primary);
+    }
+    .rec-item.is-picked .rec-lv-box { background: rgba(212, 168, 83, 0.22); border-color: rgba(212, 168, 83, 0.45); color: var(--accent-gold-hi); }
+    .rec-item.is-cooldown .rec-lv-box { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #FCA5A5; }
+    .rec-item-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+    .rec-name { font-size: 12px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rec-pos { font-size: 10.5px; color: var(--text-tertiary); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rec-badge {
+      flex-shrink: 0; padding: 2px 6px; border-radius: 999px; font-size: 10px; font-weight: 600;
+      font-variant-numeric: tabular-nums; background: rgba(255, 255, 255, 0.06); color: var(--text-secondary); white-space: nowrap;
+    }
+    .rec-badge.is-ok { background: rgba(34, 197, 94, 0.14); color: #86EFAC; }
+    .rec-badge.is-picked { background: rgba(212, 168, 83, 0.20); color: var(--accent-gold-hi); border: 1px solid rgba(212, 168, 83, 0.38); }
+    .rec-badge.is-cooldown { background: rgba(239, 68, 68, 0.16); color: #FCA5A5; }
+    .rec-badge.is-toohigh { background: rgba(245, 158, 11, 0.14); color: #FCD34D; }
+    @media (max-width: 720px) {
+      .rec-prefs-grid, .rec-list { grid-template-columns: minmax(0, 1fr); }
     }
 
     /* Tab 2 Build & Tab 3 Watchdog */
@@ -3626,7 +3694,7 @@
     </div>
   </dialog>
 
-  <script src="./assets/ns-guard.js?v=1596196b"></script>
+  <script src="./assets/ns-guard.js?v=e520fcb0"></script>
   <div class="ns-hover-preview" id="ns-hover-preview" role="tooltip" aria-hidden="true" hidden>
     <div class="ns-hover-hdr">
       <div class="ns-hover-ico" id="ns-hover-ico"></div>
