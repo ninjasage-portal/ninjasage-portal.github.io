@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki" />
   <meta name="twitter:description" content="Build Planner Shinobi, Studio Avatar HD, Kamus 1,302 Jutsu &amp; Taktik Boss · Credit by BocilBerjas." />
   <meta name="twitter:image" content="https://ninjasage-portal.github.io/assets/og-banner.png" />
-  <script src="./assets/media-config.js?v=b428e3e3"></script>
+  <script src="./assets/media-config.js?v=b722bd04"></script>
   <script data-goatcounter="https://ninjasage-portal.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <style>
 
@@ -2521,27 +2521,746 @@
     }
     .bp-quick-strip { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 
-    /* === VIEW 9: 1:1 AS3 BATTLE ARENA & DAMAGE/BUFF ANALYTICS === */
+    /* === VIEW 9: 1:1 AUTHENTIC NINJA SAGE IN-GAME BATTLE ARENA & ANALYTICS === */
     #view-arena [hidden] { display: none !important; }
-    .ar-sync-card {
-      padding: 12px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
-    .ar-sync-left { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
-    .ar-sync-ico {
-      width: 38px; height: 38px; border-radius: 10px;
-      background: rgba(212, 168, 83, 0.12); border: 1px solid var(--border-gold);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .ar-sync-meta { min-width: 0; }
-    .ar-sync-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .ar-toggle-pill {
-      display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
-      border-radius: 8px; background: var(--surface-well); border: 1px solid var(--border-steel);
-      font-size: 11.5px; font-weight: 600; color: var(--text-periwinkle); cursor: pointer;
-    }
-    .ar-toggle-pill input { accent-color: var(--accent-gold); cursor: pointer; }
 
+    /* Top Slim Tactical Bar Above Game Screen */
+    .ar-topbar {
+      padding: 8px 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      background: linear-gradient(180deg, rgba(22, 18, 14, 0.96), rgba(14, 12, 10, 0.96));
+      border: 1px solid rgba(212, 168, 83, 0.32);
+      border-radius: 12px;
+    }
+    .ar-topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+    .ar-topbar-title {
+      font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: #F7E1A0;
+      margin: 0; white-space: nowrap;
+    }
+    .ar-topbar-sub {
+      font-size: 11.5px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ar-topbar-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .ar-map-pill {
+      display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; border-radius: 7px;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 168, 83, 0.24);
+      color: var(--text-secondary); font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .ar-map-pill[aria-pressed="true"] {
+      background: rgba(212, 168, 83, 0.22); border-color: #E5B842; color: #FFF3C4;
+    }
+    .ar-toggle-pill {
+      display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px;
+      border-radius: 7px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-steel);
+      font-size: 11px; font-weight: 600; color: var(--text-periwinkle); cursor: pointer;
+    }
+    .ar-toggle-pill input { accent-color: var(--accent-gold); cursor: pointer; margin: 0; }
+
+    /* === 1:1 IN-GAME BATTLE STAGE VIEWPORT (DefineSprite_6848_Combat.Battle) === */
+    .ar-stage-card {
+      padding: 0; overflow: hidden; border-radius: 14px;
+      border: 2px solid #5C4022;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 230, 160, 0.22);
+      background: #1A130B;
+      position: relative;
+    }
+    .ar-arena-viewport {
+      position: relative;
+      width: 100%;
+      min-height: 550px;
+      aspect-ratio: 16 / 9.15;
+      max-height: 650px;
+      overflow: hidden;
+      user-select: none;
+      background-color: #AD8251;
+      background-image: url("./assets/ns/stage_bg_courtyard.svg");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+    .ar-arena-viewport[data-stage-map="dojo"] {
+      background-image: url("./assets/ns/stage_bg_arena.png");
+      background-color: #543C28;
+    }
+    .ar-arena-viewport[data-stage-map="rooftop"] {
+      background-image: url("./assets/ns/stage_bg_rooftop.png");
+      background-color: #7CC8F8;
+    }
+
+    /* 1. TOP-LEFT AUTHENTIC WOODEN STATUS PLAQUE (char_hpcp / DefineSprite_4777) */
+    .ar-wood-hud-wrap {
+      position: absolute; top: 10px; left: 10px; z-index: 20;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .ar-wood-plaque {
+      position: relative;
+      width: 248px; height: 104px;
+      background-image: url("./assets/ns/btl_hud_wood.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      padding: 8px 12px 8px 14px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
+    }
+    .ar-lv-medallion {
+      position: absolute; top: -6px; left: -6px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FFE885, #C9931B 68%, #6B4A09 100%);
+      border: 2px solid #231707;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.65), 0 2px 5px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .ar-lv-medallion-k {
+      font-size: 8px; font-weight: 800; color: #FFF3B0;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    .ar-lv-medallion-v {
+      font-size: 13px; font-weight: 900; color: #FFFFFF; font-variant-numeric: tabular-nums;
+      text-shadow: -1.2px -1.2px 0 #000, 1.2px -1.2px 0 #000, -1.2px 1.2px 0 #000, 1.2px 1.2px 0 #000;
+    }
+    .ar-wood-charname {
+      margin-left: 24px;
+      font-family: var(--font-display); font-size: 13.5px; font-weight: 800; color: #FFFFFF;
+      text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 2px 4px rgba(0,0,0,0.8);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      line-height: 1.15;
+    }
+    .ar-wood-bars {
+      display: flex; flex-direction: column; gap: 3px; margin-top: 2px;
+    }
+    .ar-wbar-row {
+      display: grid; grid-template-columns: 20px minmax(0, 1fr); align-items: center; gap: 5px;
+    }
+    .ar-wbar-ico {
+      width: 18px; height: 15px; display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 900; color: #FFD95A;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    .ar-wbar-track {
+      position: relative; height: 14px; border-radius: 3px;
+      background: #1B130D;
+      border: 1.5px solid #2A1B10;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.85);
+      overflow: hidden;
+    }
+    .ar-wbar-fill {
+      height: 100%; transition: width 220ms var(--spring-snappy);
+    }
+    .ar-wbar-fill.hp {
+      background: linear-gradient(180deg, #FF5E4D 0%, #D92316 55%, #991108 100%);
+    }
+    .ar-wbar-fill.cp {
+      background: linear-gradient(180deg, #4DA8FF 0%, #0A74DA 55%, #064B91 100%);
+    }
+    .ar-wbar-fill.sp {
+      background: linear-gradient(180deg, #A3E635 0%, #65A30D 55%, #3F6212 100%);
+    }
+    .ar-wbar-txt {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10.5px; font-weight: 800; color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      pointer-events: none;
+    }
+
+    /* Circular Team 1/2 Button beside Wooden Plaque (teamMc / DefineSprite_6796) */
+    .ar-team-circle-btn {
+      position: relative;
+      width: 54px; height: 56px; padding: 0; border: none; background: transparent;
+      cursor: pointer; flex-shrink: 0; margin-top: 8px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.55));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-team-circle-btn:active { transform: scale(0.95); }
+    .ar-team-circle-btn img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .ar-team-lbl {
+      position: absolute; inset: 14px 0 0 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 10.5px; font-weight: 900; line-height: 1.05; color: #FFE46B;
+      text-shadow: -1.2px -1.2px 0 #000, 1.2px -1.2px 0 #000, -1.2px 1.2px 0 #000, 1.2px 1.2px 0 #000;
+      pointer-events: none;
+      font-variant-numeric: tabular-nums;
+    }
+    .ar-team-lbl span:last-child { color: #FFFFFF; font-size: 11px; }
+
+    /* 2. TOP-CENTER 5-SLOT WOODEN PASSIVE & BUFF TRAY (boardMC + starMC + pass_0..5) */
+    .ar-top-passive-tray {
+      position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+      z-index: 19;
+      width: 248px; height: 42px;
+      background-image: url("./assets/ns/btl_top_board.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: flex; align-items: center; padding: 3px 10px 3px 6px; gap: 4px;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    }
+    .ar-top-star-ico {
+      width: 34px; height: 36px; flex-shrink: 0; object-fit: contain;
+      margin-left: -4px;
+    }
+    .ar-top-pass-slots {
+      display: flex; align-items: center; gap: 4px; flex: 1; overflow: hidden;
+    }
+    .ar-pass-tile {
+      width: 32px; height: 32px; border-radius: 5px;
+      background-image: url("./assets/ns/btl_slot_skill.png");
+      background-size: 100% 100%;
+      padding: 3px; position: relative; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: help;
+    }
+    .ar-pass-tile .atlas-sprite, .ar-pass-tile img {
+      width: 24px !important; height: 24px !important; border-radius: 3px; object-fit: contain;
+    }
+
+    /* 3. TOP-RIGHT BOSS RUSH TOTAL DAMAGE SKULL BANNER & QUICK SIM OVERLAY */
+    .ar-topright-cluster {
+      position: absolute; top: 8px; right: 10px; z-index: 20;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+    }
+    .ar-sim-pillbar {
+      display: flex; align-items: center; gap: 5px; flex-wrap: wrap; justify-content: flex-end;
+      background: rgba(16, 12, 8, 0.84);
+      border: 1.5px solid #8A6534;
+      border-radius: 999px;
+      padding: 4px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.55);
+    }
+    .ar-sim-chip {
+      padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08); color: #F8FAFC;
+      font-size: 10.5px; font-weight: 700; cursor: pointer;
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1), background-color 140ms ease;
+    }
+    .ar-sim-chip:hover { background: rgba(212, 168, 83, 0.28); border-color: #F3D37A; }
+    .ar-sim-chip.is-gold {
+      background: linear-gradient(180deg, #E5B842, #B87914);
+      color: #1A1105; border-color: #FFF3B0; font-weight: 800;
+    }
+    .ar-sim-chip.is-red {
+      background: linear-gradient(180deg, #EF4444, #B91C1C);
+      color: #FFFFFF; border-color: #FCA5A5; font-weight: 800;
+    }
+    .ar-skull-banner {
+      position: relative;
+      width: 224px; height: 96px;
+      background-image: url("./assets/ns/btl_total_dmg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
+      cursor: pointer;
+    }
+    .ar-skull-dmg-val {
+      position: absolute; top: 37px; left: 95px; right: 12px;
+      text-align: center;
+      font-size: 13px; font-weight: 900; color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      text-shadow: -1.2px -1.2px 0 #000, 1.2px -1.2px 0 #000, -1.2px 1.2px 0 #000, 1.2px 1.2px 0 #000;
+      background: #3F4A3C; border-radius: 6px; padding: 1px 4px;
+    }
+    .ar-skull-turn-txt {
+      position: absolute; top: 58px; left: 66px; right: 8px;
+      text-align: center;
+      font-size: 9.5px; font-weight: 800; color: #FFF3C4;
+      font-variant-numeric: tabular-nums;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      background: rgba(24, 54, 20, 0.88); border-radius: 4px;
+    }
+
+    /* 4. CENTER OCTAGONAL 8-SLOT TALENT WHEEL + 6-DOT CLASS CUBE (actionBar) */
+    .ar-center-wheel-zone {
+      position: absolute; top: 56px; left: 50%; transform: translateX(-50%);
+      z-index: 18;
+      display: flex; flex-direction: column; align-items: center;
+      pointer-events: none;
+    }
+    .ar-talent-wheel {
+      position: relative;
+      width: 224px; height: 220px;
+      pointer-events: auto;
+      transition: transform 240ms var(--spring-snappy), opacity 200ms ease;
+    }
+    .ar-talent-wheel.is-collapsed {
+      transform: scale(0.75); opacity: 0; pointer-events: none; height: 0; overflow: hidden;
+    }
+    .ar-wheel-emblem {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 112px; height: 112px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.65));
+      z-index: 2;
+    }
+    .ar-wheel-emblem img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+    }
+    /* 8 Octagonal Talent Slots positioned exactly like DefineSprite_6848 & Gambar 2 */
+    .ar-wslot {
+      position: absolute;
+      width: 48px; height: 48px;
+      padding: 4px; border: none; background-color: transparent;
+      background-size: 100% 100%; background-repeat: no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 3;
+      filter: drop-shadow(0 4px 7px rgba(0,0,0,0.55));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-wslot:not(:disabled):active { transform: scale(0.94); }
+    .ar-wslot.is-bl { background-image: url("./assets/ns/btl_slot_bl.png"); }
+    .ar-wslot.is-se { background-image: url("./assets/ns/btl_slot_se.png"); }
+    .ar-wslot .atlas-sprite, .ar-wslot img {
+      width: 38px !important; height: 38px !important; border-radius: 4px; object-fit: contain;
+    }
+    .ar-wslot.is-empty { cursor: default; }
+    .ar-wslot.is-passive-only { cursor: help; }
+    /* Exact 8 Octagonal Coordinates around the 112x112 center seal */
+    .ar-wslot[data-wpos="0"] { top: 2px;  left: 60px; }   /* Top-Left (bl_1) */
+    .ar-wslot[data-wpos="1"] { top: 2px;  left: 116px; }  /* Top-Right (bl_2) */
+    .ar-wslot[data-wpos="2"] { top: 56px; left: 8px; }    /* Upper-Left (bl_0) */
+    .ar-wslot[data-wpos="3"] { top: 56px; left: 168px; }  /* Upper-Right (bl_3) */
+    .ar-wslot[data-wpos="4"] { top: 112px; left: 8px; }   /* Lower-Left (se_4) */
+    .ar-wslot[data-wpos="5"] { top: 112px; left: 168px; } /* Lower-Right (se_7) */
+    .ar-wslot[data-wpos="6"] { top: 166px; left: 60px; }  /* Bottom-Left (se_5) */
+    .ar-wslot[data-wpos="7"] { top: 166px; left: 116px; } /* Bottom-Right (se_6) */
+
+    /* 6-Dot Stone Talent Cube / Class Skill Button (btnClassSkill_1) */
+    .ar-class-cube-btn {
+      pointer-events: auto;
+      margin-top: 4px;
+      width: 48px; height: 48px; padding: 4px;
+      border: none; background-color: transparent;
+      background-image: url("./assets/ns/btl_slot_class.png");
+      background-size: 100% 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; cursor: pointer;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-class-cube-btn:active { transform: scale(0.94); }
+    .ar-class-cube-btn .atlas-sprite, .ar-class-cube-btn img {
+      width: 38px !important; height: 38px !important; border-radius: 4px; object-fit: contain;
+    }
+
+    /* 5. ON-FIELD COMBATANTS & AUTHENTIC FOOT PLATES (CharHpHolder & EnemyHpHolder) */
+    .ar-field-side {
+      position: absolute; bottom: 138px; z-index: 12;
+      display: flex; align-items: flex-end;
+      pointer-events: none;
+    }
+    .ar-field-left {
+      left: 24px; width: 390px; height: 290px;
+      justify-content: flex-start;
+    }
+    .ar-field-right {
+      right: 24px; width: 410px; height: 290px;
+      justify-content: flex-end;
+    }
+    .ar-unit-actor {
+      position: relative;
+      display: flex; flex-direction: column; align-items: center;
+      pointer-events: auto;
+    }
+    /* Companion Pet on ground (left-back of character, ZERO box border!) */
+    .ar-pet-actor {
+      position: absolute; left: 8px; bottom: 34px; z-index: 11;
+    }
+    .ar-pet-sprite-wrap {
+      width: 84px; height: 84px;
+      display: flex; align-items: flex-end; justify-content: center;
+      position: relative;
+    }
+    .ar-pet-sprite-wrap::after {
+      content: ""; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+      width: 64px; height: 14px; border-radius: 50%;
+      background: rgba(0, 0, 0, 0.35); filter: blur(2px); z-index: -1;
+    }
+    .ar-pet-sprite-wrap img {
+      max-width: 78px; max-height: 78px; object-fit: contain;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.55));
+    }
+    /* Player Character on ground (front-right of Pet) */
+    .ar-player-actor {
+      position: absolute; left: 108px; bottom: 0; z-index: 13;
+    }
+    .ar-player-av {
+      width: 165px; height: 210px;
+      display: flex; align-items: flex-end; justify-content: center;
+      position: relative;
+      transition: transform 220ms var(--spring-snappy), opacity 220ms ease, filter 220ms ease;
+    }
+    .ar-player-av::after {
+      content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 104px; height: 18px; border-radius: 50%;
+      background: rgba(0, 0, 0, 0.42); filter: blur(2px); z-index: -1;
+    }
+    .ar-player-av svg {
+      width: 100%; height: 100%; overflow: visible;
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,0.58));
+    }
+
+    /* Boss & Minions on ground (Right formation) */
+    .ar-boss-actor {
+      position: absolute; right: 56px; bottom: 0; z-index: 13;
+    }
+    .ar-boss-wrap {
+      width: 230px; height: 215px;
+      display: flex; align-items: flex-end; justify-content: center;
+      position: relative;
+      transition: transform 220ms var(--spring-snappy), opacity 220ms ease, filter 220ms ease;
+    }
+    .ar-boss-wrap::after {
+      content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 145px; height: 22px; border-radius: 50%;
+      background: rgba(0, 0, 0, 0.44); filter: blur(3px); z-index: -1;
+    }
+    .ar-boss-img {
+      max-width: 100%; max-height: 210px; object-fit: contain;
+      filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.62));
+    }
+
+    /* Minion Actors on the right field when Team 1/3 wave mode is active */
+    .ar-minions-row {
+      position: absolute; right: 0; top: -18px; bottom: 0; width: 175px;
+      display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end;
+      pointer-events: auto; z-index: 11;
+    }
+    .ar-minion-pill {
+      display: flex; flex-direction: column; align-items: center;
+      background: transparent; border: none; padding: 0;
+    }
+    .ar-minion-pill.is-dead { opacity: 0.38; filter: grayscale(0.85); }
+    .ar-minion-sprite {
+      width: 72px; height: 72px; object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.55));
+    }
+
+    /* Authentic In-Game Under-Foot Name + Red HP Bar + Shield Crest + '?' Button */
+    .ar-foot-plate {
+      display: flex; flex-direction: column; align-items: center; gap: 1px;
+      margin-top: -4px; position: relative; z-index: 15;
+    }
+    .ar-foot-name {
+      font-family: var(--font-display); font-size: 12px; font-weight: 800; color: #FFFFFF;
+      text-shadow: -1.4px -1.4px 0 #000, 1.4px -1.4px 0 #000, -1.4px 1.4px 0 #000, 1.4px 1.4px 0 #000, 0 1px 3px #000;
+      white-space: nowrap; line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+    }
+    .ar-foot-barwrap {
+      display: flex; align-items: center; gap: 3px;
+    }
+    .ar-foot-crest {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #2B1D38; border: 1.5px solid #D4AF37;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.65);
+      flex-shrink: 0;
+    }
+    .ar-foot-crest img { width: 14px; height: 14px; object-fit: contain; }
+    .ar-foot-hptrack {
+      width: 118px; height: 9px; border-radius: 2px;
+      background: #23120B;
+      border: 1.5px solid #4A2F18;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.6);
+      overflow: hidden; position: relative;
+    }
+    .ar-foot-hptrack.is-pet { width: 88px; height: 7px; }
+    .ar-foot-hpfill {
+      height: 100%;
+      background: linear-gradient(180deg, #FF5A36 0%, #D9230F 55%, #8F1105 100%);
+      transition: width 220ms var(--spring-snappy);
+    }
+    .ar-foot-qbtn {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #A67B3B, #5C3D14 75%, #2E1D07 100%);
+      border: 1.8px solid #D4B26F;
+      color: #FFFFFF; font-size: 12px; font-weight: 900;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; padding: 0; flex-shrink: 0;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.65);
+    }
+    .ar-foot-qbtn:hover { transform: scale(1.08); border-color: #FFE885; }
+
+    /* Overhead Active Buff/Debuff Chips above Units */
+    .ar-overhead-effs {
+      display: flex; gap: 3px; flex-wrap: wrap; justify-content: center;
+      max-width: 190px; margin-bottom: 2px; min-height: 18px;
+    }
+    .ar-eff-pill {
+      padding: 1px 6px; border-radius: 4px; font-size: 9.5px; font-weight: 800;
+      background: rgba(6, 78, 59, 0.92); color: #A7F3D0;
+      border: 1px solid #34D399;
+      text-shadow: 0 1px 1px #000;
+      font-variant-numeric: tabular-nums;
+    }
+    .ar-eff-pill.is-debuff {
+      background: rgba(127, 29, 29, 0.92); color: #FECACA; border-color: #F87171;
+    }
+    .ar-eff-pill.is-sage {
+      background: rgba(146, 64, 14, 0.95); color: #FDE68A; border-color: #FBBF24;
+    }
+
+    /* Floating Damage Popups */
+    .ar-pop-layer {
+      position: absolute; top: 8px; left: 0; right: 0; height: 90px;
+      pointer-events: none; display: flex; flex-direction: column; align-items: center; z-index: 25;
+    }
+    @keyframes arFloatUp {
+      0% { opacity: 0; transform: translateY(14px) scale(0.84); }
+      20% { opacity: 1; transform: translateY(0) scale(1.08); }
+      80% { opacity: 1; transform: translateY(-18px) scale(1); }
+      100% { opacity: 0; transform: translateY(-30px) scale(0.94); }
+    }
+    .ar-pop {
+      font-family: var(--font-display); font-weight: 900; font-size: 20px;
+      font-variant-numeric: tabular-nums;
+      text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 3px 8px rgba(0,0,0,0.85);
+      animation: arFloatUp 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .ar-pop.is-dmg { color: #FFFFFF; }
+    .ar-pop.is-crit { color: #FACC15; font-size: 24px; }
+    .ar-pop.is-heal { color: #4ADE80; }
+    .ar-pop.is-cp { color: #60A5FA; }
+    .ar-pop.is-dodge { color: #CBD5E1; font-size: 17px; }
+
+    /* Pose animations */
+    @keyframes arLungeRight { 0%{transform:translateX(0)} 40%{transform:translateX(44px) scale(1.04)} 100%{transform:translateX(0)} }
+    @keyframes arLungeLeft  { 0%{transform:translateX(0)} 40%{transform:translateX(-44px) scale(1.04)} 100%{transform:translateX(0)} }
+    @keyframes arHitShake   { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-10px)} 50%{transform:translateX(10px)} 75%{transform:translateX(-6px)} }
+    .ar-anim-lunge-r { animation: arLungeRight 360ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .ar-anim-lunge-l { animation: arLungeLeft 360ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .ar-anim-hit     { animation: arHitShake 320ms ease-in-out; filter: brightness(1.45) contrast(1.15); }
+    .ar-anim-dodge   { transform: translateX(-20px); opacity: 0.72; }
+    .ar-anim-dead    { filter: grayscale(0.95) brightness(0.5); opacity: 0.55; }
+    .ar-anim-sage    { filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.55)); }
+
+    /* 6. AUTHENTIC BOTTOM ACTION DOCK: 4 Left Jutsu + 2x2 Center Buttons + 4 Right Jutsu + Senjutsu Orb */
+    .ar-bottom-dock {
+      position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+      z-index: 22;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .ar-deck-wing {
+      display: flex; align-items: center; gap: 6px;
+      position: relative;
+    }
+    /* Stopwatch + Turn Number Plaque above Right Skill Wing (atk_turnTimerTxt / DefineSprite_4800) */
+    .ar-stopwatch-plaque {
+      position: absolute; top: -46px; left: 26px;
+      width: 96px; height: 42px;
+      display: flex; align-items: center;
+      pointer-events: none;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.55));
+    }
+    .ar-stopwatch-bg {
+      position: relative; width: 92px; height: 38px;
+      display: flex; align-items: center;
+    }
+    .ar-stopwatch-ico {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FFFFFF, #CBD5E1 65%, #475569 100%);
+      border: 2.5px solid #1E293B;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2; flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+    .ar-stopwatch-numbox {
+      margin-left: -8px; padding: 3px 10px 3px 14px;
+      background: rgba(248, 250, 252, 0.94);
+      border: 1.5px solid #334155; border-radius: 4px;
+      font-family: var(--font-display); font-size: 18px; font-weight: 900; color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      text-shadow: -1.4px -1.4px 0 #000, 1.4px -1.4px 0 #000, -1.4px 1.4px 0 #000, 1.4px 1.4px 0 #000;
+      min-width: 54px; text-align: center; line-height: 1.1;
+    }
+
+    /* 2x2 Center Circular Game Action Buttons (Attack, Dodge, Charge, Run) */
+    .ar-center-4btns {
+      display: grid; grid-template-columns: repeat(2, 58px); grid-template-rows: repeat(2, 58px);
+      gap: 4px 6px; align-items: center; justify-items: center;
+    }
+    .ar-cact-btn {
+      width: 58px; height: 58px; padding: 0; border: none; background: transparent;
+      cursor: pointer; position: relative;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.65));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1), filter 140ms ease;
+    }
+    .ar-cact-btn:not(:disabled):hover { transform: scale(1.06); filter: brightness(1.1) drop-shadow(0 5px 10px rgba(0,0,0,0.75)); }
+    .ar-cact-btn:not(:disabled):active { transform: scale(0.94); }
+    .ar-cact-btn:disabled { opacity: 0.48; cursor: not-allowed; filter: grayscale(0.5); }
+    .ar-cact-btn img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* Pure Square Wooden Jutsu Icon Slots (skill_0..7 / DefineSprite_4927) */
+    .ar-sk-btn {
+      position: relative;
+      width: 52px; height: 52px;
+      background-image: url("./assets/ns/btl_slot_skill.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-sk-btn.is-inspecting {
+      outline: 2px solid #FFE46B; outline-offset: 1px; border-radius: 6px;
+    }
+    .ar-sk-cast {
+      width: 44px; height: 44px; padding: 0; border: none; background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border-radius: 4px; overflow: hidden;
+    }
+    .ar-sk-cast:not(:disabled):active { transform: scale(0.94); }
+    .ar-sk-cast:disabled { cursor: not-allowed; opacity: 0.55; }
+    .ar-sk-cast .atlas-sprite, .ar-sk-cast img {
+      width: 42px !important; height: 42px !important; border-radius: 4px; object-fit: contain;
+    }
+    /* Mini '?' Formula Inspect badge on corner of each Jutsu slot */
+    .ar-sk-insp-btn {
+      position: absolute; top: -4px; right: -4px; z-index: 4;
+      width: 17px; height: 17px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FFE46B, #B87914);
+      border: 1.5px solid #1E1306;
+      color: #1A1105; font-size: 10px; font-weight: 900; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0; cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      opacity: 0.88;
+    }
+    .ar-sk-insp-btn:hover { opacity: 1; transform: scale(1.12); }
+    .ar-sk-cd {
+      position: absolute; inset: 4px; border-radius: 4px;
+      background: rgba(8, 10, 16, 0.82);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 14px; font-weight: 900; color: #FBBF24;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 1px 3px #000;
+      pointer-events: none; z-index: 3;
+    }
+
+    /* Far-Right Senjutsu Swirl Orb Button (btn_senjutsu / DefineButton2_4943) */
+    .ar-senjutsu-orb-btn {
+      width: 54px; height: 50px; padding: 0; border: none; background: transparent;
+      cursor: pointer; position: relative; margin-left: 2px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.65));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-senjutsu-orb-btn:not(:disabled):hover { transform: scale(1.07); }
+    .ar-senjutsu-orb-btn:not(:disabled):active { transform: scale(0.94); }
+    .ar-senjutsu-orb-btn img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .ar-senjutsu-orb-btn.is-ready {
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.85));
+    }
+
+    /* 7. BOTTOM PURPLE AGILITY TRACK (atbBar / DefineSprite_4130) & BOTTOM WOOD TRIM */
+    .ar-bottom-woodtrim {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 34px; z-index: 20;
+      background: linear-gradient(180deg, #6B4C2B 0%, #4E361D 35%, #3B2814 100%);
+      border-top: 2.5px solid #23160A;
+      box-shadow: inset 0 2px 0 rgba(255, 215, 140, 0.22);
+    }
+    .ar-atb-bar-stage {
+      position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+      z-index: 23;
+      width: min(640px, 70%); height: 42px;
+      background-image: url("./assets/ns/btl_atb_bar.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: flex; align-items: center;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.65));
+    }
+    .ar-atb-track {
+      position: relative;
+      margin-left: 36px; margin-right: 68px;
+      width: 100%; height: 20px;
+      overflow: visible;
+    }
+    .ar-atb-finish {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 2px;
+      background: transparent;
+    }
+    .ar-atb-marker {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: #1E293B;
+      border: 2px solid #FFE46B;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.75);
+      transition: left 240ms var(--spring-snappy);
+      overflow: hidden;
+      cursor: help;
+    }
+    .ar-atb-marker img { width: 100%; height: 100%; object-fit: cover; }
+    .ar-atb-marker.is-player { border-color: #38BDF8; z-index: 4; }
+    .ar-atb-marker.is-pet    { border-color: #34D399; width: 30px; height: 30px; z-index: 3; }
+    .ar-atb-marker.is-boss   { border-color: #F87171; width: 36px; height: 36px; z-index: 5; }
+    .ar-atb-marker.is-minion { border-color: #C084FC; width: 28px; height: 28px; z-index: 2; }
+
+    /* 8. BOTTOM-LEFT DOLLHOUSE EMBLEM & BOTTOM-RIGHT 3 CIRCULAR BUTTONS (Chat, Gear, Options) */
+    .ar-corner-logo {
+      position: absolute; left: 8px; bottom: 2px; z-index: 24;
+      display: flex; flex-direction: column; align-items: flex-start;
+      pointer-events: none;
+    }
+    .ar-corner-logo img {
+      width: 118px; height: auto; object-fit: contain;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.75));
+    }
+    .ar-corner-ver {
+      font-size: 9px; font-weight: 800; color: #FFFFFF; margin-left: 4px; margin-top: -4px;
+      text-shadow: 0 1px 2px #000;
+    }
+    .ar-corner-3btns {
+      position: absolute; right: 12px; bottom: 2px; z-index: 24;
+      display: flex; align-items: flex-end; gap: 8px;
+    }
+    .ar-c3-btn {
+      width: 54px; height: 56px; padding: 0; border: none; background: transparent;
+      cursor: pointer;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+      transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .ar-c3-btn:hover { transform: translateY(-2px) scale(1.05); }
+    .ar-c3-btn:active { transform: scale(0.94); }
+    .ar-c3-btn img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* 9. FLOATING IN-STAGE BATTLE TOOLTIP & UNIT INSPECTOR POPUP */
+    .ar-battle-tooltip {
+      position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%);
+      z-index: 30;
+      min-width: 260px; max-width: 350px;
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(15, 12, 9, 0.95);
+      border: 1.5px solid #D4AF37;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.8);
+      color: #F8FAFC; font-size: 11.5px;
+      pointer-events: none;
+    }
+    .ar-unit-modal {
+      position: absolute; top: 58px; left: 50%; transform: translateX(-50%);
+      z-index: 32;
+      width: min(440px, calc(100% - 28px));
+      padding: 14px 16px; border-radius: 12px;
+      background: linear-gradient(180deg, #F5EFE0 0%, #E7DCC3 100%);
+      border: 3px solid #5C4022;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+      color: #2A1B0E;
+    }
+    .ar-unit-modal-close {
+      position: absolute; top: -10px; right: -10px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #DC2626; border: 2px solid #FFFFFF;
+      color: #FFFFFF; font-size: 13px; font-weight: 900;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Hidden compatibility nodes kept synced for automated telemetry */
+    .ar-compat-sr {
+      position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);
+    }
+
+    /* === BELOW-STAGE ANALYTICS, RANGKUMAN INTI SARI & CONFIG DRAWER === */
     .ar-setup-grid {
       display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 12px;
     }
@@ -2549,7 +3268,7 @@
     .ar-subhdr {
       display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
     }
-    .ar-subhdr-t { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text-primary); margin: 0; }
+    .ar-subhdr-t { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 8px; }
     .ar-elem-sliders { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
     .ar-el-box {
       padding: 8px 8px 6px; border-radius: 9px; background: var(--surface-well);
@@ -2559,6 +3278,8 @@
       display: flex; align-items: center; justify-content: space-between; gap: 4px;
       font-size: 11px; font-weight: 600; color: var(--text-primary);
     }
+    .ar-el-lbl { display: inline-flex; align-items: center; gap: 4px; }
+    .ar-el-lbl img { width: 15px; height: 15px; object-fit: contain; }
     .ar-el-top span:last-child { font-variant-numeric: tabular-nums; color: var(--accent-gold-hi); }
     .ar-el-box input[type="range"] { width: 100%; accent-color: var(--accent-gold); margin: 0; cursor: pointer; }
     .ar-el-sub { font-size: 9.5px; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -2571,7 +3292,6 @@
       background: rgba(10, 12, 18, 0.72); border: 1px solid var(--border-steel);
       color: var(--text-primary); font-size: 12px; font-variant-numeric: tabular-nums;
     }
-
     .ar-boss-pick-bar { display: flex; gap: 8px; flex-wrap: wrap; }
     .ar-boss-pick-bar input { flex: 1; min-width: 150px; min-height: 34px; padding: 5px 10px; border-radius: 8px; background: rgba(10,12,18,0.72); border: 1px solid var(--border-steel); color: var(--text-primary); font-size: 12px; }
     .ar-boss-pick-bar select { flex: 1.25; min-width: 180px; min-height: 34px; padding: 5px 9px; border-radius: 8px; background: rgba(10,12,18,0.72); border: 1px solid var(--border-steel); color: var(--text-primary); font-size: 12px; }
@@ -2586,298 +3306,165 @@
     .ar-bqs-k { font-size: 9.5px; color: var(--text-tertiary); }
     .ar-bqs-v { font-size: 12.5px; font-weight: 700; color: var(--text-primary); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* BATTLE STAGE */
-    .ar-stage-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
-    .ar-atb-wrap {
-      padding: 8px 12px; border-radius: 10px; background: var(--surface-well);
-      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 6px;
-    }
-    .ar-atb-hdr {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-      font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums;
-    }
-    .ar-atb-track {
-      position: relative; height: 22px; border-radius: 999px;
-      background: linear-gradient(90deg, rgba(16, 20, 32, 0.9), rgba(26, 32, 50, 0.95));
-      border: 1px solid var(--border-steel); overflow: visible;
-    }
-    .ar-atb-finish {
-      position: absolute; right: 0; top: -2px; bottom: -2px; width: 4px; border-radius: 2px;
-      background: var(--accent-gold-hi);
-    }
-    .ar-atb-marker {
-      position: absolute; top: 50%; transform: translate(-50%, -50%);
-      height: 24px; padding: 0 8px; border-radius: 999px;
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 10px; font-weight: 700; white-space: nowrap;
-      border: 1.5px solid rgba(255, 255, 255, 0.28);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
-      transition: left 240ms var(--spring-snappy);
-      pointer-events: none;
-    }
-    .ar-atb-marker.is-player { background: #1E3A8A; color: #EFF6FF; border-color: #60A5FA; z-index: 3; }
-    .ar-atb-marker.is-pet { background: #065F46; color: #ECFDF5; border-color: #34D399; z-index: 2; }
-    .ar-atb-marker.is-boss { background: #7F1D1D; color: #FEF2F2; border-color: #F87171; z-index: 4; }
-    .ar-atb-marker.is-minion { background: #581C87; color: #FAF5FF; border-color: #C084FC; z-index: 2; }
+    .ar-ctrl-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
-    .ar-arena-viewport {
-      position: relative; min-height: 300px; border-radius: 14px; overflow: hidden;
-      background:
-        radial-gradient(ellipse 68% 42% at 50% 88%, rgba(56, 189, 248, 0.10), transparent 72%),
-        radial-gradient(circle at 26% 74%, rgba(59, 130, 246, 0.14), transparent 44%),
-        radial-gradient(circle at 74% 74%, rgba(239, 68, 68, 0.13), transparent 46%),
-        linear-gradient(180deg, #090C14 0%, #0E1424 58%, #121827 100%);
-      border: 1px solid var(--border-steel);
-      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px;
-      padding: 46px 20px 18px; align-items: end;
-    }
-    .ar-floor-ring {
-      position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
-      width: 78%; height: 52px; border-radius: 50%;
-      border: 1px solid rgba(212, 168, 83, 0.18);
-      background: radial-gradient(ellipse at center, rgba(212, 168, 83, 0.06), transparent 72%);
-      pointer-events: none;
-    }
-    .ar-stage-topbadge {
-      position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 5;
-      display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px;
-      background: rgba(11, 13, 20, 0.86); border: 1px solid var(--border-gold);
-      font-size: 11.5px; font-weight: 600; color: var(--accent-gold-hi);
-      font-variant-numeric: tabular-nums; white-space: nowrap; max-width: calc(100% - 24px);
-      overflow: hidden; text-overflow: ellipsis;
-    }
-
-    .ar-side {
-      position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-      min-height: 235px; z-index: 2; min-width: 0;
-    }
-    .ar-sprite-row {
-      display: flex; align-items: flex-end; justify-content: center; gap: 10px;
-      position: relative; width: 100%;
-    }
-    .ar-player-av {
-      width: 158px; height: 210px; display: flex; align-items: flex-end; justify-content: center;
-      transition: transform 220ms var(--spring-snappy), opacity 220ms ease, filter 220ms ease;
-    }
-    .ar-player-av svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 12px 16px rgba(0,0,0,0.6)); }
-    .ar-pet-box {
-      width: 74px; height: 74px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      background: rgba(12, 16, 26, 0.45); border: 1px solid rgba(255, 255, 255, 0.12);
-      position: relative; margin-bottom: 6px;
-      transition: transform 220ms var(--spring-snappy);
-    }
-    .ar-pet-box img { max-width: 66px; max-height: 66px; object-fit: contain; }
-    .ar-boss-wrap {
-      width: 240px; height: 220px; display: flex; align-items: flex-end; justify-content: center;
-      position: relative; transition: transform 220ms var(--spring-snappy), opacity 220ms ease, filter 220ms ease;
-    }
-    .ar-boss-img {
-      max-width: 100%; max-height: 215px; object-fit: contain;
-      filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.65));
-    }
-    .ar-minions-row {
-      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px;
-    }
-    .ar-minion-pill {
-      padding: 3px 8px; border-radius: 7px; font-size: 10.5px; font-variant-numeric: tabular-nums;
-      background: rgba(15, 20, 34, 0.85); border: 1px solid rgba(192, 132, 252, 0.35); color: #E9D5FF;
-    }
-    .ar-minion-pill.is-dead { opacity: 0.45; text-decoration: line-through; }
-
-    /* Pose animations (zero rainbow, pure crisp transform/filter) */
-    @keyframes arLungeRight { 0%{transform:translateX(0)} 40%{transform:translateX(44px) scale(1.04)} 100%{transform:translateX(0)} }
-    @keyframes arLungeLeft  { 0%{transform:translateX(0)} 40%{transform:translateX(-44px) scale(1.04)} 100%{transform:translateX(0)} }
-    @keyframes arHitShake   { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 45%{transform:translateX(8px)} 70%{transform:translateX(-4px)} }
-    @keyframes arDodgeSlip  { 0%,100%{transform:translateY(0);opacity:1} 45%{transform:translateY(-14px) translateX(-16px);opacity:0.65} }
-    @keyframes arFloatPop   { 0%{opacity:0;transform:translate(-50%,10px) scale(0.86)} 20%{opacity:1;transform:translate(-50%,0) scale(1.06)} 100%{opacity:0;transform:translate(-50%,-36px) scale(0.96)} }
-
-    .ar-anim-lunge-r { animation: arLungeRight 380ms var(--spring-snappy); }
-    .ar-anim-lunge-l { animation: arLungeLeft 380ms var(--spring-snappy); }
-    .ar-anim-hit     { animation: arHitShake 340ms ease; filter: brightness(1.35) saturate(1.2); }
-    .ar-anim-dodge   { animation: arDodgeSlip 360ms ease; }
-    .ar-anim-sage    { filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.42)); }
-    .ar-anim-dead    { opacity: 0.35; filter: grayscale(0.85); }
-
-    .ar-pop-layer {
-      position: absolute; inset: 0; pointer-events: none; z-index: 8; overflow: visible;
-    }
-    .ar-pop {
-      position: absolute; left: 50%; top: 28%; transform: translate(-50%, 0);
-      font-family: var(--font-display); font-size: 17px; font-weight: 800;
-      font-variant-numeric: tabular-nums; white-space: nowrap;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.92), 0 0 2px #000;
-      animation: arFloatPop 1050ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-    .ar-pop.is-crit { color: #FBBF24; font-size: 21px; }
-    .ar-pop.is-dmg { color: #FCA5A5; }
-    .ar-pop.is-heal { color: #4ADE80; }
-    .ar-pop.is-cp { color: #60A5FA; font-size: 14px; }
-    .ar-pop.is-dodge { color: #E2E8F0; font-size: 14px; }
-    .ar-pop.is-reflect { color: #F472B6; font-size: 14.5px; }
-
-    /* HUD PLATES */
-    .ar-hud-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
-    .ar-hud-card {
-      padding: 10px 12px; border-radius: 11px; background: var(--surface-well);
-      border: 1px solid var(--border-steel); display: flex; flex-direction: column; gap: 7px; min-width: 0;
-    }
-    .ar-hud-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .ar-hud-name { font-size: 13.5px; font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ar-bar-row { display: flex; flex-direction: column; gap: 3px; }
-    .ar-bar-lbl { display: flex; justify-content: space-between; font-size: 11px; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
-    .ar-bar-track { height: 8px; border-radius: 999px; background: rgba(0,0,0,0.45); border: 1px solid var(--border-hairline); overflow: hidden; }
-    .ar-bar-fill { height: 100%; border-radius: 999px; transition: width 260ms ease; }
-    .ar-bar-fill.hp { background: linear-gradient(90deg, #16A34A, #4ADE80); }
-    .ar-bar-fill.hp-boss { background: linear-gradient(90deg, #B91C1C, #F87171); }
-    .ar-bar-fill.cp { background: linear-gradient(90deg, #1D4ED8, #60A5FA); }
-    .ar-bar-fill.sp { background: linear-gradient(90deg, #B45309, #FBBF24); }
-
-    .ar-buff-row { display: flex; flex-wrap: wrap; gap: 5px; min-height: 22px; }
-    .ar-eff-pill {
-      display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px;
-      font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums;
-      background: rgba(34, 197, 94, 0.13); border: 1px solid rgba(74, 222, 128, 0.32); color: #86EFAC;
-    }
-    .ar-eff-pill.is-debuff {
-      background: rgba(239, 68, 68, 0.14); border-color: rgba(248, 113, 113, 0.35); color: #FCA5A5;
-    }
-    .ar-eff-pill.is-sage {
-      background: rgba(245, 158, 11, 0.16); border-color: rgba(251, 191, 36, 0.42); color: #FDE68A;
-    }
-
-    /* ACTION DECK */
-    .ar-ctrl-strip {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-      padding-top: 2px;
-    }
-    .ar-ctrl-group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-    .ar-deck-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-    .ar-sk-btn {
-      position: relative; padding: 8px 10px; border-radius: 10px; text-align: left;
-      background: var(--surface-panel); border: 1px solid var(--border-steel);
-      display: flex; align-items: center; gap: 8px; min-width: 0; cursor: pointer;
-      transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
-    }
-    @media (hover: hover) {
-      .ar-sk-btn:hover:not(:disabled) { border-color: var(--border-gold); background: var(--surface-hover); }
-    }
-    .ar-sk-btn:active:not(:disabled) { transform: scale(0.97); }
-    .ar-sk-btn:disabled { opacity: 0.48; cursor: not-allowed; }
-    .ar-sk-btn.is-inspecting { border-color: var(--accent-cyan); box-shadow: 0 0 0 1px rgba(56,189,248,0.28); }
-    .ar-sk-ico {
-      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border-hairline);
-    }
-    .ar-sk-meta { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
-    .ar-sk-name { font-size: 11.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ar-sk-stats { font-size: 10px; font-variant-numeric: tabular-nums; color: var(--text-secondary); display: flex; gap: 6px; flex-wrap: wrap; }
-    .ar-sk-est { color: var(--accent-gold-hi); font-weight: 600; }
-    .ar-sk-btn.is-on-cd { opacity: 0.62; border-color: rgba(248, 113, 113, 0.35); }
-    .ar-sk-cd {
-      position: absolute; top: -7px; right: 10px; padding: 1px 7px; border-radius: 999px;
-      background: #7F1D1D; border: 1px solid rgba(248, 113, 113, 0.55);
-      font-family: var(--font-display); font-size: 9.5px; font-weight: 700; color: #FEE2E2;
-      font-variant-numeric: tabular-nums; pointer-events: none; box-shadow: 0 2px 6px rgba(0,0,0,0.45);
-    }
-    .ar-sk-insp-btn {
-      padding: 4px 6px; border-radius: 6px; font-size: 10px; font-weight: 600; flex-shrink: 0;
-      background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: #7DD3FC; cursor: pointer;
-    }
-
-    .ar-extra-bar {
-      display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
-      padding: 8px 10px; border-radius: 10px; background: var(--surface-well); border: 1px solid var(--border-hairline);
-    }
-    .ar-extra-lbl { font-size: 10.5px; font-weight: 600; color: var(--text-tertiary); margin-right: 4px; }
-    .vb-ico-round { border-radius: 4px; }
-
-    /* ANALYTICS & INTI SARI SECTION */
+    /* ICON-RICH ANALYTICS & RANGKUMAN INTI SARI DECK */
     .ar-analytics-grid {
-      display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 12px; align-items: start;
+      display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 12px;
     }
     .ar-log-card, .ar-sum-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
     .ar-log-list {
-      max-height: 460px; overflow-y: auto; overscroll-behavior: contain;
-      display: flex; flex-direction: column; gap: 6px; padding-right: 4px;
+      max-height: 340px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+      display: flex; flex-direction: column; gap: 5px; padding-right: 4px;
     }
     .ar-log-item {
-      padding: 7px 9px; border-radius: 8px; background: var(--surface-well);
-      border: 1px solid var(--border-hairline); font-size: 11.5px; line-height: 1.45;
-      color: var(--text-periwinkle); font-variant-numeric: tabular-nums;
+      padding: 6px 9px; border-radius: 7px; background: var(--surface-well);
+      border: 1px solid var(--border-hairline); font-size: 11.5px; color: var(--text-secondary);
+      line-height: 1.4; font-variant-numeric: tabular-nums;
     }
-    .ar-log-item.is-win    { background: rgba(34,197,94,0.08); border-color: rgba(74,222,128,0.28); }
-    .ar-log-item.is-lose   { background: rgba(239,68,68,0.08); border-color: rgba(248,113,113,0.28); }
+    .ar-log-item.is-player { border-color: rgba(56, 189, 248, 0.26); color: #E0F2FE; }
+    .ar-log-item.is-boss   { border-color: rgba(248, 113, 113, 0.26); color: #FEE2E2; }
+    .ar-log-item.is-pet    { border-color: rgba(52, 211, 153, 0.26); color: #D1FAE5; }
+    .ar-log-item.is-sys    { border-color: rgba(212, 168, 83, 0.35); color: #FEF3C7; font-weight: 600; }
     .ar-log-tag {
-      display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 10px; font-weight: 700;
-      margin-right: 5px; font-variant-numeric: tabular-nums;
+      display: inline-block; min-width: 34px; font-weight: 700; color: var(--accent-gold-hi); margin-right: 6px;
     }
-    .ar-log-item.is-player .ar-log-tag { background: rgba(59,130,246,0.16); color: #93C5FD; }
-    .ar-log-item.is-boss .ar-log-tag   { background: rgba(239,68,68,0.16); color: #FCA5A5; }
-    .ar-log-item.is-pet .ar-log-tag    { background: rgba(16,185,129,0.16); color: #6EE7B7; }
-    .ar-log-item.is-win .ar-log-tag    { background: rgba(34,197,94,0.22); color: #86EFAC; }
-    .ar-log-item.is-lose .ar-log-tag   { background: rgba(239,68,68,0.22); color: #FCA5A5; }
 
     .ar-tab-bar { display: flex; gap: 6px; flex-wrap: wrap; }
     .ar-tab-btn {
-      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
-      background: var(--surface-well); border: 1px solid var(--border-hairline); color: var(--text-secondary);
+      padding: 6px 11px; border-radius: 8px; background: var(--surface-well);
+      border: 1px solid var(--border-steel); color: var(--text-secondary);
+      font-size: 11.5px; font-weight: 600; cursor: pointer;
     }
     .ar-tab-btn[aria-selected="true"] {
-      background: rgba(212, 168, 83, 0.16); border-color: var(--border-gold); color: var(--accent-gold-hi);
+      background: rgba(212, 168, 83, 0.18); border-color: var(--accent-gold-hi); color: var(--text-primary);
+    }
+
+    /* Quick Skill Icon Selector inside Waterfall Tab */
+    .ar-wf-skillbar {
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+      padding: 8px 10px; border-radius: 10px; background: var(--surface-well);
+      border: 1px solid var(--border-hairline); margin-bottom: 8px;
+    }
+    .ar-wf-skpill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 8px 4px 5px; border-radius: 8px;
+      background: rgba(15, 20, 32, 0.78); border: 1px solid var(--border-steel);
+      color: var(--text-secondary); font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .ar-wf-skpill.is-active {
+      background: rgba(212, 168, 83, 0.22); border-color: #F3D37A; color: #FFF3C4;
+    }
+    .ar-wf-skpill .atlas-sprite, .ar-wf-skpill img {
+      width: 22px !important; height: 22px !important; border-radius: 4px; object-fit: contain;
+    }
+
+    .ar-wf-hero {
+      display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+      border-radius: 10px; background: rgba(212, 168, 83, 0.08);
+      border: 1px solid rgba(212, 168, 83, 0.28); margin-bottom: 8px;
+    }
+    .ar-wf-hero-ico {
+      width: 48px; height: 48px; border-radius: 8px;
+      background-image: url("./assets/ns/btl_slot_skill.png");
+      background-size: 100% 100%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ar-wf-hero-ico .atlas-sprite, .ar-wf-hero-ico img {
+      width: 38px !important; height: 38px !important; border-radius: 4px; object-fit: contain;
     }
 
     .ar-wf-list { display: flex; flex-direction: column; gap: 8px; }
     .ar-wf-stage {
-      padding: 9px 12px; border-radius: 9px; background: var(--surface-well);
-      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 5px;
+      padding: 10px 12px; border-radius: 10px; background: var(--surface-well);
+      border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 4px;
     }
     .ar-wf-hdr {
-      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
       font-size: 12px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums;
     }
-    .ar-wf-items { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ar-wf-items { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
     .ar-wf-chip {
-      padding: 2px 7px; border-radius: 6px; font-size: 10.5px; font-variant-numeric: tabular-nums;
-      background: rgba(14, 18, 28, 0.7); border: 1px solid var(--border-steel); color: var(--text-periwinkle);
+      padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-hairline); font-size: 10.5px; color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+      display: inline-flex; align-items: center; gap: 4px;
     }
     .ar-wf-totals {
-      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
-      font-variant-numeric: tabular-nums;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 4px;
     }
     .ar-wf-tot-box {
-      padding: 9px 10px; border-radius: 9px; background: rgba(14, 18, 30, 0.75);
-      border: 1px solid var(--border-steel);
+      padding: 8px 10px; border-radius: 9px; background: rgba(212, 168, 83, 0.09);
+      border: 1px solid var(--border-gold); font-variant-numeric: tabular-nums;
     }
 
     .ar-matrix-table {
       width: 100%; border-collapse: collapse; font-size: 11.5px; font-variant-numeric: tabular-nums;
     }
     .ar-matrix-table th, .ar-matrix-table td {
-      padding: 7px 8px; border-bottom: 1px solid var(--border-hairline); text-align: left; vertical-align: top;
+      padding: 7px 8px; border-bottom: 1px solid var(--border-hairline); text-align: left; vertical-align: middle;
     }
     .ar-matrix-table th { color: var(--text-tertiary); font-weight: 600; font-size: 10.5px; }
+    .ar-mat-itemcell {
+      display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-primary);
+    }
+    .ar-mat-ico {
+      width: 30px; height: 30px; border-radius: 6px;
+      background: rgba(15, 20, 32, 0.85); border: 1px solid rgba(212, 168, 83, 0.32);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
+    }
+    .ar-mat-ico img, .ar-mat-ico .atlas-sprite {
+      width: 26px !important; height: 26px !important; object-fit: contain;
+    }
+
     .ar-synergy-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
     .ar-syn-card {
       padding: 10px 12px; border-radius: 10px; background: var(--surface-well);
       border: 1px solid var(--border-hairline); display: flex; flex-direction: column; gap: 6px;
     }
-    .ar-contrib-row { display: flex; flex-direction: column; gap: 3px; font-size: 11.5px; font-variant-numeric: tabular-nums; }
-    .ar-contrib-top { display: flex; justify-content: space-between; gap: 8px; }
+    .ar-syn-item {
+      display: flex; align-items: flex-start; gap: 8px; padding: 6px 8px;
+      border-radius: 8px; background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border-hairline); font-size: 11.5px; line-height: 1.42;
+    }
+    .ar-syn-item img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; margin-top: 1px; }
+
+    .ar-contrib-row {
+      display: flex; align-items: center; gap: 8px; padding: 4px 0;
+      font-size: 11.5px; font-variant-numeric: tabular-nums;
+    }
+    .ar-contrib-ico {
+      width: 32px; height: 32px; border-radius: 6px;
+      background-image: url("./assets/ns/btl_slot_skill.png");
+      background-size: 100% 100%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ar-contrib-ico .atlas-sprite, .ar-contrib-ico img {
+      width: 24px !important; height: 24px !important; border-radius: 3px; object-fit: contain;
+    }
+    .ar-contrib-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .ar-contrib-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
     .ar-contrib-bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.06); overflow: hidden; }
     .ar-contrib-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #B68938, #F3D37A); }
 
     @media (max-width: 1100px) {
       .ar-setup-grid, .ar-analytics-grid { grid-template-columns: minmax(0, 1fr); }
+      .ar-arena-viewport { min-height: 500px; }
     }
-    @media (max-width: 780px) {
+    @media (max-width: 820px) {
+      .ar-arena-viewport {
+        width: 960px; min-width: 960px; height: 550px; min-height: 550px;
+        aspect-ratio: auto; zoom: 0.56; margin: 0 auto;
+      }
       .ar-elem-sliders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .ar-sel-row, .ar-synergy-grid, .ar-wf-totals { grid-template-columns: minmax(0, 1fr); }
-      .ar-hud-grid, .ar-arena-viewport { grid-template-columns: minmax(0, 1fr); }
-      .ar-deck-grid { grid-template-columns: minmax(0, 1fr); }
       .ar-boss-quickstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .ar-player-av { width: 120px; height: 160px; }
-      .ar-boss-wrap { width: 170px; height: 165px; }
+    }
+    @media (max-width: 560px) {
+      .ar-arena-viewport {
+        width: 960px; min-width: 960px; height: 550px; min-height: 550px;
+        zoom: 0.365; margin: 0 auto;
+      }
     }
 
   </style>
@@ -3993,64 +4580,311 @@
           </div>
         </section>
 
-        <!-- VIEW 9: 1:1 AS3 BATTLE ARENA & SIMULATION ANALYTICS -->
+        <!-- VIEW 9: 1:1 AUTHENTIC NINJA SAGE IN-GAME BATTLE ARENA & ANALYTICS -->
         <section class="view-pane col-stack" id="view-arena" hidden>
-          <!-- 1. Sync & Mode Header -->
-          <div class="sage-card ar-sync-card">
-            <div class="ar-sync-left">
-              <div class="ar-sync-ico" aria-hidden="true">
-                <img src="./assets/ns/class_heavy_attack.png" width="24" height="24" alt="" />
-              </div>
-              <div class="ar-sync-meta">
-                <h2 class="card-title">Simulator Arena Boss 1:1 Game Asli</h2>
-                <div class="card-desc" id="ar-sync-summary">
-                  Tersinkron ke Build Planner &middot; Rumus StatManager, EffectsManager &amp; ATB 600px resmi
-                </div>
-              </div>
+          <!-- Top Slim Tactical Control Strip -->
+          <div class="ar-topbar">
+            <div class="ar-topbar-left">
+              <img src="./assets/ns/ui_crest_shuriken.png" width="22" height="22" alt="" />
+              <h2 class="ar-topbar-title">Arena Battle 1:1 Game Asli</h2>
+              <span class="ar-topbar-sub" id="ar-sync-summary">Tersinkron ke Build Planner &middot; Klik Jutsu untuk bertarung atau [?] untuk bedah rumus</span>
             </div>
-            <div class="ar-sync-actions">
+            <div class="ar-topbar-actions">
+              <button type="button" class="ar-map-pill" data-ar-map="courtyard" aria-pressed="true">Map: Gerbang Desa</button>
+              <button type="button" class="ar-map-pill" data-ar-map="dojo" aria-pressed="false">Dojo</button>
+              <button type="button" class="ar-map-pill" data-ar-map="rooftop" aria-pressed="false">Atap</button>
               <label class="ar-toggle-pill" title="Gunakan RNG Seed Tetap agar tes sebelum dan sesudah ganti Jutsu adil">
                 <input type="checkbox" id="ar-det-toggle" />
-                <span>Seed Deterministik</span>
+                <span>Seed Tetap</span>
               </label>
-              <button type="button" class="btn-ghost" id="ar-sync-btn">Pakai Build Aktif</button>
-              <button type="button" class="btn-primary" id="ar-reset-btn">Reset Duel</button>
+              <button type="button" class="ar-map-pill" id="ar-sync-btn">Pakai Build Aktif</button>
             </div>
           </div>
 
-          <!-- 2. Setup Panel: Elemental Allocation + Talents/Senjutsu + Boss Picker -->
-          <div class="ar-setup-grid">
+          <!-- 1. AUTHENTIC 1:1 IN-GAME BATTLE STAGE (DefineSprite_6848_Combat.Battle) -->
+          <div class="sage-card ar-stage-card">
+            <div class="ar-arena-viewport" id="ar-arena-viewport" data-stage-map="courtyard">
+
+              <!-- A. Top-Left Wooden Status Plaque + Team 1/2 Circular Button -->
+              <div class="ar-wood-hud-wrap" id="ar-hud-player">
+                <div class="ar-wood-plaque">
+                  <div class="ar-lv-medallion">
+                    <span class="ar-lv-medallion-k">Lv</span>
+                    <span class="ar-lv-medallion-v" id="ar-p-lv-num">80</span>
+                  </div>
+                  <div class="ar-wood-charname" id="ar-p-name">Wind Burst Shinobi</div>
+                  <div class="ar-wood-bars">
+                    <div class="ar-wbar-row">
+                      <div class="ar-wbar-ico" aria-hidden="true">
+                        <svg viewBox="0 0 20 18" width="14" height="13"><path fill="#EF4444" stroke="#000" stroke-width="1.8" d="M10 16.5S2 11.2 2 5.8C2 3.1 4.1 1 6.7 1c1.5 0 2.8.8 3.3 2 .5-1.2 1.8-2 3.3-2C15.9 1 18 3.1 18 5.8c0 5.4-8 10.7-8 10.7z"/></svg>
+                      </div>
+                      <div class="ar-wbar-track">
+                        <div class="ar-wbar-fill hp" id="ar-p-hp-bar" style="width:100%"></div>
+                        <span class="ar-wbar-txt" id="ar-p-hp-txt">3,260 / 3,260</span>
+                      </div>
+                    </div>
+                    <div class="ar-wbar-row">
+                      <div class="ar-wbar-ico" aria-hidden="true">
+                        <svg viewBox="0 0 20 20" width="14" height="14"><circle cx="10" cy="10" r="8" fill="#0284C7" stroke="#000" stroke-width="1.8"/><path d="M10 5a5 5 0 0 1 4 8 3.2 3.2 0 0 1-5-2.5 1.6 1.6 0 0 1 3 0" fill="none" stroke="#E0F2FE" stroke-width="1.6" stroke-linecap="round"/></svg>
+                      </div>
+                      <div class="ar-wbar-track">
+                        <div class="ar-wbar-fill cp" id="ar-p-cp-bar" style="width:100%"></div>
+                        <span class="ar-wbar-txt" id="ar-p-cp-txt">4,040 / 4,040</span>
+                      </div>
+                    </div>
+                    <div class="ar-wbar-row" id="ar-p-sp-wrap">
+                      <div class="ar-wbar-ico">SP</div>
+                      <div class="ar-wbar-track">
+                        <div class="ar-wbar-fill sp" id="ar-p-sp-bar" style="width:25%"></div>
+                        <span class="ar-wbar-txt" id="ar-p-sp-txt">259 / 1,000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Circular Team 1/2 Button (Toggles 1v1 vs Boss + 2 Minions) -->
+                <button type="button" class="ar-team-circle-btn" id="ar-team-btn" title="Klik untuk ganti mode Solo Boss (1/2) atau Boss + 2 Minion (3/3)">
+                  <img src="./assets/ns/btl_team_badge.png" alt="Team" />
+                  <div class="ar-team-lbl"><span>Team</span><span id="ar-team-cnt-txt">1/2</span></div>
+                </button>
+              </div>
+
+              <!-- B. Top-Center 5-Slot Wooden Buff & Passive Tray -->
+              <div class="ar-top-passive-tray" id="ar-top-passive-tray" title="Talent, Senjutsu &amp; Element Passives Aktif">
+                <img class="ar-top-star-ico" src="./assets/ns/btl_top_star.png" alt="" />
+                <div class="ar-top-pass-slots" id="ar-top-pass-slots"></div>
+              </div>
+
+              <!-- C. Top-Right Quick Sim Pill Bar + Boss Rush Total Damage Skull Banner -->
+              <div class="ar-topright-cluster">
+                <div class="ar-sim-pillbar">
+                  <button type="button" class="ar-sim-chip" id="ar-act-step" title="Jalankan 1 langkah AI otomatis">AI 1 Turn</button>
+                  <button type="button" class="ar-sim-chip is-red" id="ar-act-auto" title="Jalankan pertarungan otomatis sampai selesai">Auto Battle</button>
+                  <button type="button" class="ar-sim-chip is-gold" id="ar-act-batch" title="Simulasikan 50 pertarungan penuh &amp; tampilkan Inti Sari">Uji Monte Carlo 50x</button>
+                </div>
+                <div class="ar-skull-banner" id="ar-skull-banner" title="Total Damage Kumulatif ke Boss (Klik untuk buka Rangkuman Inti Sari)">
+                  <div class="ar-skull-dmg-val" id="ar-tot-dmg-val">0</div>
+                  <div class="ar-skull-turn-txt" id="ar-turn-badge">Turn #1 &middot; Siap Tempur</div>
+                </div>
+              </div>
+
+              <!-- D. Center Octagonal 8-Slot Talent Seal Wheel + 6-Dot Stone Cube -->
+              <div class="ar-center-wheel-zone">
+                <div class="ar-talent-wheel" id="ar-talent-wheel">
+                  <div class="ar-wheel-emblem" id="ar-wheel-emblem">
+                    <img id="ar-wheel-logo-img" src="./assets/ns/btl_wheel_saint.svg" alt="Talent Seal" />
+                  </div>
+                  <div id="ar-wheel-slots-mount"></div>
+                </div>
+                <button type="button" class="ar-class-cube-btn" id="ar-class-cube-btn" title="Klik untuk pakai Class Skill / Buka-Tutup Roda Talent 8-Slot">
+                  <div id="ar-class-cube-ico"></div>
+                </button>
+              </div>
+
+              <!-- E. Left Field Formation: Companion Pet & Player Character Standing on Ground -->
+              <div class="ar-field-side ar-field-left" id="ar-side-player">
+                <div class="ar-pop-layer" id="ar-pop-player"></div>
+
+                <!-- Companion Pet Actor (No box!) -->
+                <div class="ar-unit-actor ar-pet-actor" id="ar-pet-box">
+                  <div class="ar-pet-sprite-wrap">
+                    <img id="ar-pet-img" src="./assets/ns/ns_forge_cat_pet.png" width="74" height="74" alt="Pet Companion" />
+                  </div>
+                  <div class="ar-foot-plate">
+                    <span class="ar-foot-name" id="ar-pet-foot-name">Lv.85 Raita</span>
+                    <div class="ar-foot-barwrap">
+                      <div class="ar-foot-hptrack is-pet"><div class="ar-foot-hpfill" style="width:100%"></div></div>
+                      <button type="button" class="ar-foot-qbtn" data-inspect-unit="pet" title="Inspect Companion Pet">?</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Player Shinobi Actor -->
+                <div class="ar-unit-actor ar-player-actor">
+                  <div class="ar-overhead-effs" id="ar-p-effs"></div>
+                  <div class="ar-player-av" id="ar-player-av"></div>
+                  <div class="ar-foot-plate">
+                    <span class="ar-foot-name" id="ar-p-foot-name">Lv.80 Shinobi</span>
+                    <div class="ar-foot-barwrap">
+                      <div class="ar-foot-crest" title="Elemen Utama"><img id="ar-p-foot-elem" src="./assets/ns/elem_wind.png" alt="" /></div>
+                      <div class="ar-foot-hptrack"><div class="ar-foot-hpfill" id="ar-p-foot-hpbar" style="width:100%"></div></div>
+                      <button type="button" class="ar-foot-qbtn" data-inspect-unit="player" title="Inspect Status &amp; Buff Karakter">?</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- F. Right Field Formation: Target Boss & Minions Standing on Ground -->
+              <div class="ar-field-side ar-field-right" id="ar-side-boss">
+                <div class="ar-pop-layer" id="ar-pop-boss"></div>
+
+                <!-- Main Boss Actor -->
+                <div class="ar-unit-actor ar-boss-actor" id="ar-hud-boss">
+                  <div class="ar-overhead-effs" id="ar-b-effs"></div>
+                  <div class="ar-boss-wrap" id="ar-boss-wrap">
+                    <img id="ar-boss-img" class="ar-boss-img" src="./assets/ns/icon_eudemon.png" alt="Target Boss" />
+                  </div>
+                  <div class="ar-foot-plate">
+                    <span class="ar-foot-name" id="ar-b-name">Lv.85 Crimson Thorn</span>
+                    <div class="ar-foot-barwrap">
+                      <div class="ar-foot-crest" title="Boss Target"><img src="./assets/ns/ui_crest_dragon.png" alt="" /></div>
+                      <div class="ar-foot-hptrack">
+                        <div class="ar-foot-hpfill" id="ar-b-hp-bar" style="width:100%"></div>
+                      </div>
+                      <button type="button" class="ar-foot-qbtn" data-inspect-unit="boss" title="Inspect Stat, Buff &amp; Skill Boss">?</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Optional Minions Formation (Boss + 2 Minions) -->
+                <div class="ar-minions-row" id="ar-minions-row" hidden></div>
+              </div>
+
+              <!-- G. Floating Battle Tooltip & Unit Inspector Modal -->
+              <div class="ar-battle-tooltip" id="ar-battle-tooltip" hidden></div>
+              <div class="ar-unit-modal" id="ar-unit-modal" hidden></div>
+
+              <!-- H. Authentic Bottom Action Dock: 4 Left Jutsu + 2x2 Center Buttons + 4 Right Jutsu + Senjutsu Orb -->
+              <div class="ar-bottom-dock" id="ar-deck-grid">
+                <div class="ar-deck-wing" id="ar-slots-left"></div>
+
+                <div class="ar-center-4btns">
+                  <button type="button" class="ar-cact-btn" id="ar-act-weapon" title="Attack: Serangan Senjata Basic (+5% CP)">
+                    <img src="./assets/ns/btl_btn_attack.png" alt="Attack" />
+                  </button>
+                  <button type="button" class="ar-cact-btn" id="ar-act-dodge" title="Dodge: Kuda-Kuda Kawarimi (+35% Dodge 1 Turn)">
+                    <img src="./assets/ns/btl_btn_dodge.png" alt="Dodge" />
+                  </button>
+                  <button type="button" class="ar-cact-btn" id="ar-act-charge" title="Charge: Pulihkan Chakra (+25% CP)">
+                    <img src="./assets/ns/btl_btn_charge.png" alt="Charge" />
+                  </button>
+                  <button type="button" class="ar-cact-btn" id="ar-reset-btn" title="Run / Reset: Mulai Ulang Pertarungan">
+                    <img src="./assets/ns/btl_btn_run.png" alt="Run" />
+                  </button>
+                </div>
+
+                <div class="ar-deck-wing" id="ar-slots-right-wrap">
+                  <!-- Silver Stopwatch + Turn Counter Plaque right above Right Skill Wing -->
+                  <div class="ar-stopwatch-plaque" title="Nomor Putaran Giliran (Turn)">
+                    <div class="ar-stopwatch-bg">
+                      <div class="ar-stopwatch-ico">
+                        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="13" r="8" fill="#F8FAFC" stroke="#1E293B" stroke-width="2"/><path d="M9 2h6M12 2v3M12 13V8M12 13l4 2" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/></svg>
+                      </div>
+                      <div class="ar-stopwatch-numbox" id="ar-turn-num">1</div>
+                    </div>
+                  </div>
+                  <div class="ar-deck-wing" id="ar-slots-right"></div>
+                  <button type="button" class="ar-senjutsu-orb-btn" id="ar-act-sage" title="Senjutsu / Sage Mode (Klik untuk aktivasi Sage Mode atau ganti bar Jutsu <-> Senjutsu)">
+                    <img id="ar-sage-orb-img" src="./assets/ns/btl_btn_senjutsu.png" alt="Senjutsu" />
+                  </button>
+                </div>
+              </div>
+
+              <!-- I. Bottom Purple Agility Bar (Golden Cloud -> Purple Track -> Kunai Action!) -->
+              <div class="ar-atb-bar-stage" title="Agility Bar AS3 (Skala 0 - 600 Action!)">
+                <div class="ar-atb-track" id="ar-atb-track">
+                  <div class="ar-atb-finish"></div>
+                </div>
+              </div>
+
+              <!-- J. Bottom Wooden Trim + Bottom-Left Emblem + Bottom-Right Chat/Gear/Options -->
+              <div class="ar-bottom-woodtrim" aria-hidden="true"></div>
+              <div class="ar-corner-logo">
+                <img src="./assets/ns/ui_dollhouse_emblem.png" alt="Ninja Sage" />
+                <span class="ar-corner-ver">0.64.6</span>
+              </div>
+              <div class="ar-corner-3btns">
+                <button type="button" class="ar-c3-btn" id="ar-btn-chat" title="Chat: Lihat Log Pertarungan Real-Time">
+                  <img src="./assets/ns/btl_btn_chat.png" alt="Chat" />
+                </button>
+                <button type="button" class="ar-c3-btn" id="ar-btn-gear" title="Gear: Atur Poin Elemen, Talent, Senjutsu &amp; Target Boss">
+                  <img src="./assets/ns/btl_btn_gear.png" alt="Gear" />
+                </button>
+                <button type="button" class="ar-c3-btn" id="ar-btn-options" title="Options: Jalankan Simulasi 50x &amp; Lihat Rangkuman Inti Sari">
+                  <img src="./assets/ns/btl_btn_options.png" alt="Options" />
+                </button>
+              </div>
+
+              <!-- Screen-reader / telemetry sync mirrors -->
+              <div class="ar-compat-sr" aria-hidden="true">
+                <span id="ar-p-agi"></span>
+                <span id="ar-b-agi"></span>
+                <span id="ar-b-hp-txt"></span>
+                <span id="ar-b-cp-txt"></span>
+                <div id="ar-b-cp-bar"></div>
+                <span id="ar-stage-banner"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. ICON-RICH RANGKUMAN DETAIL DAMAGE, KOMBINASI BUFF & INTI SARI + COMBAT LOG -->
+          <div class="ar-analytics-grid" id="ar-analytics-section">
+            <div class="sage-card ar-log-card" id="ar-log-card">
+              <div class="ar-subhdr">
+                <h3 class="ar-subhdr-t">
+                  <img src="./assets/ns/btl_btn_chat.png" width="22" height="22" alt="" />
+                  <span>Log Pertarungan Real-Time</span>
+                </h3>
+                <span class="pill steel" id="ar-log-cnt">0 Aksi</span>
+              </div>
+              <div class="ar-log-list" id="ar-log-list"></div>
+            </div>
+
+            <div class="sage-card ar-sum-card" id="ar-sum-card">
+              <div class="ar-subhdr">
+                <h3 class="ar-subhdr-t">
+                  <img src="./assets/ns/class_heavy_attack.png" width="22" height="22" alt="" />
+                  <span>Rangkuman Detail Damage, Kombinasi Buff &amp; Inti Sari</span>
+                </h3>
+                <div class="ar-tab-bar" role="tablist">
+                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="true" data-ar-tab="waterfall">Bedah Formula Damage</button>
+                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="false" data-ar-tab="synergy">Matriks Kombinasi Buff</button>
+                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="false" data-ar-tab="summary">Inti Sari &amp; Hasil 50x</button>
+                </div>
+              </div>
+
+              <div id="ar-panel-waterfall"></div>
+              <div id="ar-panel-synergy" hidden></div>
+              <div id="ar-panel-summary" hidden></div>
+            </div>
+          </div>
+
+          <!-- 3. GEAR & BOSS CONFIGURATION DECK (Element Sliders, 3 Talents, Senjutsu, 403 Boss Picker) -->
+          <div class="ar-setup-grid" id="ar-setup-section">
             <div class="sage-card ar-cfg-card">
               <div class="ar-subhdr">
-                <h3 class="ar-subhdr-t">Alokasi Poin Elemen, Talent &amp; Senjutsu</h3>
+                <h3 class="ar-subhdr-t">
+                  <img src="./assets/ns/btl_btn_gear.png" width="22" height="22" alt="" />
+                  <span>Alokasi Poin Elemen, Talent &amp; Senjutsu</span>
+                </h3>
                 <span class="pill gold" id="ar-pt-pool">Terpakai 80 / 80 Poin</span>
               </div>
 
               <div class="ar-elem-sliders" id="ar-elem-sliders">
                 <div class="ar-el-box">
-                  <div class="ar-el-top"><span>Wind</span><span id="ar-val-wind">80</span></div>
+                  <div class="ar-el-top"><span class="ar-el-lbl"><img src="./assets/ns/elem_wind.png" alt="" />Wind</span><span id="ar-val-wind">80</span></div>
                   <input type="range" min="0" max="100" value="80" id="ar-sl-wind" aria-label="Poin Elemen Wind" />
-                  <div class="ar-el-sub" id="ar-eff-wind">+80 Agi · +32% Dodge</div>
+                  <div class="ar-el-sub" id="ar-eff-wind">+80 Agi &middot; +32% Dodge</div>
                 </div>
                 <div class="ar-el-box">
-                  <div class="ar-el-top"><span>Fire</span><span id="ar-val-fire">0</span></div>
+                  <div class="ar-el-top"><span class="ar-el-lbl"><img src="./assets/ns/elem_fire.png" alt="" />Fire</span><span id="ar-val-fire">0</span></div>
                   <input type="range" min="0" max="100" value="0" id="ar-sl-fire" aria-label="Poin Elemen Fire" />
-                  <div class="ar-el-sub" id="ar-eff-fire">+0% Dmg · 0% Combust</div>
+                  <div class="ar-el-sub" id="ar-eff-fire">+0% Dmg &middot; 0% Combust</div>
                 </div>
                 <div class="ar-el-box">
-                  <div class="ar-el-top"><span>Lightning</span><span id="ar-val-lightning">0</span></div>
+                  <div class="ar-el-top"><span class="ar-el-lbl"><img src="./assets/ns/elem_lightning.png" alt="" />Light</span><span id="ar-val-lightning">0</span></div>
                   <input type="range" min="0" max="100" value="0" id="ar-sl-lightning" aria-label="Poin Elemen Lightning" />
-                  <div class="ar-el-sub" id="ar-eff-lightning">+0% Crit · +0% CritDmg</div>
+                  <div class="ar-el-sub" id="ar-eff-lightning">+0% Crit &middot; +0% CritDmg</div>
                 </div>
                 <div class="ar-el-box">
-                  <div class="ar-el-top"><span>Water</span><span id="ar-val-water">0</span></div>
+                  <div class="ar-el-top"><span class="ar-el-lbl"><img src="./assets/ns/elem_water.png" alt="" />Water</span><span id="ar-val-water">0</span></div>
                   <input type="range" min="0" max="100" value="0" id="ar-sl-water" aria-label="Poin Elemen Water" />
-                  <div class="ar-el-sub" id="ar-eff-water">+0 CP · +0% Purify</div>
+                  <div class="ar-el-sub" id="ar-eff-water">+0 CP &middot; +0% Purify</div>
                 </div>
                 <div class="ar-el-box">
-                  <div class="ar-el-top"><span>Earth</span><span id="ar-val-earth">0</span></div>
+                  <div class="ar-el-top"><span class="ar-el-lbl"><img src="./assets/ns/elem_earth.png" alt="" />Earth</span><span id="ar-val-earth">0</span></div>
                   <input type="range" min="0" max="100" value="0" id="ar-sl-earth" aria-label="Poin Elemen Earth" />
-                  <div class="ar-el-sub" id="ar-eff-earth">+0 HP · 0% Reactive</div>
+                  <div class="ar-el-sub" id="ar-eff-earth">+0 HP &middot; 0% Reactive</div>
                 </div>
               </div>
 
@@ -4064,22 +4898,22 @@
 
               <div class="ar-sel-row">
                 <div class="ar-fld">
-                  <label for="ar-tal-1">Bloodline / Talent #1 (Lv.10)</label>
+                  <label for="ar-tal-1">Extreme Talent #1 (Roda Segel Utama)</label>
                   <select id="ar-tal-1"></select>
                 </div>
                 <div class="ar-fld">
-                  <label for="ar-tal-2">Secret Talent #2 (Lv.10)</label>
+                  <label for="ar-tal-2">Secret Talent #2 (Slot Bawah)</label>
                   <select id="ar-tal-2"></select>
                 </div>
                 <div class="ar-fld">
-                  <label for="ar-tal-3">Secret Talent #3 (Lv.10)</label>
+                  <label for="ar-tal-3">Secret Talent #3 (Cadangan)</label>
                   <select id="ar-tal-3"></select>
                 </div>
               </div>
 
               <div class="ar-sel-row">
                 <div class="ar-fld">
-                  <label for="ar-senjutsu-sel">Jalur Senjutsu (SP Bar Lv.80+)</label>
+                  <label for="ar-senjutsu-sel">Jalur Senjutsu (Bola Swirl Kanan)</label>
                   <select id="ar-senjutsu-sel">
                     <option value="none">Tanpa Senjutsu</option>
                     <option value="toad">Toad Senjutsu (Mount Myoboku)</option>
@@ -4090,9 +4924,9 @@
                 <div class="ar-fld">
                   <label for="ar-pet-lv">Companion Pet Level &amp; Status</label>
                   <select id="ar-pet-lv">
-                    <option value="85">Pet Aktif · Lv.85 Maks</option>
-                    <option value="80">Pet Aktif · Lv.80</option>
-                    <option value="50">Pet Aktif · Lv.50 (Semua Skill Terbuka)</option>
+                    <option value="85">Pet Aktif &middot; Lv.85 Maks</option>
+                    <option value="80">Pet Aktif &middot; Lv.80</option>
+                    <option value="50">Pet Aktif &middot; Lv.50 (Semua Skill Terbuka)</option>
                     <option value="0">Solo Tanpa Pet</option>
                   </select>
                 </div>
@@ -4110,7 +4944,10 @@
 
             <div class="sage-card ar-cfg-card">
               <div class="ar-subhdr">
-                <h3 class="ar-subhdr-t">Target Boss (403 DB) &amp; Mode Pertarungan</h3>
+                <h3 class="ar-subhdr-t">
+                  <img src="./assets/ns/ui_crest_dragon.png" width="22" height="22" alt="" />
+                  <span>Target Boss (403 DB) &amp; Formasi Musuh</span>
+                </h3>
                 <span class="pill azure" id="ar-boss-ai-pill">AI Taktis Aktif</span>
               </div>
               <div class="ar-boss-pick-bar">
@@ -4119,7 +4956,7 @@
               </div>
               <div class="ar-ctrl-group">
                 <button type="button" class="kb-chip" data-ar-wave="1" aria-pressed="true">Solo Boss (1v1)</button>
-                <button type="button" class="kb-chip" data-ar-wave="3" aria-pressed="false">Boss + 2 Minion (Uji AoE)</button>
+                <button type="button" class="kb-chip" data-ar-wave="3" aria-pressed="false">Boss + 2 Minion (Team 1/3)</button>
               </div>
               <div class="ar-boss-quickstats" id="ar-boss-quickstats">
                 <div class="ar-bqs-cell"><div class="ar-bqs-k">HP Boss</div><div class="ar-bqs-v">-</div></div>
@@ -4128,128 +4965,6 @@
                 <div class="ar-bqs-cell"><div class="ar-bqs-k">Base Power</div><div class="ar-bqs-v">-</div></div>
               </div>
               <div class="card-desc" id="ar-boss-desc">Memuat profil tempur Boss…</div>
-            </div>
-          </div>
-
-          <!-- 3. Authentic In-Game Battle Stage -->
-          <div class="sage-card ar-stage-card">
-            <div class="ar-atb-wrap">
-              <div class="ar-atb-hdr">
-                <span><strong>Agility Bar AS3 (600px · Divider 20)</strong> &middot; <span id="ar-atb-meta">Putaran Siap</span></span>
-                <span id="ar-turn-badge" class="pill gold">Turn #0 · Siap Tempur</span>
-              </div>
-              <div class="ar-atb-track" id="ar-atb-track">
-                <div class="ar-atb-finish" title="Garis Aksi (600)"></div>
-              </div>
-            </div>
-
-            <div class="ar-arena-viewport" id="ar-arena-viewport">
-              <div class="ar-floor-ring" aria-hidden="true"></div>
-              <div class="ar-stage-topbadge" id="ar-stage-banner">Giliran Shinobi — Pilih Jutsu, Weapon Basic, Charge, atau Jalankan Auto Battle</div>
-
-              <div class="ar-side" id="ar-side-player">
-                <div class="ar-pop-layer" id="ar-pop-player"></div>
-                <div class="ar-sprite-row">
-                  <div class="ar-pet-box" id="ar-pet-box" hidden>
-                    <img id="ar-pet-img" src="./assets/ns/ns_forge_cat_pet.png" width="66" height="66" alt="Pet Companion" />
-                  </div>
-                  <div class="ar-player-av" id="ar-player-av"></div>
-                </div>
-              </div>
-
-              <div class="ar-side" id="ar-side-boss">
-                <div class="ar-pop-layer" id="ar-pop-boss"></div>
-                <div class="ar-boss-wrap" id="ar-boss-wrap">
-                  <img id="ar-boss-img" class="ar-boss-img" src="./assets/ns/icon_eudemon.png" alt="Target Boss" />
-                </div>
-                <div class="ar-minions-row" id="ar-minions-row" hidden></div>
-              </div>
-            </div>
-
-            <!-- Combat HUD Plates -->
-            <div class="ar-hud-grid">
-              <div class="ar-hud-card" id="ar-hud-player">
-                <div class="ar-hud-top">
-                  <span class="ar-hud-name" id="ar-p-name">Shinobi (Lv.80)</span>
-                  <span class="pill azure" id="ar-p-agi">Agi 89 · Dodge 37%</span>
-                </div>
-                <div class="ar-bar-row">
-                  <div class="ar-bar-lbl"><span>HP</span><span id="ar-p-hp-txt">3,260 / 3,260</span></div>
-                  <div class="ar-bar-track"><div class="ar-bar-fill hp" id="ar-p-hp-bar" style="width:100%"></div></div>
-                </div>
-                <div class="ar-bar-row">
-                  <div class="ar-bar-lbl"><span>CP</span><span id="ar-p-cp-txt">3,260 / 3,260</span></div>
-                  <div class="ar-bar-track"><div class="ar-bar-fill cp" id="ar-p-cp-bar" style="width:100%"></div></div>
-                </div>
-                <div class="ar-bar-row" id="ar-p-sp-wrap">
-                  <div class="ar-bar-lbl"><span>SP Sage Mode</span><span id="ar-p-sp-txt">0 / 1,000</span></div>
-                  <div class="ar-bar-track"><div class="ar-bar-fill sp" id="ar-p-sp-bar" style="width:0%"></div></div>
-                </div>
-                <div class="ar-buff-row" id="ar-p-effs"></div>
-              </div>
-
-              <div class="ar-hud-card" id="ar-hud-boss">
-                <div class="ar-hud-top">
-                  <span class="ar-hud-name" id="ar-b-name">Boss Target</span>
-                  <span class="pill danger" id="ar-b-agi">Agi 95 · Dodge 20%</span>
-                </div>
-                <div class="ar-bar-row">
-                  <div class="ar-bar-lbl"><span>HP Boss</span><span id="ar-b-hp-txt">0 / 0</span></div>
-                  <div class="ar-bar-track"><div class="ar-bar-fill hp-boss" id="ar-b-hp-bar" style="width:100%"></div></div>
-                </div>
-                <div class="ar-bar-row">
-                  <div class="ar-bar-lbl"><span>CP Boss</span><span id="ar-b-cp-txt">0 / 0</span></div>
-                  <div class="ar-bar-track"><div class="ar-bar-fill cp" id="ar-b-cp-bar" style="width:100%"></div></div>
-                </div>
-                <div class="ar-buff-row" id="ar-b-effs"></div>
-              </div>
-            </div>
-
-            <!-- Player Action Deck -->
-            <div class="ar-ctrl-strip">
-              <div class="ar-ctrl-group">
-                <button type="button" class="btn-ghost" id="ar-act-weapon">Serang Senjata (+5% CP)</button>
-                <button type="button" class="btn-ghost" id="ar-act-charge">Charge Chakra (+25% CP)</button>
-                <button type="button" class="btn-ghost" id="ar-act-sage" disabled>Aktivasi Sage Mode (SP Penuh)</button>
-              </div>
-              <div class="ar-ctrl-group">
-                <button type="button" class="btn-ghost" id="ar-act-step">AI 1 Turn</button>
-                <button type="button" class="btn-primary" id="ar-act-auto">Auto Battle</button>
-                <button type="button" class="btn-primary" id="ar-act-batch">Uji Monte Carlo 50x</button>
-              </div>
-            </div>
-
-            <div class="ar-deck-grid" id="ar-deck-grid"></div>
-
-            <div class="ar-extra-bar" id="ar-extra-bar">
-              <span class="ar-extra-lbl">Skill Aktif Talent &amp; Senjutsu:</span>
-              <span class="card-desc">Memuat daftar skill aktif…</span>
-            </div>
-          </div>
-
-          <!-- 4. Detailed Log + 3-Tab Damage Waterfall / Buff Combination Matrix / Inti Sari -->
-          <div class="ar-analytics-grid">
-            <div class="sage-card ar-log-card">
-              <div class="ar-subhdr">
-                <h3 class="ar-subhdr-t">Log Pertarungan Real-Time</h3>
-                <span class="pill steel" id="ar-log-cnt">0 Aksi</span>
-              </div>
-              <div class="ar-log-list" id="ar-log-list"></div>
-            </div>
-
-            <div class="sage-card ar-sum-card">
-              <div class="ar-subhdr">
-                <h3 class="ar-subhdr-t">Rangkuman Detail Damage, Kombinasi Buff &amp; Inti Sari</h3>
-                <div class="ar-tab-bar" role="tablist">
-                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="true" data-ar-tab="waterfall">Bedah Formula Damage</button>
-                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="false" data-ar-tab="synergy">Matriks Kombinasi Buff</button>
-                  <button type="button" class="ar-tab-btn" role="tab" aria-selected="false" data-ar-tab="summary">Inti Sari &amp; Hasil 50x</button>
-                </div>
-              </div>
-
-              <div id="ar-panel-waterfall"></div>
-              <div id="ar-panel-synergy" hidden></div>
-              <div id="ar-panel-summary" hidden></div>
             </div>
           </div>
         </section>
@@ -4379,7 +5094,7 @@
     </div>
   </dialog>
 
-  <script src="./assets/ns-guard.js?v=b428e3e3"></script>
+  <script src="./assets/ns-guard.js?v=b722bd04"></script>
   <div class="ns-hover-preview" id="ns-hover-preview" role="tooltip" aria-hidden="true" hidden>
     <div class="ns-hover-hdr">
       <div class="ns-hover-ico" id="ns-hover-ico"></div>

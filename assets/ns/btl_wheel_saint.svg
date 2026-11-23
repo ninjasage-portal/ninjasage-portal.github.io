@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <radialGradient id="swBg" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#FFF9D2"/>
+      <stop offset="55%" stop-color="#F6D365"/>
+      <stop offset="100%" stop-color="#C58B1B"/>
+    </radialGradient>
+    <linearGradient id="swRay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE47A"/>
+      <stop offset="50%" stop-color="#E5A928"/>
+      <stop offset="100%" stop-color="#B87914"/>
+    </linearGradient>
+    <radialGradient id="swCore" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#9A7B38"/>
+      <stop offset="65%" stop-color="#6B511E"/>
+      <stop offset="100%" stop-color="#3E2D0D"/>
+    </radialGradient>
+  </defs>
+  <!-- Outer dark rim & gold ring -->
+  <circle cx="80" cy="80" r="77" fill="#181209" stroke="#000000" stroke-width="4"/>
+  <circle cx="80" cy="80" r="71" fill="url(#swBg)" stroke="#D4AF37" stroke-width="3"/>
+  <!-- Woven Golden Seal Bands (8-point star lattice like Gambar 2) -->
+  <g stroke="#B37310" stroke-width="1.6" fill="url(#swRay)" opacity="0.95">
+    <path d="M80 10 L102 62 L150 80 L102 98 L80 150 L58 98 L10 80 L58 62 Z"/>
+    <path d="M30 30 L85 56 L130 30 L104 85 L130 130 L75 104 L30 130 L56 75 Z"/>
+  </g>
+  <g stroke="#FFF3B0" stroke-width="1.4" fill="none" opacity="0.75">
+    <line x1="22" y1="54" x2="138" y2="106"/>
+    <line x1="22" y1="106" x2="138" y2="54"/>
+    <line x1="54" y1="22" x2="106" y2="138"/>
+    <line x1="106" y1="22" x2="54" y2="138"/>
+    <circle cx="80" cy="80" r="56"/>
+  </g>
+  <!-- Center Ancient Seal Core -->
+  <circle cx="80" cy="80" r="30" fill="url(#swCore)" stroke="#241907" stroke-width="2.5"/>
+  <path d="M68 72 H92 V88 H74 V95 M80 62 V98 M66 80 H94" stroke="#C8A456" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.85"/>
+</svg>

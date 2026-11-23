@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="cyWall" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EFEDE8"/>
+      <stop offset="100%" stop-color="#DCD8CE"/>
+    </linearGradient>
+    <linearGradient id="cyArch" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A39E93"/>
+      <stop offset="100%" stop-color="#8B867A"/>
+    </linearGradient>
+    <linearGradient id="cyGateWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6F4E2A"/>
+      <stop offset="100%" stop-color="#53391D"/>
+    </linearGradient>
+    <linearGradient id="cyGround" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B98E5C"/>
+      <stop offset="45%" stop-color="#AE8250"/>
+      <stop offset="100%" stop-color="#9A7041"/>
+    </linearGradient>
+    <pattern id="stoneBricks" width="64" height="32" patternUnits="userSpaceOnUse">
+      <rect width="64" height="32" fill="none" stroke="#C5C0B5" stroke-width="1.5"/>
+      <line x1="32" y1="0" x2="32" y2="16" stroke="#C5C0B5" stroke-width="1.5"/>
+      <line x1="0" y1="16" x2="64" y2="16" stroke="#C5C0B5" stroke-width="1.5"/>
+      <line x1="16" y1="16" x2="16" y2="32" stroke="#C5C0B5" stroke-width="1.5"/>
+      <line x1="48" y1="16" x2="48" y2="32" stroke="#C5C0B5" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Upper Fortress Stone Wall -->
+  <rect x="0" y="0" width="1280" height="270" fill="url(#cyWall)"/>
+  <rect x="0" y="0" width="1280" height="270" fill="url(#stoneBricks)" opacity="0.75"/>
+
+  <!-- Top Wooden Eaves Left & Right -->
+  <polygon points="180,0 380,0 365,36 205,36" fill="#A0672B" stroke="#3D2610" stroke-width="3"/>
+  <polygon points="900,0 1100,0 1075,36 915,36" fill="#A0672B" stroke="#3D2610" stroke-width="3"/>
+
+  <!-- Center Fortress Arch & Huge Wooden Double Gate -->
+  <path d="M375,270 L375,55 Q375,0 440,0 L840,0 Q905,0 905,55 L905,270 Z" fill="#C4BFB4" stroke="#7A756A" stroke-width="3"/>
+  <path d="M395,62 Q640,-15 885,62 L910,0 L370,0 Z" fill="url(#cyArch)" stroke="#5E5A52" stroke-width="2.5"/>
+  <!-- Left & Right Concrete Pillars -->
+  <rect x="425" y="55" width="54" height="215" fill="#DEDAD0" stroke="#9E998E" stroke-width="2"/>
+  <rect x="801" y="55" width="54" height="215" fill="#DEDAD0" stroke="#9E998E" stroke-width="2"/>
+  <!-- Wooden Double Door Inside Arch -->
+  <rect x="479" y="55" width="156" height="215" fill="url(#cyGateWood)" stroke="#3B2712" stroke-width="3"/>
+  <rect x="645" y="55" width="156" height="215" fill="url(#cyGateWood)" stroke="#3B2712" stroke-width="3"/>
+  <!-- Door Horizontal Wooden Beams -->
+  <g fill="#4A3219" stroke="#2D1D0B" stroke-width="1.5">
+    <rect x="484" y="64" width="146" height="16"/>
+    <rect x="484" y="138" width="146" height="16"/>
+    <rect x="484" y="212" width="146" height="16"/>
+    <rect x="650" y="64" width="146" height="16"/>
+    <rect x="650" y="138" width="146" height="16"/>
+    <rect x="650" y="212" width="146" height="16"/>
+  </g>
+  <!-- Crest Circle Above Gate -->
+  <circle cx="640" cy="18" r="36" fill="#B5AFA4" stroke="#5A554C" stroke-width="3"/>
+  <circle cx="640" cy="18" r="24" fill="none" stroke="#6E685F" stroke-width="2"/>
+
+  <!-- Sandy Courtyard Battleground Floor -->
+  <rect x="0" y="266" width="1280" height="454" fill="url(#cyGround)"/>
+  <line x1="0" y1="266" x2="1280" y2="266" stroke="#785836" stroke-width="3"/>
+  <!-- Subtle Ground Horizon Shadow -->
+  <ellipse cx="640" cy="276" rx="580" ry="16" fill="#000000" opacity="0.14"/>
+
+  <!-- Left Spiked Wooden Barricade Fence (exact match to Gambar 2) -->
+  <g stroke="#3A2E21" stroke-width="2.2" fill="#8C735B">
+    <!-- Back posts -->
+    <polygon points="425,295 433,172 441,295"/>
+    <polygon points="468,295 476,172 484,295"/>
+    <polygon points="512,295 520,172 528,295"/>
+    <rect x="418" y="208" width="118" height="10" rx="2"/>
+    <rect x="418" y="256" width="118" height="10" rx="2"/>
+    <!-- Front posts -->
+    <polygon points="444,322 453,190 462,322" fill="#7A624B"/>
+    <polygon points="490,322 499,190 508,322" fill="#7A624B"/>
+    <polygon points="536,322 545,190 554,322" fill="#7A624B"/>
+    <rect x="436" y="232" width="124" height="11" rx="2" fill="#7A624B"/>
+    <rect x="436" y="284" width="124" height="11" rx="2" fill="#7A624B"/>
+  </g>
+
+  <!-- Right Spiked Wooden Barricade Fence (exact match to Gambar 2) -->
+  <g stroke="#3A2E21" stroke-width="2.2" fill="#8C735B">
+    <!-- Back posts -->
+    <polygon points="755,295 763,172 771,295"/>
+    <polygon points="798,295 806,172 814,295"/>
+    <polygon points="842,295 850,172 858,295"/>
+    <rect x="748" y="208" width="118" height="10" rx="2"/>
+    <rect x="748" y="256" width="118" height="10" rx="2"/>
+    <!-- Front posts -->
+    <polygon points="728,322 737,190 746,322" fill="#7A624B"/>
+    <polygon points="774,322 783,190 792,322" fill="#7A624B"/>
+    <polygon points="820,322 829,190 838,322" fill="#7A624B"/>
+    <rect x="720" y="232" width="124" height="11" rx="2" fill="#7A624B"/>
+    <rect x="720" y="284" width="124" height="11" rx="2" fill="#7A624B"/>
+  </g>
+
+  <!-- Left Green Village Trees & Bushes -->
+  <g>
+    <rect x="52" y="160" width="38" height="115" fill="#6E4720" stroke="#3B230E" stroke-width="2.5"/>
+    <ellipse cx="95" cy="268" rx="95" ry="24" fill="#3B6E22"/>
+    <circle cx="45" cy="140" r="68" fill="#3E7523"/>
+    <circle cx="115" cy="155" r="62" fill="#4C8C2B"/>
+    <circle cx="75" cy="95" r="72" fill="#5CA338"/>
+    <circle cx="25" cy="70" r="58" fill="#6BB543"/>
+    <circle cx="135" cy="110" r="52" fill="#6BB543"/>
+    <circle cx="58" cy="245" r="32" fill="#4C8C2B"/>
+    <circle cx="112" cy="252" r="28" fill="#5CA338"/>
+  </g>
+
+  <!-- Right Green Village Trees & Bushes -->
+  <g>
+    <rect x="1155" y="150" width="44" height="125" fill="#6E4720" stroke="#3B230E" stroke-width="2.5"/>
+    <ellipse cx="1165" cy="268" rx="115" ry="26" fill="#3B6E22"/>
+    <circle cx="1115" cy="155" r="64" fill="#3E7523"/>
+    <circle cx="1215" cy="145" r="72" fill="#4C8C2B"/>
+    <circle cx="1160" cy="95" r="76" fill="#5CA338"/>
+    <circle cx="1085" cy="110" r="54" fill="#6BB543"/>
+    <circle cx="1240" cy="75" r="65" fill="#6BB543"/>
+    <circle cx="1115" cy="248" r="34" fill="#4C8C2B"/>
+    <circle cx="1195" cy="244" r="38" fill="#5CA338"/>
+  </g>
+
+  <!-- Scattered Battlefield Pebbles & Grass Tufts -->
+  <g fill="#84684C" stroke="#4A3723" stroke-width="1.5">
+    <ellipse cx="445" cy="398" rx="12" ry="7"/>
+    <ellipse cx="454" cy="401" rx="7" ry="5" fill="#9E8264"/>
+    <ellipse cx="155" cy="595" rx="9" ry="5"/>
+    <ellipse cx="290" cy="610" rx="14" ry="8"/>
+    <ellipse cx="775" cy="560" rx="11" ry="7"/>
+    <ellipse cx="1015" cy="595" rx="13" ry="7"/>
+  </g>
+  <g fill="#E5B842" opacity="0.85">
+    <circle cx="495" cy="422" r="2.5"/><circle cx="505" cy="425" r="2"/><circle cx="516" cy="420" r="2.5"/>
+    <circle cx="545" cy="415" r="2.2"/><circle cx="555" cy="419" r="2.5"/>
+    <circle cx="88" cy="495" r="2.5"/><circle cx="96" cy="499" r="2"/>
+  </g>
+</svg>
