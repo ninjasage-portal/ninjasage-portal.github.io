@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki" />
   <meta name="twitter:description" content="Build Planner Shinobi, Studio Avatar HD, Kamus 1,302 Jutsu &amp; Taktik Boss · Credit by BocilBerjas." />
   <meta name="twitter:image" content="https://ninjasage-portal.github.io/assets/og-banner.png" />
-  <script src="./assets/media-config.js?v=b722bd04"></script>
+  <script src="./assets/media-config.js?v=3d1a1ecf"></script>
   <script data-goatcounter="https://ninjasage-portal.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <style>
 
@@ -3638,10 +3638,10 @@
             <picture><img data-ns="kari_badge" src="" width="20" height="20" alt="" /></picture>
             <span class="vb-lbl">Craft &amp; Forge</span>
           </button>
-          <button type="button" class="viewbar-btn" role="tab" aria-selected="false" data-view="arena">
-            <picture><img class="vb-ico-round" src="./assets/ns/class_heavy_attack.png" width="20" height="20" alt="" /></picture>
+          <button type="button" class="viewbar-btn" role="tab" aria-selected="false" aria-disabled="true" data-view="arena" data-arena-locked="true" style="opacity:0.55;cursor:not-allowed;" title="Fitur Arena Battle sedang dikunci (Dalam Pengembangan)">
+            <picture><img class="vb-ico-round" src="./assets/ns/class_heavy_attack.png" width="20" height="20" alt="" style="filter:grayscale(0.7);" /></picture>
             <span class="vb-lbl">Arena Battle</span>
-            <span class="viewbar-cnt">1:1 AS3</span>
+            <span class="viewbar-cnt" style="background:rgba(239,68,68,0.18);color:#FCA5A5;border:1px solid rgba(239,68,68,0.35);">LOCKED</span>
           </button>
         </div>
       </nav>
@@ -3869,7 +3869,7 @@
                   </div>
                   <div class="studio-preset-btns">
                     <span class="pill azure" id="bp-rot-metrics">8/8 Slot &middot; Avg 362 CP</span>
-                    <button type="button" class="btn-primary pv-btn-xs" id="bp-open-arena" onclick="if(window.NSArenaUI)NSArenaUI.openFromBuildPlanner()">Tes di Arena Boss</button>
+                    <button type="button" class="btn-ghost pv-btn-xs" id="bp-open-arena" disabled aria-disabled="true" style="opacity:0.55;cursor:not-allowed;" title="Fitur Arena Battle sedang dikunci (Dalam Pengembangan)">Arena Boss (Dikunci &middot; Dev)</button>
                     <button type="button" class="btn-ghost pv-btn-xs" id="bp-clear-skills">Kosongkan Slot</button>
                   </div>
                 </div>
@@ -3917,9 +3917,9 @@
               <img src="./assets/ns/ns_forge_hammer.png" width="32" height="32" alt="" />
               <div><div class="bp-quick-t">Craft &amp; Forge Planner</div><div class="bp-quick-s">Blacksmith, Clan, Market &amp; JB</div></div>
             </button>
-            <button type="button" class="bp-quick-tile" onclick="if(window.NSArenaUI)NSArenaUI.openFromBuildPlanner()">
-              <img class="bp-quick-round" src="./assets/ns/class_heavy_attack.png" width="32" height="32" alt="" />
-              <div><div class="bp-quick-t">Arena Duel Boss (1:1 AS3)</div><div class="bp-quick-s">Simulasi damage, buff &amp; Monte Carlo 50x</div></div>
+            <button type="button" class="bp-quick-tile" disabled aria-disabled="true" style="opacity:0.55;cursor:not-allowed;" title="Fitur Arena Battle sedang dikunci (Dalam Pengembangan)">
+              <img class="bp-quick-round" src="./assets/ns/class_heavy_attack.png" width="32" height="32" alt="" style="filter:grayscale(0.7);" />
+              <div><div class="bp-quick-t">Arena Duel Boss (Dikunci &middot; Dev)</div><div class="bp-quick-s">Sedang dalam tahap pengembangan &amp; penyempurnaan UI</div></div>
             </button>
           </div>
         </section>
@@ -5094,7 +5094,7 @@
     </div>
   </dialog>
 
-  <script src="./assets/ns-guard.js?v=b722bd04"></script>
+  <script src="./assets/ns-guard.js?v=3d1a1ecf"></script>
   <div class="ns-hover-preview" id="ns-hover-preview" role="tooltip" aria-hidden="true" hidden>
     <div class="ns-hover-hdr">
       <div class="ns-hover-ico" id="ns-hover-ico"></div>
