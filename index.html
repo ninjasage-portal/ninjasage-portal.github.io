@@ -12,12 +12,12 @@
   <meta name="googlebot" content="noarchive, nosnippet" />
   <meta name="copyright" content="All Rights Reserved - NinjaSage Portal (SHA256:d0f17072772b135df92a185d)" />
   <title>Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki</title>
-  <meta name="description" content="Build Planner Shinobi, Studio Avatar HD (4,392 rig SVG), Kamus 1,302 Jutsu, 6,658 Gear &amp; Taktik 306 Boss — akses langsung tanpa login. Credit by BocilBerjas." />
+  <meta name="description" content="Build Planner Shinobi, Studio Avatar HD (4,392 rig SVG), Kamus 1,302 Jutsu, 6,658 Gear &amp; Taktik 403 Boss — akses langsung tanpa login. Credit by BocilBerjas." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Ninja Sage Public Portal" />
   <meta property="og:url" content="https://ninjasage-portal.github.io/" />
   <meta property="og:title" content="Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki" />
-  <meta property="og:description" content="1,302 Jutsu · 6,658 Gear &amp; Pet · 4,392 Rig Vektor SVG · 306 Boss · 5,610 Animasi WebP HD · Musik Zen Shinobi — Credit by BocilBerjas." />
+  <meta property="og:description" content="1,302 Jutsu · 6,658 Gear &amp; Pet · 4,392 Rig Vektor SVG · 403 Boss · 6,187 Animasi WebP HD · Musik Zen Shinobi — Credit by BocilBerjas." />
   <meta property="og:image" content="https://ninjasage-portal.github.io/assets/og-banner.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="Ninja Sage Public Portal · Build Planner, Studio &amp; Wiki" />
   <meta name="twitter:description" content="Build Planner Shinobi, Studio Avatar HD, Kamus 1,302 Jutsu &amp; Taktik Boss · Credit by BocilBerjas." />
   <meta name="twitter:image" content="https://ninjasage-portal.github.io/assets/og-banner.png" />
-  <script src="./assets/media-config.js?v=e520fcb0"></script>
+  <script src="./assets/media-config.js?v=5eed24f8"></script>
   <script data-goatcounter="https://ninjasage-portal.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <style>
 
@@ -2477,6 +2477,48 @@
       .ns-audio-pill .ns-aud-trk { display: none; }
     }
 
+
+    .boss-rush-box {
+      margin-top: 10px; padding: 10px 12px; border-radius: 10px;
+      background: var(--surface-well); border: 1px solid var(--border-hairline);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .boss-rush-hdr {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      font-size: 11.5px; font-weight: 600; color: var(--text-primary);
+    }
+    .boss-mls-list { display: flex; flex-direction: column; gap: 5px; }
+    .boss-mls-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 5px 8px; border-radius: 7px;
+      background: rgba(12, 16, 26, 0.55); border: 1px solid var(--border-hairline);
+      font-size: 11.5px; font-variant-numeric: tabular-nums;
+    }
+    .boss-mls-l { display: inline-flex; align-items: center; gap: 7px; min-width: 0; color: var(--text-primary); font-weight: 500; }
+    .boss-mls-l img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; border-radius: 4px; }
+    .boss-mls-req { color: var(--accent-gold-hi); font-weight: 600; white-space: nowrap; }
+    .ts-lv-det {
+      margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--border-hairline);
+      font-size: 11px; color: var(--text-secondary);
+    }
+    .ts-lv-det > summary {
+      cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; color: var(--accent-gold-hi); user-select: none;
+    }
+    .ts-lv-det > summary::-webkit-details-marker { display: none; }
+    .ts-lv-grid {
+      margin-top: 6px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .ts-lv-cell {
+      padding: 4px 6px; border-radius: 6px; background: rgba(10, 14, 24, 0.5);
+      border: 1px solid var(--border-hairline); font-size: 10.5px; line-height: 1.35;
+    }
+    .ts-lv-cell strong { color: var(--text-primary); }
+    .gear-pet-subbar {
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+      margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-hairline);
+    }
   </style>
 </head>
 <body>
@@ -2532,7 +2574,7 @@
           <div class="ns-stat-cell">
             <div class="ns-stat-top">
               <picture><img src="./assets/ns/icon_eudemon.png" width="18" height="18" alt="" aria-hidden="true" /></picture>
-              <span class="ns-stat-val">306 Boss</span>
+              <span class="ns-stat-val">403 Boss</span>
             </div>
             <span class="ns-stat-lbl">Taktik &amp; Craft</span>
           </div>
@@ -2633,7 +2675,7 @@
           <button type="button" class="viewbar-btn" role="tab" aria-selected="false" data-view="boss">
             <picture><img src="./assets/ns/icon_eudemon.png" width="20" height="20" alt="" style="border-radius:4px;" /></picture>
             <span class="vb-lbl">Database Boss</span>
-            <span class="viewbar-cnt" id="nav-boss-cnt">306</span>
+            <span class="viewbar-cnt" id="nav-boss-cnt">403</span>
           </button>
           <button type="button" class="viewbar-btn" role="tab" aria-selected="false" data-view="gear">
             <picture><img data-ns="emblem" src="" width="20" height="20" alt="" /></picture>
@@ -2680,9 +2722,9 @@
           <h1 class="topbar-title" id="cmd-page-title">Build Planner &amp; Profil Shinobi</h1>
           <span class="topbar-sep" aria-hidden="true"></span>
           <div class="topbar-status-grp">
-            <span class="pill ok"><span class="dot"></span><span>5,610 Animasi WebP</span></span>
+            <span class="pill ok"><span class="dot"></span><span>6,187 Animasi WebP</span></span>
             <span class="pill azure"><span>1,302 Jutsu</span></span>
-            <span class="pill gold"><span>306 Boss &middot; 6,658 Gear</span></span>
+            <span class="pill gold"><span>403 Boss &middot; 6,658 Gear</span></span>
           </div>
         </div>
 
@@ -2911,7 +2953,7 @@
             </button>
             <button type="button" class="bp-quick-tile" onclick="switchView('boss')">
               <img class="bp-quick-round" src="./assets/ns/icon_eudemon.png" width="32" height="32" alt="" />
-              <div><div class="bp-quick-t">Bosspedia (306 Boss)</div><div class="bp-quick-s">Semua pose animasi &amp; skill AI</div></div>
+              <div><div class="bp-quick-t">Bosspedia (403 Boss)</div><div class="bp-quick-s">Semua pose animasi &amp; skill AI</div></div>
             </button>
             <button type="button" class="bp-quick-tile" onclick="switchView('gear')">
               <img data-ns="emblem" src="" width="32" height="32" alt="" />
@@ -3259,13 +3301,13 @@
                 <h2 class="card-title">Bosspedia &amp; Bedah Skill AI Boss Ninja Sage</h2>
                 <div class="card-desc">Icon portrait jelas, animasi SWF setiap jurus, seluruh daftar skill Boss, penjelasan Buff/Stun/Debuff, &amp; rekomendasi counter Battle IQ</div>
               </div>
-              <span class="pill gold" id="boss-count-pill">306 Boss</span>
+              <span class="pill gold" id="boss-count-pill">403 Boss</span>
             </div>
             <div class="sage-card-body">
               <div class="eff-kpi-strip" id="boss-kpi-strip" role="group" aria-label="Filter Cepat Kategori Boss">
                 <button type="button" class="eff-kpi-cell" data-bmode="all" aria-pressed="true">
                   <span class="eff-kpi-k">Semua Boss &amp; Elite</span>
-                  <span class="eff-kpi-v" id="boss-kpi-all">306</span>
+                  <span class="eff-kpi-v" id="boss-kpi-all">403</span>
                   <span class="eff-kpi-s">Lengkap dengan skill &amp; stat</span>
                 </button>
                 <button type="button" class="eff-kpi-cell" data-bmode="event" aria-pressed="false">
@@ -3298,10 +3340,13 @@
                     <option value="Dragon Hunt">Dragon Hunt</option>
                     <option value="Co-op & Clan">Co-op &amp; Clan</option>
                     <option value="Event Arsip">Event Arsip 2025</option>
+                    <option value="Misi Dunia">Misi Dunia &amp; Story</option>
+                    <option value="Elite 4+ Skill">Elite (4+ Skill)</option>
                     <option value="World / Elite Boss">World &amp; Elite Boss</option>
                   </select>
                   <select id="boss-mech-select" aria-label="Filter Mekanik Skill Boss">
                     <option value="all">Semua Mekanik Skill Boss</option>
+                    <option value="bossrush">Boss Rush (Gacha &amp; Milestone)</option>
                     <option value="cc">Punya Stun / Prison / Freeze / Sleep / Chaos</option>
                     <option value="disperse">Punya Disperse (Hapus Buff Ninja)</option>
                     <option value="sustain">Punya Heal / Regeneration</option>
@@ -3396,6 +3441,13 @@
                   <button type="button" class="kb-chip" data-cat="hair" aria-pressed="false">Hair (1,358)</button>
                   <button type="button" class="kb-chip" data-cat="npc" aria-pressed="false">NPC (20)</button>
                   <button type="button" class="kb-chip" data-cat="all" aria-pressed="false">Semua (6,484)</button>
+                </div>
+                <div class="gear-pet-subbar" id="gear-pet-subbar" hidden>
+                  <button type="button" class="kb-chip" data-psrc="all" aria-pressed="true">Semua Pet (154)</button>
+                  <button type="button" class="kb-chip" data-psrc="dragon" aria-pressed="false">Dragon Hunt</button>
+                  <button type="button" class="kb-chip" data-psrc="bijuu" aria-pressed="false">Tailed Beast / Bijuu</button>
+                  <button type="button" class="kb-chip" data-psrc="event" aria-pressed="false">Event &amp; Seasonal</button>
+                  <button type="button" class="kb-chip" data-psrc="shop" aria-pressed="false">Shop &amp; Arena</button>
                 </div>
               </div>
 
@@ -3694,7 +3746,7 @@
     </div>
   </dialog>
 
-  <script src="./assets/ns-guard.js?v=e520fcb0"></script>
+  <script src="./assets/ns-guard.js?v=5eed24f8"></script>
   <div class="ns-hover-preview" id="ns-hover-preview" role="tooltip" aria-hidden="true" hidden>
     <div class="ns-hover-hdr">
       <div class="ns-hover-ico" id="ns-hover-ico"></div>
